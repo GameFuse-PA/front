@@ -1,6 +1,10 @@
 <div>
   <h1 class="title">Mon profil</h1>
   <ng-form class="form">
+    <div class="image-profil">
+      <img [src]="null" alt="value img on server"/>
+      <input type="file" id="file" (change)="imgCompil.handleFileInput($event)" (input)="picture=getValue($event)">
+    </div>
     <div class="input_variable">
       <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
         <mat-label>Prénom</mat-label>

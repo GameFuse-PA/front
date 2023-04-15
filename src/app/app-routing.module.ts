@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import {ProfilpageComponent} from "./pages/profilpage/profilpage.component";
+import {ProfilPageComponent} from "./pages/profilpage/profil-page.component";
 import { AuthComponent } from './pages/auth/auth.component';
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'profil',
-    component: ProfilpageComponent
+    component: ProfilPageComponent
   }
 ];
 

@@ -13,7 +13,7 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import { ProfilpageComponent } from './pages/profilpage/profilpage.component';
+import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { ProfilpageComponent } from './pages/profilpage/profilpage.component';
     AuthComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    ProfilpageComponent
+    ProfilPageComponent
   ],
   imports: [
     BrowserModule,
