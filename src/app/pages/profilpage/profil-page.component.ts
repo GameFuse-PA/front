@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ImageSettings} from "../../../config/ImageSettings";
+import {ImageInputUtils} from "../../../utils/ImageInputUtils";
 import {ConfigServices} from "../../services/configServices";
 
 @Component({
@@ -23,7 +23,7 @@ export class ProfilPageComponent implements OnInit {
   imgCompil = this.image
 
 
-  constructor(private image: ImageSettings, private service: ConfigServices) { }
+  constructor(private image: ImageInputUtils, private service: ConfigServices) { }
 
   ngOnInit(): void {
 
