@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ImageSettings} from "../../../config/ImageSettings";
-import {ConfigServices} from "../../services/configServices";
+import {ConfigUserServices} from "../../services/configUserServices";
+import {ImageInputUtils} from "../../../utils/ImageInputUtils";
 
 @Component({
   selector: 'app-change-user-form',
@@ -21,7 +21,7 @@ export class ChangeUserFormComponent implements OnInit {
   picture: string = "";
   imgCompil = this.image
 
-  constructor(private image: ImageSettings, private service: ConfigServices) { }
+  constructor(private image: ImageInputUtils, private service: ConfigUserServices) { }
 
   ngOnInit(): void {
   }

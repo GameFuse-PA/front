@@ -1,4 +1,4 @@
-import {ConfigServices} from "../app/services/configServices";
+import {ConfigUserServices} from "../app/services/configUserServices";
 import {Injectable} from "@angular/core";
 
 
@@ -8,7 +8,7 @@ export class ImageInputUtils {
   FileUpload: File | null = null
 
 
-  constructor(private services: ConfigServices) {
+  constructor(private services: ConfigUserServices) {
 
   }
 

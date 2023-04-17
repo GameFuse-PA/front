@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class ConfigServices {
+export class ConfigUserServices {
 
   url = 'http://localhost:3000'
 
