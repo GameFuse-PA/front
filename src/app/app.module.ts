@@ -14,6 +14,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
+import { ChangeUserFormComponent } from './components/change-user-form/change-user-form.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
     AuthComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    ProfilPageComponent
+    ProfilPageComponent,
+    ChangeUserFormComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
     FormsModule,
     MatCardModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
