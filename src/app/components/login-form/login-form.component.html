@@ -7,20 +7,21 @@
       <form>
         <mat-form-field class="w-11/12 mt-5" appearance="outline">
           <mat-label>email</mat-label>
-          <input matInput name="email" [(ngModel)]="email" />
+          <input matInput name="email" [(ngModel)]="user.email" />
           <mat-icon matSuffix>mail</mat-icon>
         </mat-form-field>
         <mat-form-field class="w-11/12 mt-5" appearance="outline">
           <mat-label>mot de passe</mat-label>
-          <input matInput name="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password"/>
+          <input matInput name="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password"/>
           <button mat-icon-button matSuffix (click)="hide = !hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
+        <span class="block text-[color:var(--error)]" *ngIf="error">{{error}}</span>
       </form>
     </mat-card-content>
     <mat-card-footer class="pb-10 pt-5 w-full">
-      <button mat-flat-button (click)="login()" color="primary" class="mt-10 w-1/2">
+      <button mat-flat-button (click)="login()" class="text-white bg-[color:var(--primary)] w-1/2">
         Se connecter
       </button>
     </mat-card-footer>
