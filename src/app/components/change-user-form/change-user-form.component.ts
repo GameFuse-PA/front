@@ -18,6 +18,8 @@ export class ChangeUserFormComponent implements OnInit {
   hide1: boolean = true;
   hide2: boolean = true;
 
+  profilPicOnServer: string|undefined = undefined;
+
   picture: string = "";
   imgCompil = this.image
 

@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { ChangeUserFormComponent } from './components/change-user-form/change-user-form.component';
 import {HttpClientModule} from "@angular/common/http";
+import { ProfilPictureComponent } from './components/profil-picture/profil-picture.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {HttpClientModule} from "@angular/common/http";
     LoginFormComponent,
     RegisterFormComponent,
     ProfilPageComponent,
-    ChangeUserFormComponent
+    ChangeUserFormComponent,
+    ProfilPictureComponent
   ],
   imports: [
     BrowserModule,
