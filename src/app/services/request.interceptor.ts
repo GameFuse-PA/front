@@ -7,7 +7,7 @@ import {
   HttpContextToken,
   HttpHeaders
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, catchError, throwError } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 
 export const NO_AUTH = new HttpContextToken(() => false);
@@ -40,6 +40,23 @@ export class RequestInterceptor implements HttpInterceptor {
             }
           }
         },
+      }),
+      catchError((error: any) => {
+        let errorMessage = '';
+
+        if (error.error instanceof ErrorEvent) {
+          // client-side error
+          errorMessage = error.error.message;
+        } else {
+          // server-side error
+          if (Array.isArray(error.error.message)) {
+            errorMessage = error.error.message[0];
+          } else {
+            errorMessage = error.error.message;
+          }
+        }
+
+        return throwError(() => new Error(errorMessage));
       })
     );
   }

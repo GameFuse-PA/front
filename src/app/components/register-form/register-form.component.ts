@@ -37,14 +37,8 @@ export class RegisterFormComponent implements OnInit {
       next: (res: any) => {
         console.log(res);
       },
-      error: (err: any) => {
-        const errors = err.error.message;
-        
-        if (Array.isArray(errors)) {
-          this.error = errors[0];
-        } else {
-          this.error = errors;
-        }
+      error: (err: Error) => {
+        this.error = err.message;
       }
     });
   }
