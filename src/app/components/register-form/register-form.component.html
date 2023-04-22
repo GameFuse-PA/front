@@ -1,0 +1,34 @@
+
+<mat-card class="text-center pb-5 h-full">
+    <mat-card-title>
+      <h1>Inscription</h1>
+    </mat-card-title>
+  <mat-card-content>
+    <form>
+      <mat-form-field class="w-11/12 mt-5" appearance="outline">
+        <mat-label>email</mat-label>
+        <input matInput name="email" [(ngModel)]="email" />
+        <mat-icon matSuffix>mail</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="w-11/12 mt-5" appearance="outline">
+        <mat-label>mot de passe</mat-label>
+        <input matInput name="password" [type]="hide1 ? 'password' : 'text'" [(ngModel)]="password"/>
+        <button mat-icon-button matSuffix (click)="hide1 = !hide1">
+          <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field class="w-11/12 mt-5" appearance="outline">
+        <mat-label>confirmation du mot de passe</mat-label>
+        <input matInput name="confirmPassword" [type]="hide2 ? 'password' : 'text'" [(ngModel)]="confirmPassword"/>
+        <button mat-icon-button matSuffix (click)="hide2 = !hide2">
+          <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-footer class="pb-10 pt-5">
+    <button mat-flat-button (click)="register()" color="primary" class="w-1/2 mt-10">
+      S'inscrire
+    </button>
+  </mat-card-footer>
+</mat-card>
