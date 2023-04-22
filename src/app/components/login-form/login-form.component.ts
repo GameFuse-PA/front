@@ -9,6 +9,7 @@ export class LoginFormComponent implements OnInit {
   email: string | null = null;
   password: string | null = null;
   hide: boolean = true;
+  resetPassword: boolean = false;
 
   constructor() { }
 

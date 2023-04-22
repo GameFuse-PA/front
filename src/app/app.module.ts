@@ -13,6 +13,7 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MatButtonModule} from '@angular/material/button';
     HomepageComponent,
     AuthComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
