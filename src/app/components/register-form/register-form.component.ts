@@ -35,7 +35,11 @@ export class RegisterFormComponent implements OnInit {
 
     this.authService.register(this.user).subscribe({
       next: (res: any) => {
-        console.log(res);
+        let user: User = res.user;
+        user.access_token = res.access_token;
+
+        this.authService.user = user;
+        localStorage.setItem('user', JSON.stringify(user));
       },
       error: (err: Error) => {
         this.error = err.message;

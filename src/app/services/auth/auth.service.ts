@@ -20,7 +20,11 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+    if (localStorage.getItem("user") !== null) {
+      this.user = JSON.parse(localStorage.getItem('user')!);
+    }
+  }
 
   login(user: User) {
     return this.http.post(URL + "login", {
@@ -39,6 +43,7 @@ export class AuthService {
 
   logout() {
     this.user = null;
+    localStorage.removeItem('user');
     this.router.navigate(['/auth']);
   }
 }
