@@ -14,6 +14,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { RequestInterceptor } from './services/request.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,16 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     FormsModule,
     MatCardModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
