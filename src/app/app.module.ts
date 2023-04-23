@@ -7,20 +7,41 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { AuthComponent } from './pages/auth/auth.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { RequestInterceptor } from './services/request.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent
+    HomepageComponent,
+    AuthComponent,
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
