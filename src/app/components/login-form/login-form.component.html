@@ -1,0 +1,36 @@
+<mat-card class="text-center pb-5 h-full">
+  <div class="flex flex-col h-full justify-center items-center">
+    <ng-container *ngIf="!resetPassword; else resetPasswordForm">
+      <mat-card-title class="w-full">
+        <h1>Connexion</h1>
+      </mat-card-title>
+      <mat-card-content class="w-full">
+        <form>
+          <mat-form-field class="w-11/12 mt-5" appearance="outline">
+            <mat-label>email</mat-label>
+            <input matInput name="email" [(ngModel)]="user.email" />
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="w-11/12 mt-5" appearance="outline">
+            <mat-label>mot de passe</mat-label>
+            <input matInput name="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password"/>
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <span class="block text-[color:var(--error)]" *ngIf="error">{{error}}</span>
+        </form>
+      </mat-card-content>
+      <mat-card-footer class="pb-10 pt-5 w-full">
+        <button mat-flat-button (click)="login()" class="text-white bg-[color:var(--primary)] w-1/2">
+          Se connecter
+        </button>
+      </mat-card-footer>
+      <mat-label (click)="resetPassword=!resetPassword" class="password-reset">J'ai oublié mon mot de passe</mat-label>
+    </ng-container>
+    <ng-template #resetPasswordForm>
+      <app-reset-password class="pb-10"></app-reset-password>
+      <mat-label (click)="resetPassword=!resetPassword" class="password-reset">Revenir à la connexion</mat-label>
+    </ng-template>
+  </div>
+</mat-card>
