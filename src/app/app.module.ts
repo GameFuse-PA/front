@@ -29,7 +29,7 @@ import { ProfilPictureComponent } from './components/profil-picture/profil-pictu
     RegisterFormComponent,
     ProfilPageComponent,
     ChangeUserFormComponent,
-    ProfilPictureComponent
+    ProfilPictureComponent,
     ResetPasswordComponent
   ],
   imports: [

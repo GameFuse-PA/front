@@ -1,6 +1,6 @@
 <ng-form class="form">
   <div class="image-profil">
-    <app-profil-picture [profilPictureUrl]="profilPicOnServer ? profilPicOnServer : undefined"></app-profil-picture>
+    <app-profil-picture [profilPictureUrl]="profilPicOnServer ? profilPicOnServer : ''"></app-profil-picture>
     <input type="file" id="file" (change)="imgCompil.handleFileInput($event)" (input)="picture=getValue($event)">
   </div>
   <div class="input_variable">

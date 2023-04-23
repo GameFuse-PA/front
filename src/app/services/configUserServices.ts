@@ -7,9 +7,9 @@ import {User} from "../models/user.model";
 
 
 const URL = environment.apiUrl + "/profil/";
-const httpOptions = {
+/* const httpOptions = {
   context: new HttpContext().set(NO_AUTH, true)
-};
+}; */
 
 @Injectable({
   providedIn: 'root'
