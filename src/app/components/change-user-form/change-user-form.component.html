@@ -6,36 +6,36 @@
   <div class="input_variable">
     <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
       <mat-label>Prénom</mat-label>
-      <input matInput name="firstname" [(ngModel)]="firstname" />
+      <input matInput name="firstname" [(ngModel)]="user.firstname" />
       <mat-icon matSuffix>firstname</mat-icon>
     </mat-form-field>
     <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
       <mat-label>Nom de famille</mat-label>
-      <input matInput name="lastname" [(ngModel)]="lastname" />
+      <input matInput name="lastname" [(ngModel)]="user.lastname" />
     </mat-form-field>
   </div>
   <div class="input_variable">
     <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
       <mat-label>email</mat-label>
-      <input matInput name="email" [(ngModel)]="email" />
+      <input matInput name="email" [(ngModel)]="user.email" />
       <mat-icon matSuffix>email</mat-icon>
     </mat-form-field>
     <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
       <mat-label>date de naissance</mat-label>
-      <input matInput name="birthdate" type="date" [(ngModel)]="birthdate" style="width: 100%"/>
+      <input matInput name="birthdate" type="date" [(ngModel)]="user.birthdate" style="width: 100%"/>
     </mat-form-field>
   </div>
   <div class="input_variable">
     <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
       <mat-label>mot de passe</mat-label>
-      <input matInput name="password" [type]="hide1 ? 'password' : 'text'" [(ngModel)]="password"/>
+      <input matInput name="password" [type]="hide1 ? 'password' : 'text'" [(ngModel)]="user.password"/>
       <button mat-icon-button matSuffix (click)="hide1 = !hide1">
         <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
     <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
       <mat-label>confirmation du mot de passe</mat-label>
-      <input matInput name="confirmPassword" [type]="hide2 ? 'password' : 'text'" [(ngModel)]="confirmPassword"/>
+      <input matInput name="confirmPassword" [type]="hide2 ? 'password' : 'text'" [(ngModel)]="user.confirmPassword"/>
       <button mat-icon-button matSuffix (click)="hide2 = !hide2">
         <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>

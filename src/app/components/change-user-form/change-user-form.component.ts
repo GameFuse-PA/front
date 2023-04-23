@@ -9,12 +9,18 @@ import {ImageInputUtils} from "../../../utils/ImageInputUtils";
 })
 export class ChangeUserFormComponent implements OnInit {
 
-  firstname: string | null = null;
-  lastname: string | null = null;
-  email: string | null = null;
-  birthdate: string | null = null;
-  password: string | null = null;
-  confirmPassword: string | null = null;
+  user = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    birthdate: '',
+    password: '',
+    confirmPassword: ''
+  }
+
+  ok: string | null = null;
+  error: string | null = null;
+
   hide1: boolean = true;
   hide2: boolean = true;
 
@@ -33,7 +39,17 @@ export class ChangeUserFormComponent implements OnInit {
   }
 
   submit(): void {
-    console.log('submit');
+    this.service.updateProfil(localStorage.getItem('id') as string, this.user).subscribe({
+      next: (res: any) => {
+        if (res.status === 200) {
+          this.ok = "Votre profil a bien été modifié.";
+        }
+        this.error = res.message;
+      },
+      error: (err: Error) => {
+        this.error = err.message;
+      }
+    })
   }
 
 }
