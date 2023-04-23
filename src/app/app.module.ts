@@ -16,6 +16,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestInterceptor } from './services/request.interceptor';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { NewPasswordComponent } from './pages/new-password/new-password.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { RequestInterceptor } from './services/request.interceptor';
     AuthComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ChangePasswordComponent,
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,

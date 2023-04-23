@@ -13,10 +13,8 @@ export class ResetPasswordComponent implements OnInit {
     email: '',
   }
 
-  email: string | null = null;
   error: string | null = null;
   ok: string | null = null;
-  hide: boolean = true;
   constructor(private authServices: AuthService) { }
 
   ngOnInit(): void {
