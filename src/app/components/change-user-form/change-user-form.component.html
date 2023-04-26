@@ -1,7 +1,11 @@
 <ng-form class="form">
-  <div class="image-profil">
-    <app-profil-picture [profilPictureUrl]="profilPicOnServer ? profilPicOnServer : ''"></app-profil-picture>
+  <div class="profile-pic">
+    <label class="-label" for="file">
+      <span class="glyphicon glyphicon-camera"></span>
+      <span>Change Image</span>
+    </label>
     <input type="file" id="file" (change)="imgCompil.handleFileInput($event)" (input)="picture=getValue($event)">
+    <app-profil-picture [profilPictureUrl]="profilPicOnServer ? profilPicOnServer : 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80'"></app-profil-picture>
   </div>
   <div class="input_variable">
     <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
@@ -17,7 +21,7 @@
   <div class="input_variable">
     <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
       <mat-label>email</mat-label>
-      <input matInput name="email" [(ngModel)]="user.email" />
+      <input matInput name="email" [placeholder]="this.emailPlaceholder" [(ngModel)]="user.email" />
       <mat-icon matSuffix>email</mat-icon>
     </mat-form-field>
     <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
@@ -41,5 +45,5 @@
       </button>
     </mat-form-field>
   </div>
-  <button (click)="submit()" id="submit-button" mat-button>Enregistrer</button>
+  <button (click)="submit()" id="submit-button" mat-raised-button class="text-white bg-[color:var(--primary)] w-60">Enregistrer</button>
 </ng-form>

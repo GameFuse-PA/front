@@ -3,10 +3,16 @@
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 3px 3px 3px;
+  width: 50%;
+  margin: auto;
+  padding: 10px;
 }
 
 .input_variable{
-  width: 30%;
+  width: 75%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
@@ -21,4 +27,47 @@
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
+}
+
+/* for image upload */
+.profile-pic {
+  color: transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.profile-pic input {
+  display: none;
+}
+.profile-pic > app-profil-picture > .img-server {
+  position: absolute;
+  object-fit: cover;
+  width: 165px;
+  height: 165px;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+  border-radius: 100px;
+  z-index: 0;
+}
+.profile-pic .-label {
+  cursor: pointer;
+  height: 165px;
+  width: 165px;
+}
+.profile-pic:hover .-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  color: #fafafa;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 100px;
+  margin-bottom: 0;
+}
+.profile-pic span {
+  display: inline-flex;
+  padding: 0.2em;
+  height: 2em;
 }

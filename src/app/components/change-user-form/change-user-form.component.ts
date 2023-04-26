@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfigUserServices} from "../../services/configUserServices";
 import {ImageInputUtils} from "../../../utils/ImageInputUtils";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-change-user-form',
@@ -21,6 +22,8 @@ export class ChangeUserFormComponent implements OnInit {
   ok: string | null = null;
   error: string | null = null;
 
+  emailPlaceholder: string = "";
+
   hide1: boolean = true;
   hide2: boolean = true;
 
@@ -32,6 +35,10 @@ export class ChangeUserFormComponent implements OnInit {
   constructor(private image: ImageInputUtils, private service: ConfigUserServices) { }
 
   ngOnInit(): void {
+    const user: User = JSON.parse(localStorage.getItem('user') as string);
+    if (user){
+      this.emailPlaceholder = user.email as string;
+    }
   }
 
   getValue(event: Event): string {
@@ -52,4 +59,5 @@ export class ChangeUserFormComponent implements OnInit {
     })
   }
 
+  protected readonly undefined = undefined;
 }
