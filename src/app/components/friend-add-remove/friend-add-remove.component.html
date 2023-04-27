@@ -1,1 +1,3 @@
 <button mat-flat-button [class]="!isFriend ? 'w-64 bg-[color:var(--primary)] text-white' : 'w-64 bg-[color:var(--error)] text-white'" (click)="addRemoveFriend()" >{{!isFriend ? 'Ajouter ami' : 'Retirer ami'}}</button>
+<span *ngIf="ok" class="br-10 bg-[color:var(--success)] text-white mt-2">{{ok}}</span>
+<span *ngIf="error" class="br-10 bg-[color:var(--error)] text-white mt-2">{{error}}</span>
