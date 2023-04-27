@@ -16,7 +16,8 @@ export class ChangeUserFormComponent implements OnInit {
     email: '',
     birthdate: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    picture: ''
   }
 
   ok: string | null = null;
@@ -29,7 +30,7 @@ export class ChangeUserFormComponent implements OnInit {
 
   profilPicOnServer: string|undefined = undefined;
 
-  picture: string = "";
+
   imgCompil = this.image
 
   constructor(private image: ImageInputUtils, private service: ConfigUserServices) { }
@@ -46,7 +47,7 @@ export class ChangeUserFormComponent implements OnInit {
   }
 
   submit(): void {
-    this.service.updateProfil(localStorage.getItem('id') as string, this.user).subscribe({
+    this.service.updateProfil(this.user).subscribe({
       next: (res: any) => {
         if (res.status === 200) {
           this.ok = "Votre profil a bien été modifié.";
@@ -59,5 +60,4 @@ export class ChangeUserFormComponent implements OnInit {
     })
   }
 
-  protected readonly undefined = undefined;
 }

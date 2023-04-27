@@ -13,7 +13,6 @@ export class ProfilPictureComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   @Input() profilPictureUrl: string = '';
 
 
