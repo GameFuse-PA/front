@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestInterceptor } from './services/request.interceptor';
+import {FriendAddRemoveComponent} from "./components/friend-add-remove/friend-add-remove.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { RequestInterceptor } from './services/request.interceptor';
     AuthComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
     FriendAddRemoveComponent
   ],
   imports: [

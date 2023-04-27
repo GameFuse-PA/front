@@ -1,1 +1,1 @@
-<button mat-button [color]="isFriend ? 'primary' : 'warn'" (click)="addRemoveFriend()" >{{isFriend ? 'Ajouter ami' : 'Retirer ami'}}</button>
+<button mat-flat-button [class]="!isFriend ? 'w-64 bg-[color:var(--primary)] text-white' : 'w-64 bg-[color:var(--error)] text-white'" (click)="addRemoveFriend()" >{{!isFriend ? 'Ajouter ami' : 'Retirer ami'}}</button>

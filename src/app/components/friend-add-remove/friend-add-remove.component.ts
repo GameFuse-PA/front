@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-friend-add-remove',
@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendAddRemoveComponent implements OnInit {
 
-  isFriend: boolean = false;
-
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  @Input() isFriend: boolean = false;
 
   addRemoveFriend() {
     if (this.isFriend) {
