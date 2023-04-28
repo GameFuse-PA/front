@@ -28,6 +28,7 @@ export class FriendAddRemoveComponent implements OnInit {
       this.friendsServices.removeFriend(this.idFriend).subscribe({
         next: (res) => {
           this.ok = "Ami supprimé";
+          this.isFriend = false;
         },
         error: (err: Error) => {
           this.error = err.message;
@@ -38,6 +39,7 @@ export class FriendAddRemoveComponent implements OnInit {
       this.friendsServices.addFriend(this.idFriend).subscribe({
         next: (res) => {
           this.ok = "Ami ajouté";
+          this.isFriend = true;
         },
         error: (err: Error) => {
           this.error = err.message;
