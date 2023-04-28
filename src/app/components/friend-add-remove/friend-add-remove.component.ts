@@ -25,7 +25,6 @@ export class FriendAddRemoveComponent implements OnInit {
       return;
     }
     if (this.isFriend) {
-      // TODO: remove friend
       this.friendsServices.removeFriend(this.idFriend).subscribe({
         next: (res) => {
           this.ok = "Ami supprimé";
@@ -36,7 +35,6 @@ export class FriendAddRemoveComponent implements OnInit {
       })
 
     } else {
-      // TODO: add friend
       this.friendsServices.addFriend(this.idFriend).subscribe({
         next: (res) => {
           this.ok = "Ami ajouté";
