@@ -22,6 +22,9 @@ export class FriendAddRemoveComponent implements OnInit {
   addRemoveFriend() {
     if (!this.idFriend) {
       this.error = "Erreur à la récupération de l'ami";
+      setTimeout(() => {
+        this.error = "";
+      }, 5000)
       return;
     }
     if (this.isFriend) {
@@ -32,6 +35,9 @@ export class FriendAddRemoveComponent implements OnInit {
         },
         error: (err: Error) => {
           this.error = err.message;
+          setTimeout(() => {
+            this.error = "";
+          }, 10000)
         }
       })
 
@@ -43,6 +49,9 @@ export class FriendAddRemoveComponent implements OnInit {
         },
         error: (err: Error) => {
           this.error = err.message;
+          setTimeout(() => {
+            this.error = "";
+          }, 10000)
         }
       });
     }
