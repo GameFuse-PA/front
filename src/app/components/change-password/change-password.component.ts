@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth/auth.service";
-import {User} from "../../models/user.model";
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ResetPasswordModel} from "../../models/reset-password.model";
 
 @Component({
   selector: 'app-change-password',
@@ -11,33 +11,50 @@ import {Router} from "@angular/router";
 })
 export class ChangePasswordComponent implements OnInit {
 
-  user: User = {
-    email: '',
+  user: ResetPasswordModel = {
     password: '',
+    checkPassword: ''
   }
 
-  checkPassword: string|null = null;
+  token: string|undefined = undefined;
 
-  hide: boolean = true;
   ok: string|null = null;
   error: string | null = null;
-  constructor(private authService: AuthService, private http: HttpClient, private router: Router) { }
+  constructor(private authService: AuthService, private http: HttpClient, private router: Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(
+      (params) => {
+        if (!params['token']){
+          this.router.navigate(['/auth']);
+        }
+        this.token = params['token'];
+      }
+    )
   }
 
   resetPassword(): void {
-    if (this.user.password !== this.checkPassword) {
+    if (this.user.password !== this.user.checkPassword) {
       this.error = 'Les mots de passe ne correspondent pas';
       return;
     }
-    this.authService.newPassword(this.user).subscribe({
-      next: (data) => {
-        const value: any = data;
-        this.ok = value.message;
+    if (!this.token) {
+      this.router.navigate(['/auth']);
+      return;
+    }
+    this.authService.newPassword(this.user, this.token).subscribe({
+      next: (data: any) => {
+        this.error = "";
+        this.ok = data.message;
+        setTimeout(() => {
+          this.router.navigate(['/auth']);
+        }, 7000)
       },
       error: (err) => {
-        this.error = err.error.message;
+        this.error = err.message;
+        setTimeout(() => {
+          this.router.navigate(['/auth']);
+        }, 10000)
       }
     })
   }

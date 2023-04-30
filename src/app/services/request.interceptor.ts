@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
   HttpContextToken,
-  HttpHeaders
+  HttpEvent,
+  HttpHandler,
+  HttpHeaders,
+  HttpInterceptor,
+  HttpRequest
 } from '@angular/common/http';
-import { Observable, tap, catchError, throwError } from 'rxjs';
-import { AuthService } from './auth/auth.service';
+import {catchError, Observable, tap, throwError} from 'rxjs';
+import {AuthService} from './auth/auth.service';
 
 export const NO_AUTH = new HttpContextToken(() => false);
 

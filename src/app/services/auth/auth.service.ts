@@ -1,9 +1,10 @@
-import { HttpClient, HttpContext } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { User } from 'src/app/models/user.model';
-import { environment } from 'src/environments/environment';
-import { NO_AUTH } from '../request.interceptor';
-import { Router } from '@angular/router';
+import {HttpClient, HttpContext, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {User} from 'src/app/models/user.model';
+import {environment} from 'src/environments/environment';
+import {NO_AUTH} from '../request.interceptor';
+import {Router} from '@angular/router';
+import {ResetPasswordModel} from "../../models/reset-password.model";
 
 const URL = environment.apiUrl + "/auth/";
 const httpOptions = {
@@ -48,15 +49,19 @@ export class AuthService {
   }
 
   resetPassword(email: User) {
-    return this.http.post(URL + "resetPassword", {
+    return this.http.post(URL + "sendResetPassword", {
       email: email.email
-    }, httpOptions);
+    });
   }
 
-  newPassword(user: User) {
-    return this.http.post(URL + "resetPassword", {
-      email: user.email,
+  newPassword(user: ResetPasswordModel, token: string) {
+    const headers = {
+      headers: new HttpHeaders({'Content-Type': 'Application/json', 'Authorization': 'Bearer '+ token}),
+      context: new HttpContext().set(NO_AUTH, true)
+    }
+    console.log(token)
+    return this.http.put(URL + "resetPassword", {
       password: user.password
-    }, httpOptions);
+    }, headers);
   }
 }
