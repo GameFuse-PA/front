@@ -20,7 +20,22 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  private resetOkError(){
+    setTimeout(() => {
+      this.error = null;
+    }, 7000)
+    setTimeout(() => {
+      this.ok = null;
+    }, 10000)
+  }
+
+
   resetPasswordAsks(): void {
+    if (!this.resetPassword.email){
+      this.error = "Votre email est requis avant de tenter une réinitialisation 😉";
+      return;
+    }
+    this.resetOkError();
     this.authServices.resetPassword(this.resetPassword).subscribe({
       next: (res: any) => {
         this.ok = "Si votre email est valide, vous allez recevoir un email avec un lien pour réinitialiser votre mot de passe.";
