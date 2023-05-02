@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   resetPassword(email: User) {
-    return this.http.post(URL + "sendResetPassword", {
+    return this.http.post(URL + "forgot-password", {
       email: email.email
     });
   }
@@ -60,7 +60,7 @@ export class AuthService {
       context: new HttpContext().set(NO_AUTH, true)
     }
     console.log(token)
-    return this.http.put(URL + "resetPassword", {
+    return this.http.put(URL + "password", {
       password: user.password
     }, headers);
   }
