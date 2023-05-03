@@ -28,10 +28,6 @@ export class ChangeUserFormComponent implements OnInit {
   hide1: boolean = true;
   hide2: boolean = true;
 
-  profilPicOnServer: string|undefined = undefined;
-
-
-  imgCompil = this.image
 
   constructor(private image: ImageInputUtils, private service: ConfigUserServices) { }
 
@@ -60,4 +56,5 @@ export class ChangeUserFormComponent implements OnInit {
     })
   }
 
+    protected readonly undefined = undefined;
 }

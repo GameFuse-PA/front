@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilPageComponent implements OnInit {
 
-
+  user = {
+    password: '',
+    checkPassword: ''
+  }
   constructor() { }
 
   ngOnInit(): void {

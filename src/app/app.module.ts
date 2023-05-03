@@ -19,6 +19,8 @@ import { RequestInterceptor } from './services/request.interceptor';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { ChangeUserFormComponent } from './components/change-user-form/change-user-form.component';
 import { ProfilPictureComponent } from './components/profil-picture/profil-picture.component';
+import { ChangeProfilPicComponent } from './components/change-profil-pic/change-profil-pic.component';
+import { PasswordFieldComponent } from './components/password-field/password-field.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ProfilPictureComponent } from './components/profil-picture/profil-pictu
     ProfilPageComponent,
     ChangeUserFormComponent,
     ProfilPictureComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ChangeProfilPicComponent,
+    PasswordFieldComponent
   ],
   imports: [
     BrowserModule,

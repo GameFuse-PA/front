@@ -1,0 +1,8 @@
+<div class="profile-pic">
+  <app-profil-picture class="pic-server" [profilPictureUrl]="profilPicOnServer ? profilPicOnServer : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png'"></app-profil-picture>
+  <label class="-label" for="file">
+    <mat-icon class="white-icon">camera_alt</mat-icon>
+    <span>Changer ma photo de profil</span>
+  </label>
+  <input type="file" id="file" (change)="imgCompil.handleFileInput($event)" (input)="picture.picture=getValue($event)">
+</div>
