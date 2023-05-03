@@ -1,20 +1,20 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {HomepageComponent} from './homepage.component';
+import {PasswordFieldComponent} from './password-field.component';
 
-describe('HomepageComponent', () => {
-  let component: HomepageComponent;
-  let fixture: ComponentFixture<HomepageComponent>;
+describe('PasswordFieldComponent', () => {
+  let component: PasswordFieldComponent;
+  let fixture: ComponentFixture<PasswordFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomepageComponent ]
+      declarations: [ PasswordFieldComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomepageComponent);
+    fixture = TestBed.createComponent(PasswordFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
