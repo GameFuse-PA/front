@@ -16,10 +16,7 @@ export const NO_AUTH = new HttpContextToken(() => false);
 export class RequestInterceptor implements HttpInterceptor {
     constructor(private authService: AuthService) {}
 
-    intercept(
-        request: HttpRequest<any>,
-        next: HttpHandler,
-    ): Observable<HttpEvent<any>> {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let headers;
 
         if (!request.context.get(NO_AUTH)) {

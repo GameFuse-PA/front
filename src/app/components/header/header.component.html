@@ -11,9 +11,7 @@
         <a mat-button routerLink="/">Accueil</a>
         <a mat-button>Liste des jeux</a>
         <a mat-button>Scoreboard</a>
-        <a mat-button routerLink="/auth" *ngIf="!authService.user"
-            >Connexion/Inscription</a
-        >
+        <a mat-button routerLink="/auth" *ngIf="!authService.user">Connexion/Inscription</a>
         <span *ngIf="authService.user">
             <button mat-button [matMenuTriggerFor]="menu">Mon compte</button>
             <mat-menu #menu="matMenu">

@@ -37,8 +37,7 @@ export class ChangePasswordComponent implements OnInit {
 
     resetPassword(): void {
         if (!this.user.password || !this.user.checkPassword) {
-            this.error =
-                'Vous réinitialisez votre mot de passe sans le changer ? 🤔';
+            this.error = 'Vous réinitialisez votre mot de passe sans le changer ? 🤔';
             return;
         }
         if (this.user.password !== this.user.checkPassword) {

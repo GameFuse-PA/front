@@ -29,8 +29,7 @@ export class ResetPasswordComponent implements OnInit {
 
     resetPasswordAsks(): void {
         if (!this.resetPassword.email) {
-            this.error =
-                'Votre email est requis avant de tenter une réinitialisation 😉';
+            this.error = 'Votre email est requis avant de tenter une réinitialisation 😉';
             return;
         }
         this.resetOkError();
