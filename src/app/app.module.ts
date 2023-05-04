@@ -19,6 +19,9 @@ import {RequestInterceptor} from './services/request.interceptor';
 import {ChangePasswordComponent} from './components/change-password/change-password.component';
 import {NewPasswordComponent} from './pages/new-password/new-password.component';
 import {PasswordFieldComponent} from './components/password-field/password-field.component';
+import { HeaderComponent } from './components/header/header.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import {PasswordFieldComponent} from './components/password-field/password-field
     ResetPasswordComponent,
     ChangePasswordComponent,
     NewPasswordComponent,
-    PasswordFieldComponent
+    PasswordFieldComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ import {PasswordFieldComponent} from './components/password-field/password-field
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatMenuModule
   ],
   providers: [
     {
