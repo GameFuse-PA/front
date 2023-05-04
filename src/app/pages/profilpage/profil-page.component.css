@@ -29,6 +29,7 @@
   flex-direction: column;
   justify-content: space-around;
   padding: 5px;
+  gap: 25px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 }
