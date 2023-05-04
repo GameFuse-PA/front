@@ -1,24 +1,28 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <a routerLink="/">
-      <img src="https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png" alt="logo" class="w-60">
-    </a>
-    <span class="flex flex-1"></span>
-    <a mat-button routerLink="/">Accueil</a>
-    <a mat-button>Liste des jeux</a>
-    <a mat-button>Scoreboard</a>
-    <a mat-button routerLink="/auth" *ngIf="!authService.user">Connexion/Inscription</a>
-    <span *ngIf="authService.user">
-      <button mat-button [matMenuTriggerFor]="menu">
-        Mon compte
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>Mon profil</button>
-        <button mat-menu-item>Mes jeux</button>
-        <button mat-menu-item>Mes amis</button>
-        <button mat-menu-item>Mes parties</button>
-      </mat-menu>
-      <a mat-button (click)="logout()">Déconnexion</a>
-    </span>
-  </mat-toolbar-row>
+    <mat-toolbar-row>
+        <a routerLink="/">
+            <img
+                src="https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png"
+                alt="logo"
+                class="w-60"
+            />
+        </a>
+        <span class="flex flex-1"></span>
+        <a mat-button routerLink="/">Accueil</a>
+        <a mat-button>Liste des jeux</a>
+        <a mat-button>Scoreboard</a>
+        <a mat-button routerLink="/auth" *ngIf="!authService.user"
+            >Connexion/Inscription</a
+        >
+        <span *ngIf="authService.user">
+            <button mat-button [matMenuTriggerFor]="menu">Mon compte</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Mon profil</button>
+                <button mat-menu-item>Mes jeux</button>
+                <button mat-menu-item>Mes amis</button>
+                <button mat-menu-item>Mes parties</button>
+            </mat-menu>
+            <a mat-button (click)="logout()">Déconnexion</a>
+        </span>
+    </mat-toolbar-row>
 </mat-toolbar>
