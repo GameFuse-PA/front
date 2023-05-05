@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-form',
@@ -16,7 +17,7 @@ export class LoginFormComponent implements OnInit {
   hide: boolean = true;
   resetPassword: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +32,7 @@ export class LoginFormComponent implements OnInit {
 
         this.authService.user = user;
         localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate(['/profil']);
       },
       error: (err: Error) => {
         this.error = err.message;

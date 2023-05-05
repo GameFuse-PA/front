@@ -7,8 +7,9 @@
         <app-change-profil-pic class="flex flex-col items-center gap-4"></app-change-profil-pic>
       </div>
       <div class="password-change-comp">
-        <app-password-field [user]="user"></app-password-field>
-        <button mat-flat-button class="button bg-[color:var(--primary)] text-white">Valider</button>
+        <h3>Changement de mot de passe</h3>
+        <app-password-field [user]="changePassword"></app-password-field>
+        <button mat-flat-button class="button bg-[color:var(--primary)] text-white" (click)="onSubmit()">Valider</button>
       </div>
     </div>
   </div>

@@ -18,6 +18,7 @@ export class ChangeProfilPicComponent implements OnInit {
   error: string|undefined = undefined
 
   isLoading: boolean = false
+  userName: string = ''
 
   imgCompil = this.image
   constructor(private image: ImageInputUtils, private sanitizer: DomSanitizer, private profilService: ProfilService) { }
@@ -25,6 +26,10 @@ export class ChangeProfilPicComponent implements OnInit {
   @Input() profilPicOnServer: string|undefined = undefined;
 
   ngOnInit(): void {
+    if (!localStorage.getItem('user')){
+      return;
+    }
+    this.userName = JSON.parse(localStorage.getItem('user') as string).username;
   }
 
   getValue(event: Event): string {

@@ -6,5 +6,6 @@
   </label>
   <input type="file" id="file" (change)="imgCompil.handleFileInput($event)" (input)="picture.picture=getValue($event)">
 </div>
+<span class="text-xl">{{userName}}</span>
 <button *ngIf="picture.picture" mat-flat-button class="bg-[color:var(--success)] text-white" (click)="submitFile()">Valider ma photo</button>
-<mat-progress-bar mode="indeterminate" color="primary" *ngIf="!isLoading"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate" color="primary" *ngIf="isLoading"></mat-progress-bar>

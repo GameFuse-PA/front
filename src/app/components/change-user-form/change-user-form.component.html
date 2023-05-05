@@ -23,5 +23,6 @@
     </mat-form-field>
   </div>
   <button (click)="submit()" id="submit-button" mat-raised-button class="text-white bg-[color:var(--primary)] w-60">Enregistrer</button>
+  <span class="mt-2 text-white text-[color:var(--success)]" *ngIf="ok">{{ok}}</span>
   <span class="mt-2 text-white text-[color:var(--error)]" *ngIf="error">{{error}}</span>
 </ng-form>

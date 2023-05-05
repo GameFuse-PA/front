@@ -53,7 +53,7 @@ export class AuthService {
     }, httpOptions);
   }
 
-  newPassword(user: User) {
+  newPassword(user: User, token: string) {
     return this.http.post(URL + "resetPassword", {
       email: user.email,
       password: user.password

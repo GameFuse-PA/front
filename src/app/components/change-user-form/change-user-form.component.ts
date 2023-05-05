@@ -3,6 +3,7 @@ import {ConfigUserServices} from "../../services/configUserServices";
 import {ImageInputUtils} from "../../../utils/ImageInputUtils";
 import {User} from "../../models/user.model";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-change-user-form',
@@ -16,6 +17,7 @@ export class ChangeUserFormComponent implements OnInit {
     lastname: undefined,
     email: undefined,
     birthdate: undefined,
+    username: undefined,
   }
 
   ok: string | null = null;
@@ -28,7 +30,7 @@ export class ChangeUserFormComponent implements OnInit {
     birthdate: '',
   }
 
-  constructor(private image: ImageInputUtils, private service: ConfigUserServices, private router: Router) { }
+  constructor(private image: ImageInputUtils, private service: ConfigUserServices, private router: Router, private authServices: AuthService) { }
 
   ngOnInit(): void {
     if (!localStorage.getItem('user')){
@@ -36,13 +38,18 @@ export class ChangeUserFormComponent implements OnInit {
       return;
     }
     this.userPlaceholder = JSON.parse(localStorage.getItem('user') as string);
+    this.user.username = this.userPlaceholder.username;
+    this.user.email = this.userPlaceholder.email;
   }
 
   submit(): void {
+    console.log(this.user)
     this.service.updateProfil(this.user).subscribe({
       next: (res: any) => {
         if (res.status === 200) {
           this.ok = "Votre profil a bien été modifié.";
+          this.authServices.user = res.user;
+          localStorage.setItem('user', JSON.stringify(res.user));
         }
         this.error = res.message;
       },
@@ -52,5 +59,4 @@ export class ChangeUserFormComponent implements OnInit {
     })
   }
 
-    protected readonly undefined = undefined;
 }
