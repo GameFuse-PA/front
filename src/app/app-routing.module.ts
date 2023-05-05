@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
+import { MyGamesComponent } from './pages/my-games/my-games.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,10 @@ const routes: Routes = [
     {
         path: 'newPassword',
         component: NewPasswordComponent,
+    },
+    {
+        path: 'my-games',
+        component: MyGamesComponent,
     },
 ];
 

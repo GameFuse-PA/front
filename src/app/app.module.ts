@@ -22,6 +22,9 @@ import { PasswordFieldComponent } from './components/password-field/password-fie
 import { HeaderComponent } from './components/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MyGamesComponent } from './pages/my-games/my-games.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddGameDialogComponent } from './components/add-game-dialog/add-game-dialog.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +38,8 @@ import { MatMenuModule } from '@angular/material/menu';
         NewPasswordComponent,
         PasswordFieldComponent,
         HeaderComponent,
+        MyGamesComponent,
+        AddGameDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -48,6 +53,7 @@ import { MatMenuModule } from '@angular/material/menu';
         HttpClientModule,
         MatToolbarModule,
         MatMenuModule,
+        MatDialogModule,
     ],
     providers: [
         {
