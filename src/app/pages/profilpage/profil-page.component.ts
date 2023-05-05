@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profilpagesolo',
@@ -11,11 +12,9 @@ export class ProfilPageComponent implements OnInit {
     password: '',
     checkPassword: ''
   }
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-
-
   }
 
 

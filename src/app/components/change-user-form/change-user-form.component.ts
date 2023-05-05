@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ConfigUserServices} from "../../services/configUserServices";
 import {ImageInputUtils} from "../../../utils/ImageInputUtils";
 import {User} from "../../models/user.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-change-user-form',
@@ -11,35 +12,30 @@ import {User} from "../../models/user.model";
 export class ChangeUserFormComponent implements OnInit {
 
   user = {
-    firstname: '',
-    lastname: '',
-    email: '',
-    birthdate: '',
-    password: '',
-    confirmPassword: '',
-    picture: ''
+    firstname: undefined,
+    lastname: undefined,
+    email: undefined,
+    birthdate: undefined,
   }
 
   ok: string | null = null;
   error: string | null = null;
 
-  emailPlaceholder: string = "";
-
-  hide1: boolean = true;
-  hide2: boolean = true;
-
-
-  constructor(private image: ImageInputUtils, private service: ConfigUserServices) { }
-
-  ngOnInit(): void {
-    const user: User = JSON.parse(localStorage.getItem('user') as string);
-    if (user){
-      this.emailPlaceholder = user.email as string;
-    }
+  userPlaceholder: any = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    birthdate: '',
   }
 
-  getValue(event: Event): string {
-    return (event.target as HTMLInputElement).value;
+  constructor(private image: ImageInputUtils, private service: ConfigUserServices, private router: Router) { }
+
+  ngOnInit(): void {
+    if (!localStorage.getItem('user')){
+      this.router.navigate(['/auth']);
+      return;
+    }
+    this.userPlaceholder = JSON.parse(localStorage.getItem('user') as string);
   }
 
   submit(): void {
