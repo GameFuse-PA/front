@@ -1,10 +1,10 @@
 .password-reset {
-  color: #007bff;
+  color: var(--info);
   cursor: pointer;
   font-size: 10pt;
 }
 
 .password-reset:hover {
   text-decoration: underline;
-  color: #bf412b;
+  color: var(--accent);
 }

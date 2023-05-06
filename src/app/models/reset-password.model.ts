@@ -1,4 +1,4 @@
 export class ResetPasswordModel {
-  password?: string
-  checkPassword?: string
+    password?: string;
+    checkPassword?: string;
 }

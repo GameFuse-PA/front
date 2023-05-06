@@ -87,9 +87,21 @@
           "builder": "",
           "options": {
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "GameFuse-front"
+  "defaultProject": "GameFuse-front",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
