@@ -7,11 +7,7 @@
         <app-change-profil-pic [profilPicOnServer]="profilPic" class="flex flex-col items-center gap-4"></app-change-profil-pic>
       </div>
       <div class="password-change-comp">
-        <h3>Changement de mot de passe</h3>
-        <app-password-field [user]="changePassword"></app-password-field>
-        <button mat-flat-button class="button bg-[color:var(--primary)] text-white" (click)="onSubmit()" *ngIf="changePassword.password && changePassword.checkPassword">Valider</button>
-        <span class="block text-[color:var(--error)]" *ngIf="error">{{error}}</span>
-        <span class="block text-[color:var(--success)]" *ngIf="ok">{{ok}}</span>
+        <app-change-password-user-form></app-change-password-user-form>
       </div>
     </div>
   </div>

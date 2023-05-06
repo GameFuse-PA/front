@@ -22,6 +22,7 @@ import { ProfilPictureComponent } from './components/profil-picture/profil-pictu
 import { ChangeProfilPicComponent } from './components/change-profil-pic/change-profil-pic.component';
 import { PasswordFieldComponent } from './components/password-field/password-field.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { ChangePasswordUserFormComponent } from './components/change-password-user-form/change-password-user-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     ProfilPictureComponent,
     ResetPasswordComponent,
     ChangeProfilPicComponent,
-    PasswordFieldComponent
+    PasswordFieldComponent,
+    ChangePasswordUserFormComponent
   ],
     imports: [
         BrowserModule,
