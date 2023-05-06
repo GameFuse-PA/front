@@ -33,6 +33,10 @@ export class ChangeUserFormComponent implements OnInit {
   constructor(private image: ImageInputUtils, private service: ConfigUserServices, private router: Router, private authServices: AuthService) { }
 
   ngOnInit(): void {
+    if (!this.authServices.user){
+      this.router.navigate(['/auth']);
+      return;
+    }
     if (!localStorage.getItem('user')){
       this.router.navigate(['/auth']);
       return;
@@ -43,7 +47,6 @@ export class ChangeUserFormComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.user)
     this.service.updateProfil(this.user).subscribe({
       next: (res: any) => {
         if (res.status === 200) {

@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ImageInputUtils} from "../../../utils/ImageInputUtils";
 import {DomSanitizer} from "@angular/platform-browser";
 import {ProfilService} from "../../services/profil/profil.service";
+import {AuthService} from "../../services/auth/auth.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-change-profil-pic',
@@ -21,7 +23,8 @@ export class ChangeProfilPicComponent implements OnInit {
   userName: string = ''
 
   imgCompil = this.image
-  constructor(private image: ImageInputUtils, private sanitizer: DomSanitizer, private profilService: ProfilService) { }
+  constructor(private image: ImageInputUtils, private sanitizer: DomSanitizer, private profilService: ProfilService,
+              private authService: AuthService) { }
 
   @Input() profilPicOnServer: string|undefined = undefined;
 
@@ -45,9 +48,13 @@ export class ChangeProfilPicComponent implements OnInit {
       return
     }
     this.profilService.uploadImage(this.imgCompil.FileUpload).subscribe({
-      next: () => {
+      next: (value: any) => {
         this.isLoading = false
         this.ok = "Image enregistrée, la page va se recharger"
+        const user: User = JSON.parse(localStorage.getItem('user') as string)
+        user.avatar = { location: value.pic }
+        localStorage.setItem('user', JSON.stringify(user));
+        this.authService.user = user
         setTimeout(() => {
           window.location.reload()
         }, 5000)

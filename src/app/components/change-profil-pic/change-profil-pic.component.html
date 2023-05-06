@@ -1,5 +1,5 @@
 <div class="profile-pic">
-  <app-profil-picture class="pic-server" [profilPictureUrl]="profilPicOnServer ? profilPicOnServer : (pictureURL ? pictureURL : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png')"></app-profil-picture>
+  <app-profil-picture class="pic-server" [profilPictureUrl]="pictureURL ? pictureURL : (profilPicOnServer ? profilPicOnServer : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png')"></app-profil-picture>
   <label class="-label" for="file">
     <mat-icon class="white-icon">camera_alt</mat-icon>
     <span>Changer ma photo de profil</span>
@@ -8,4 +8,6 @@
 </div>
 <span class="text-xl">{{userName}}</span>
 <button *ngIf="picture.picture" mat-flat-button class="bg-[color:var(--success)] text-white" (click)="submitFile()">Valider ma photo</button>
+<span class="block text-[color:var(--error)]" *ngIf="error">{{error}}</span>
+<span class="block text-[color:var(--success)]" *ngIf="ok">{{ok}}</span>
 <mat-progress-bar mode="indeterminate" color="primary" *ngIf="isLoading"></mat-progress-bar>

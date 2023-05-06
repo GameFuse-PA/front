@@ -14,10 +14,16 @@ export class ProfilPageComponent implements OnInit {
     checkPassword: ''
   }
 
+  profilPic: string|undefined = undefined
   ok: string | null = null;
   error: string | null = null;
 
-  constructor(private router: Router, private authServices: AuthService) { }
+  constructor(private router: Router, private authServices: AuthService) {
+    if (this.authServices.user?.avatar){
+      const user = JSON.parse(localStorage.getItem('user') as string)
+      this.profilPic = user.avatar.location
+    }
+  }
 
   ngOnInit(): void {
   }

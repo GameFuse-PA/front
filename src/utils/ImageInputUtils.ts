@@ -15,7 +15,6 @@ export class ImageInputUtils {
   handleFileInput(files: Event) {
     const file = (files.target as HTMLInputElement).files as FileList
     this.FileUpload = file.item(0)
-    console.log(this.FileUpload)
   }
 
 
