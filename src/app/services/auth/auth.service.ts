@@ -58,7 +58,7 @@ export class AuthService {
         });
     }
 
-    newPassword(user: ResetPasswordModel, token: string) {
+    newPassword(user: ResetPasswordModel, token: string, fromProfil: boolean|undefined = undefined) {
         const headers = {
             headers: new HttpHeaders({
                 'Content-Type': 'Application/json',
@@ -68,7 +68,7 @@ export class AuthService {
         };
         console.log(token);
         return this.http.put(
-            URL + 'password',
+            URL + `password${fromProfil ? '?fromProfil=true': ''}`,
             {
                 password: user.password,
             },

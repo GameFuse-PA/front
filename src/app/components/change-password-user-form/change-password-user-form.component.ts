@@ -31,7 +31,7 @@ export class ChangePasswordUserFormComponent implements OnInit {
       return
     }
 
-    this.authServices.newPassword(this.changePassword, this.authServices.user!.access_token!).subscribe({
+    this.authServices.newPassword(this.changePassword, this.authServices.user!.access_token!, true).subscribe({
       next: (res: any) => {
         this.ok = "Votre mot de passe à bien été changer";
       },
