@@ -19,11 +19,11 @@
 }
 
 .my-profil > app-change-user-form {
-  flex: 70;
+  flex: 80;
 }
 
 .second-part{
-  flex: 30;
+  flex: 20;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -47,6 +47,8 @@
   border-radius: 10px;
   border: 0.5px solid black;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-wrap: wrap;
   justify-content: center;
   padding: 10px;

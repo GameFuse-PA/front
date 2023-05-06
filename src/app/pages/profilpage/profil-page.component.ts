@@ -29,9 +29,19 @@ export class ProfilPageComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authServices.resetPassword(this.changePassword).subscribe({
+    if (!this.changePassword.password || !this.changePassword.checkPassword){
+      this.error = "Les champs ne peuvent pas être vides !"
+      return
+    }
+
+    if (this.changePassword.password !== this.changePassword.checkPassword){
+      this.error = "Les mots de passes doivent être identiques"
+      return
+    }
+
+    this.authServices.newPassword(this.changePassword, this.authServices.user!.access_token!).subscribe({
       next: (res: any) => {
-        this.ok = "Si votre email est valide, vous allez recevoir un email avec un lien pour réinitialiser votre mot de passe.";
+        this.ok = "Votre mot de passe à bien été changer";
       },
       error: (err: Error) => {
         this.error = err.message;
