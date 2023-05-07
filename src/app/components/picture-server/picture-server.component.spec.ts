@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfilPictureComponent } from './profil-picture.component';
+import { PictureServerComponent } from './picture-server.component';
 
 describe('ProfilPictureComponent', () => {
-    let component: ProfilPictureComponent;
-    let fixture: ComponentFixture<ProfilPictureComponent>;
+    let component: PictureServerComponent;
+    let fixture: ComponentFixture<PictureServerComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ProfilPictureComponent],
+            declarations: [PictureServerComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ProfilPictureComponent);
+        fixture = TestBed.createComponent(PictureServerComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

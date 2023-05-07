@@ -1,14 +1,14 @@
 <div class="profile-pic">
-    <app-profil-picture
+    <app-picture-server
         class="pic-server"
-        [profilPictureUrl]="
+        [pictureServerUrl]="
             pictureURL
                 ? pictureURL
                 : profilPicOnServer
                 ? profilPicOnServer
                 : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png'
         "
-    ></app-profil-picture>
+    ></app-picture-server>
     <label class="-label" for="file">
         <mat-icon class="white-icon">camera_alt</mat-icon>
         <span>Changer ma photo de profil</span>

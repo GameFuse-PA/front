@@ -18,7 +18,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestInterceptor } from './services/request.interceptor';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { ChangeUserFormComponent } from './components/change-user-form/change-user-form.component';
-import { ProfilPictureComponent } from './components/profil-picture/profil-picture.component';
+import { PictureServerComponent } from './components/picture-server/picture-server.component';
 import { ChangeProfilPicComponent } from './components/change-profil-pic/change-profil-pic.component';
 import { PasswordFieldComponent } from './components/password-field/password-field.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -39,7 +39,7 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
         ProfilPageComponent,
         ResetPasswordComponent,
         ChangeUserFormComponent,
-        ProfilPictureComponent,
+        PictureServerComponent,
         ResetPasswordComponent,
         ChangeProfilPicComponent,
         PasswordFieldComponent,
