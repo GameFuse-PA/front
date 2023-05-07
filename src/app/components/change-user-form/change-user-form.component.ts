@@ -71,9 +71,9 @@ export class ChangeUserFormComponent implements OnInit {
         this.profilServices.updateMe(this.user).subscribe({
             next: (res: any) => {
                 this.ok = res.message;
-                this.authServices.user = res.user;
-                localStorage.setItem('user', JSON.stringify(res.user));
-                this.userPlaceholder = res.user;
+                setTimeout(() => {
+                    this.authServices.logout();
+                }, 2500);
             },
             error: (err: Error) => {
                 this.error = err.message;
