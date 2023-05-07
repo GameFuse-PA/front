@@ -46,6 +46,8 @@ export class ChangeUserFormComponent implements OnInit {
         this.userPlaceholder = JSON.parse(localStorage.getItem('user') as string);
         this.user.username = this.userPlaceholder.username;
         this.user.email = this.userPlaceholder.email;
+        this.user.firstname = this.userPlaceholder.firstname;
+        this.user.lastname = this.userPlaceholder.lastname;
     }
 
     private checkFields() {
@@ -71,9 +73,11 @@ export class ChangeUserFormComponent implements OnInit {
         this.profilServices.updateMe(this.user).subscribe({
             next: (res: any) => {
                 this.ok = res.message;
-                setTimeout(() => {
-                    this.authServices.logout();
-                }, 2500);
+                const token = this.authServices.user?.access_token;
+                this.authServices.user = res.user;
+                this.authServices.user!.access_token = token;
+                localStorage.setItem('user', JSON.stringify(res.user));
+                this.userPlaceholder = res.user;
             },
             error: (err: Error) => {
                 this.error = err.message;
