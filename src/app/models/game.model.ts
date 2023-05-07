@@ -3,6 +3,6 @@ export class Game {
     name?: string;
     description?: string;
     logo?: File;
-    background?: File;
+    banner?: File;
     file?: File;
 }

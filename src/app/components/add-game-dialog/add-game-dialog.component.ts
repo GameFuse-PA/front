@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../../models/game.model';
+import { GameService } from '../../services/game/game.service';
 
 @Component({
     selector: 'app-add-game-dialog',
@@ -11,11 +12,11 @@ export class AddGameDialogComponent implements OnInit {
         name: '',
         description: '',
         logo: undefined,
-        background: undefined,
+        banner: undefined,
         file: undefined,
     };
 
-    constructor() {}
+    constructor(public gameService: GameService) {}
 
     ngOnInit(): void {}
 
@@ -24,11 +25,22 @@ export class AddGameDialogComponent implements OnInit {
             const file = event.target.files[0];
             if (type === 'logo') {
                 this.game.logo = file;
-            } else if (type === 'background') {
-                this.game.background = file;
+            } else if (type === 'banner') {
+                this.game.banner = file;
             } else if (type === 'file') {
                 this.game.file = file;
             }
         }
+    }
+
+    addGame() {
+        this.gameService.addGame(this.game).subscribe({
+            next: (res: any) => {
+                console.log('ok');
+            },
+            error: (err: Error) => {
+                console.log(err);
+            },
+        });
     }
 }
