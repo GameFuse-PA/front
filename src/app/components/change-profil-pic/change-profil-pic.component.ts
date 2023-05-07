@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ProfilService } from '../../services/profil/profil.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { User } from '../../models/user.model';
-import { ProfilPicModel } from '../../models/profil-pic.model';
+import { FileModel } from '../../models/file.model';
 
 @Component({
     selector: 'app-change-profil-pic',
@@ -12,8 +12,8 @@ import { ProfilPicModel } from '../../models/profil-pic.model';
     styleUrls: ['./change-profil-pic.component.css'],
 })
 export class ChangeProfilPicComponent implements OnInit {
-    picture: ProfilPicModel = {
-        picture: '',
+    picture: FileModel = {
+        picture: undefined,
     };
     pictureURL: any;
     ok: string | undefined = undefined;
@@ -39,12 +39,12 @@ export class ChangeProfilPicComponent implements OnInit {
         this.userName = JSON.parse(localStorage.getItem('user') as string).username;
     }
 
-    getValue(event: Event): string {
+    getValue(event: Event): File {
         const file = (event.target as HTMLInputElement).files as FileList;
         this.pictureURL = this.sanitizer.bypassSecurityTrustResourceUrl(
             URL.createObjectURL(file.item(0)!.slice()),
         );
-        return (event.target as HTMLInputElement).value;
+        return file.item(0)!;
     }
 
     submitFile(): void {
