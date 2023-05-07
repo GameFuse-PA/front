@@ -21,7 +21,7 @@ import { ChangeUserFormComponent } from './components/change-user-form/change-us
 import { ProfilPictureComponent } from './components/profil-picture/profil-picture.component';
 import { ChangeProfilPicComponent } from './components/change-profil-pic/change-profil-pic.component';
 import { PasswordFieldComponent } from './components/password-field/password-field.component';
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ChangePasswordUserFormComponent } from './components/change-password-user-form/change-password-user-form.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
@@ -30,25 +30,25 @@ import { MatMenuModule } from '@angular/material/menu';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomepageComponent,
-    AuthComponent,
-    LoginFormComponent,
-    RegisterFormComponent,
-    ProfilPageComponent,
+    declarations: [
+        AppComponent,
+        HomepageComponent,
+        AuthComponent,
+        LoginFormComponent,
+        RegisterFormComponent,
+        ProfilPageComponent,
         ResetPasswordComponent,
-    ChangeUserFormComponent,
-    ProfilPictureComponent,
-    ResetPasswordComponent,
-    ChangeProfilPicComponent,
-    PasswordFieldComponent,
+        ChangeUserFormComponent,
+        ProfilPictureComponent,
+        ResetPasswordComponent,
+        ChangeProfilPicComponent,
+        PasswordFieldComponent,
         ChangePasswordComponent,
         NewPasswordComponent,
         PasswordFieldComponent,
         HeaderComponent,
-    ChangePasswordUserFormComponent
-  ],
+        ChangePasswordUserFormComponent,
+    ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -61,7 +61,7 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
         HttpClientModule,
         MatToolbarModule,
         MatMenuModule,
-        MatProgressBarModule
+        MatProgressBarModule,
     ],
     providers: [
         {

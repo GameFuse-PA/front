@@ -1,65 +1,83 @@
 import { Component, OnInit } from '@angular/core';
-import {ConfigUserServices} from "../../services/configUserServices";
-import {ImageInputUtils} from "../../../utils/ImageInputUtils";
-import {User} from "../../models/user.model";
-import {Router} from "@angular/router";
-import {AuthService} from "../../services/auth/auth.service";
+import { User } from '../../models/user.model';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import { ProfilService } from '../../services/profil/profil.service';
 
 @Component({
-  selector: 'app-change-user-form',
-  templateUrl: './change-user-form.component.html',
-  styleUrls: ['./change-user-form.component.css']
+    selector: 'app-change-user-form',
+    templateUrl: './change-user-form.component.html',
+    styleUrls: ['./change-user-form.component.css'],
 })
 export class ChangeUserFormComponent implements OnInit {
+    user: User = {
+        firstname: undefined,
+        lastname: undefined,
+        email: undefined,
+        birthdate: undefined,
+        username: undefined,
+    };
 
-  user = {
-    firstname: undefined,
-    lastname: undefined,
-    email: undefined,
-    birthdate: undefined,
-    username: undefined,
-  }
+    ok: string | null = null;
+    error: string | null = null;
 
-  ok: string | null = null;
-  error: string | null = null;
+    userPlaceholder: User = {
+        firstname: '',
+        lastname: '',
+        email: '',
+        birthdate: '',
+    };
 
-  userPlaceholder: any = {
-    firstname: '',
-    lastname: '',
-    email: '',
-    birthdate: '',
-  }
+    constructor(
+        private profilServices: ProfilService,
+        private router: Router,
+        private authServices: AuthService,
+    ) {}
 
-  constructor(private image: ImageInputUtils, private service: ConfigUserServices, private router: Router, private authServices: AuthService) { }
-
-  ngOnInit(): void {
-    if (!this.authServices.user){
-      this.router.navigate(['/auth']);
-      return;
-    }
-    if (!localStorage.getItem('user')){
-      this.router.navigate(['/auth']);
-      return;
-    }
-    this.userPlaceholder = JSON.parse(localStorage.getItem('user') as string);
-    this.user.username = this.userPlaceholder.username;
-    this.user.email = this.userPlaceholder.email;
-  }
-
-  submit(): void {
-    this.service.updateProfil(this.user).subscribe({
-      next: (res: any) => {
-        if (res.status === 200) {
-          this.ok = "Votre profil a bien été modifié.";
-          this.authServices.user = res.user;
-          localStorage.setItem('user', JSON.stringify(res.user));
+    ngOnInit(): void {
+        if (!this.authServices.user) {
+            this.router.navigate(['/auth']);
+            return;
         }
-        this.error = res.message;
-      },
-      error: (err: Error) => {
-        this.error = err.message;
-      }
-    })
-  }
+        if (!localStorage.getItem('user')) {
+            this.router.navigate(['/auth']);
+            return;
+        }
+        this.userPlaceholder = JSON.parse(localStorage.getItem('user') as string);
+        this.user.username = this.userPlaceholder.username;
+        this.user.email = this.userPlaceholder.email;
+    }
 
+    private checkFields() {
+        if (this.user.firstname === this.userPlaceholder.firstname) {
+            this.user.firstname = undefined;
+        }
+        if (this.user.lastname === this.userPlaceholder.lastname) {
+            this.user.lastname = undefined;
+        }
+        if (this.user.email === this.userPlaceholder.email) {
+            this.user.email = undefined;
+        }
+        if (this.user.birthdate === this.userPlaceholder.birthdate) {
+            this.user.birthdate = undefined;
+        }
+        if (this.user.username === this.userPlaceholder.username) {
+            this.user.username = undefined;
+        }
+    }
+
+    submit(): void {
+        this.checkFields();
+        this.profilServices.updateMe(this.user).subscribe({
+            next: (res: any) => {
+                this.ok = res.message;
+                this.authServices.user = res.user;
+                localStorage.setItem('user', JSON.stringify(res.user));
+                this.userPlaceholder = res.user;
+            },
+            error: (err: Error) => {
+                this.error = err.message;
+            },
+        });
+    }
 }

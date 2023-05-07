@@ -1,14 +1,17 @@
 <div class="profil-page">
-  <h1 class="title">Mon profil</h1>
-  <div class="my-profil">
-    <app-change-user-form></app-change-user-form>
-    <div class="second-part">
-      <div class="profil-picture-comp">
-        <app-change-profil-pic [profilPicOnServer]="profilPic" class="flex flex-col items-center gap-4"></app-change-profil-pic>
-      </div>
-      <div class="password-change-comp">
-        <app-change-password-user-form></app-change-password-user-form>
-      </div>
+    <h1 class="title">Mon profil</h1>
+    <div class="my-profil">
+        <app-change-user-form></app-change-user-form>
+        <div class="second-part">
+            <div class="profil-picture-comp">
+                <app-change-profil-pic
+                    [profilPicOnServer]="profilPic"
+                    class="flex flex-col items-center gap-4"
+                ></app-change-profil-pic>
+            </div>
+            <div class="password-change-comp">
+                <app-change-password-user-form></app-change-password-user-form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
