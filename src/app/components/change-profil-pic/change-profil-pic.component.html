@@ -1,0 +1,34 @@
+<div class="profile-pic">
+    <app-picture-server
+        class="pic-server"
+        [pictureServerUrl]="
+            pictureURL
+                ? pictureURL
+                : profilPicOnServer
+                ? profilPicOnServer
+                : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png'
+        "
+    ></app-picture-server>
+    <label class="-label" for="file">
+        <mat-icon class="white-icon">camera_alt</mat-icon>
+        <span>Changer ma photo de profil</span>
+    </label>
+    <input
+        type="file"
+        id="file"
+        (change)="imgCompil.handleFileInput($event)"
+        (input)="picture.picture = getValue($event)"
+    />
+</div>
+<span class="text-xl">{{ userName }}</span>
+<button
+    *ngIf="picture.picture"
+    mat-flat-button
+    class="bg-[color:var(--success)] text-white"
+    (click)="submitFile()"
+>
+    Valider ma photo
+</button>
+<span class="block text-[color:var(--error)]" *ngIf="error">{{ error }}</span>
+<span class="block text-[color:var(--success)]" *ngIf="ok">{{ ok }}</span>
+<mat-progress-bar mode="indeterminate" color="primary" *ngIf="isLoading"></mat-progress-bar>

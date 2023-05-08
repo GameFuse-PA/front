@@ -66,9 +66,8 @@ export class AuthService {
             }),
             context: new HttpContext().set(NO_AUTH, true),
         };
-        console.log(token);
         return this.http.put(
-            URL + 'password',
+            URL + `password`,
             {
                 password: user.password,
             },
