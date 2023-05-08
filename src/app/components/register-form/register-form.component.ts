@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-register-form',
@@ -18,7 +19,7 @@ export class RegisterFormComponent implements OnInit {
     hide2: boolean = true;
     error: string | null = null;
 
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
     ngOnInit(): void {}
 
@@ -37,6 +38,7 @@ export class RegisterFormComponent implements OnInit {
 
                 this.authService.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
+                this.router.navigate(['/profil']);
             },
             error: (err: Error) => {
                 this.error = err.message;

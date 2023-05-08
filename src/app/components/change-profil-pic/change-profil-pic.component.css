@@ -1,0 +1,62 @@
+.profile-pic {
+  position: relative;
+  display: inline-block;
+  width: 125px;
+  height: 125px;
+}
+
+.profile-pic > .pic-server {
+  position: absolute;
+  object-fit: cover;
+  clip-path:ellipse(50% 50%);
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+  border-radius: 100px;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-pic input {
+  display: none;
+}
+
+.profile-pic .-label {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  clip-path:ellipse(50% 50%);
+}
+
+.profile-pic:hover .-label {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.profile-pic .-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile-pic:hover .-label {
+  opacity: 1;
+}
+
+.profile-pic .-label span {
+  color: white;
+  padding: 2px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.white-icon {
+  color: white;
+}

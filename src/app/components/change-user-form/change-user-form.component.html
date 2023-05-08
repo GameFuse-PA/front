@@ -1,0 +1,57 @@
+<ng-form class="form">
+    <h2>Mes informations personnelles</h2>
+    <div class="input_variable">
+        <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
+            <mat-label>Prénom</mat-label>
+            <input
+                matInput
+                name="firstname"
+                [(ngModel)]="user.firstname"
+                [placeholder]="this.userPlaceholder.firstname!"
+            />
+            <mat-icon matSuffix>firstname</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
+            <mat-label>Nom de famille</mat-label>
+            <input
+                matInput
+                name="lastname"
+                [(ngModel)]="user.lastname"
+                [placeholder]="this.userPlaceholder.lastname!"
+            />
+        </mat-form-field>
+    </div>
+    <div class="input_variable">
+        <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
+            <mat-label>email</mat-label>
+            <input
+                matInput
+                type="email"
+                name="email"
+                [placeholder]="this.userPlaceholder.email!"
+                [(ngModel)]="user.email"
+            />
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="w-5/8 mt-5 input_type" appearance="outline">
+            <mat-label>date de naissance</mat-label>
+            <input
+                matInput
+                name="birthdate"
+                type="date"
+                [(ngModel)]="user.birthdate"
+                style="width: 100%"
+            />
+        </mat-form-field>
+    </div>
+    <button
+        (click)="submit()"
+        id="submit-button"
+        mat-raised-button
+        class="text-white bg-[color:var(--primary)] w-60"
+    >
+        Enregistrer
+    </button>
+    <span class="mt-2 text-white text-[color:var(--success)]" *ngIf="ok">{{ ok }}</span>
+    <span class="mt-2 text-white text-[color:var(--error)]" *ngIf="error">{{ error }}</span>
+</ng-form>
