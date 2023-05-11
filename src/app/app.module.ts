@@ -15,6 +15,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestInterceptor } from './services/request.interceptor';
+import {ChatHomeComponent} from "./components/home/chat-home.component";
+import {PageNotFoundComponent} from "./components/not-found/page-not-found.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,10 @@ import { RequestInterceptor } from './services/request.interceptor';
     HomepageComponent,
     AuthComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ChatHomeComponent,
+    PageNotFoundComponent
+
   ],
   imports: [
     BrowserModule,
