@@ -8,8 +8,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class ChatInputComponent implements OnInit {
 
   public content: string = '';
-  public isShowIcon = false;
-  public icons = [];
   @Output() public onSubmitMessage = new EventEmitter<string>();
 
   ngOnInit(): void {
@@ -20,16 +18,6 @@ export class ChatInputComponent implements OnInit {
       this.onSubmitMessage.emit(this.content.trim())
       this.content = '';
     }
-  }
-
-
-
-  hideOrUnhideIcon(): void {
-    this.isShowIcon = !this.isShowIcon;
-  }
-
-  addIcon(indexIcon: string): void {
-    this.onSubmitMessage.emit(`<img src='https://dblogonline.s3-ap-southeast-1.amazonaws.com/icons/funny/${indexIcon}.gif' alt='con'/>`);
   }
 
 }

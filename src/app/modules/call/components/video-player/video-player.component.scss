@@ -10,6 +10,7 @@
     max-width: 100%;
     height: auto;
     max-height: 400px;
+    display: initial;
   }
 
   .action {
@@ -20,7 +21,10 @@
     justify-content: center;
 
     .icon {
-      opacity: 0.3;
+      background: white;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 5px;
     }
   }
 }

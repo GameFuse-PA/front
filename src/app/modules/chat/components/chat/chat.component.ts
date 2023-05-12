@@ -14,16 +14,6 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleNewMessage();
-    this.addshareLinkMessage();
-    this.addshareGuiMessage();
-  }
-
-  addshareLinkMessage(): void {
-    this.addMessage(`Share this link to your friend to start video call ${window.location.href}`);
-  }
-
-  addshareGuiMessage(): void {
-    this.addMessage(`Click on the chat icon to hide/unhide the conversation`);
   }
 
   handleNewMessage(): void {
@@ -58,6 +48,18 @@ export class ChatComponent implements OnInit {
         lastMessage.scrollIntoView();
       }
     }, 200)
+  }
+
+  public copyLinkInClipBoard(){
+    navigator.clipboard.writeText(window.location.href);
+    const notification = document.getElementById("notification");
+    if (notification) {
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+        notification.classList.add("hidden");
+      }, 3000);
+    }
+
   }
 
 }
