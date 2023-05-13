@@ -28,7 +28,10 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
-import {FriendAddRemoveComponent} from "./components/friend-add-remove/friend-add-remove.component";
+import { FriendAddRemoveComponent } from './components/friends-view/friend-add-remove/friend-add-remove.component';
+import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
+import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
+import { SearchBarFriendComponent } from './components/friends-view/search-bar-friend/search-bar-friend.component';
 
 @NgModule({
     declarations: [
@@ -49,8 +52,11 @@ import {FriendAddRemoveComponent} from "./components/friend-add-remove/friend-ad
         PasswordFieldComponent,
         HeaderComponent,
         ChangePasswordUserFormComponent,
-    FriendAddRemoveComponent
-  ],
+        FriendAddRemoveComponent,
+        FriendsComponent,
+        FriendsPageComponent,
+        SearchBarFriendComponent,
+    ],
     imports: [
         BrowserAnimationsModule,
         BrowserModule,

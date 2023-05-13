@@ -1,0 +1,12 @@
+.card-friend {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

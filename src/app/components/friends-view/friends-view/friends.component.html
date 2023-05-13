@@ -1,0 +1,14 @@
+<mat-card class="card-friend">
+    <mat-card-header>
+        <mat-card-title>{{ user?.firstname }} {{ user?.lastname }}</mat-card-title>
+        <mat-card-subtitle>{{ user?.username }}</mat-card-subtitle>
+    </mat-card-header>
+    <img *ngIf="user?.avatar" mat-card-image [src]="user?.avatar?.location" alt="Photo of a Shiba Inu" />
+    <mat-card-content>
+        <p>Votre ami</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button class="w-64 bg-[color:var(--primary)] text-white">Voir le profil</button>
+      <app-friend-add-remove [isFriend]="true" [idFriend]="user?._id!"></app-friend-add-remove>
+    </mat-card-actions>
+</mat-card>

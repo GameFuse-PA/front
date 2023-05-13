@@ -1,0 +1,8 @@
+<div class="friends-page">
+  <h2>Mes amis</h2>
+  <ng-container class="friends-container">
+    <div *ngFor="let user of users" class="">
+      <app-friends [user]="user"></app-friends>
+    </div>
+  </ng-container>
+</div>

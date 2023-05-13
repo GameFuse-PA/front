@@ -24,4 +24,8 @@ export class ProfilService {
     updatePassword(password: string) {
         return this.http.put(`${URL}/password`, { password: password });
     }
+
+    getFriends() {
+        return this.http.get(`${URL}/MyFriends`);
+    }
 }
