@@ -1,0 +1,56 @@
+.profil-page {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.my-profil {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.my-profil > app-change-user-form {
+  flex: 80;
+}
+
+.second-part{
+  flex: 20;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px;
+  gap: 25px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.profil-picture-comp {
+  border-radius: 10px;
+  border: 0.5px solid black;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 10px;
+}
+
+.password-change-comp {
+  border-radius: 10px;
+  border: 0.5px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  padding: 10px;
+}
