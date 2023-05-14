@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FriendsModel } from '../../models/friends.model';
 
-const URL = environment.apiUrl + '/auth/';
+const URL = environment.apiUrl + '/friends';
 
 @Injectable({
     providedIn: 'root',
@@ -14,12 +14,12 @@ export class FriendsService {
     constructor(private http: HttpClient) {}
 
     addFriend(friend: string) {
-        return this.http.post(URL + 'addFriend', {
+        return this.http.post(`${URL}`, {
             idFriend: friend,
         });
     }
 
     removeFriend(friend: string) {
-        return this.http.delete(URL + 'removeFriend' + `/${friend}`);
+        return this.http.delete(`${URL}/${friend}`);
     }
 }

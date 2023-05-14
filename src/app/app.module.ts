@@ -32,6 +32,7 @@ import { FriendAddRemoveComponent } from './components/friends-view/friend-add-r
 import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { SearchBarFriendComponent } from './components/friends-view/search-bar-friend/search-bar-friend.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import { SearchBarFriendComponent } from './components/friends-view/search-bar-f
         MatToolbarModule,
         MatProgressBarModule,
         MatMenuModule,
+        NgxPaginationModule,
     ],
     providers: [
         {

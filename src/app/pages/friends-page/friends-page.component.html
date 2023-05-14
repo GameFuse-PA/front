@@ -1,8 +1,9 @@
 <div class="friends-page">
   <h2>Mes amis</h2>
   <ng-container class="friends-container">
-    <div *ngFor="let user of users" class="">
+    <div *ngFor="let user of users | paginate: { itemsPerPage: 5, currentPage: page}" class="">
       <app-friends [user]="user"></app-friends>
     </div>
+    <pagination-controls *ngIf="pagination" previousLabel="Précédent" nextLabel="Suivant" (pageChange)="page = $event" class="paginator-friends"></pagination-controls>
   </ng-container>
 </div>

@@ -13,4 +13,5 @@ export class FriendsComponent implements OnInit {
 
     @Input() user: User | undefined = undefined;
   protected readonly undefined = undefined;
+
 }

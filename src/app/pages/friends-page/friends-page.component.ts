@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ProfilService } from '../../services/profil/profil.service';
 import { User } from '../../models/user.model';
+import {Collection} from "ngx-pagination";
 
 @Component({
     selector: 'app-friends-page',
@@ -10,8 +11,10 @@ import { User } from '../../models/user.model';
 export class FriendsPageComponent implements OnInit {
     constructor(private profilServices: ProfilService) {}
 
-    users: User[] | undefined;
+    users: Collection<User | undefined> = [];
+    page: number = 1;
 
+    @Input() pagination: boolean = true
     ngOnInit(): void {
         this.profilServices.getFriends().subscribe({
             next: (users: any) => {
