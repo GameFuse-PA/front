@@ -28,4 +28,5 @@ export class ProfilService {
     getFriends() {
         return this.http.get(`${URL}/MyFriends`);
     }
+
 }

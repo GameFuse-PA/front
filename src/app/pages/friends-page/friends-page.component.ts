@@ -3,6 +3,7 @@ import { ProfilService } from '../../services/profil/profil.service';
 import { User } from '../../models/user.model';
 import {Collection} from "ngx-pagination";
 import {AuthService} from "../../services/auth/auth.service";
+import {UsersService} from "../../services/users/users.service";
 
 @Component({
     selector: 'app-friends-page',
@@ -10,12 +11,15 @@ import {AuthService} from "../../services/auth/auth.service";
     styleUrls: ['./friends-page.component.css'],
 })
 export class FriendsPageComponent implements OnInit {
-    constructor(private profilServices: ProfilService, private authServices: AuthService,) {}
+    constructor(private profilServices: ProfilService, private authServices: AuthService, private usersService: UsersService) {}
 
     users: Collection<User | undefined> = [];
     page: number = 1;
 
     @Input() pagination: boolean = true
+
+    userSearch: string = '';
+
     ngOnInit(): void {
         this.profilServices.getFriends().subscribe({
             next: (users: any) => {
@@ -30,4 +34,17 @@ export class FriendsPageComponent implements OnInit {
             },
         });
     }
+
+    search(newValue: string) {
+        this.userSearch = newValue;
+        this.usersService.searchUsers(newValue).subscribe({
+            next: (users: any) => {
+              console.log(users);
+            },
+            error: (err: any) => {
+                alert(err.message);
+            }
+        })
+    }
+
 }
