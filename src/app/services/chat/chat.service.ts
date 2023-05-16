@@ -17,9 +17,7 @@ export class ChatService {
   constructor(private http: HttpClient) {}
 
   createConversation(roomId: string) {
-    console.log("avant le get");
-    console.log(URL + `/createRoom/${roomId}`)
-    return this.http.post(URL + `/createRoom`, {
+    return this.http.post(URL + `/rooms`, {
       roomId: roomId
     });
   }

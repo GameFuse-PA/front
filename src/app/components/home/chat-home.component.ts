@@ -15,8 +15,6 @@ export class ChatHomeComponent {
 
   public async createRoom(): Promise<void> {
     const roomId = Utils.genRoomId();
-    await this.chatService.createConversation(roomId);
-
     this.router.navigateByUrl(`/call/${roomId}`)
   }
 }

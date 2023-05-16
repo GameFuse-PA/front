@@ -25,7 +25,7 @@ export class SocketService {
   }
 
   public joinRoom(user: UserToBackDTO): void {
-    this.socket.emit('join-room', user);
+    this.socket.emit('roomAccessRequest', user);
   }
 
   public chat(content : string): void {
