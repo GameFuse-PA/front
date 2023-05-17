@@ -31,7 +31,6 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
 import { FriendAddRemoveComponent } from './components/friends-view/friend-add-remove/friend-add-remove.component';
 import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
-import { SearchBarFriendComponent } from './components/friends-view/search-bar-friend/search-bar-friend.component';
 import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
@@ -56,7 +55,6 @@ import {NgxPaginationModule} from "ngx-pagination";
         FriendAddRemoveComponent,
         FriendsComponent,
         FriendsPageComponent,
-        SearchBarFriendComponent,
     ],
     imports: [
         BrowserAnimationsModule,
