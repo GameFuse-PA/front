@@ -1,5 +1,7 @@
 <div *ngFor="let user of users" class="users">
-  <img *ngIf="user.avatar?.location" [src]="user.avatar?.location" alt="photo de profil de {{user.username}}"/>
-  <p>{{user.username}}</p>
-  <app-friend-add-remove [isFriend]="false" style="margin-left: 20%"></app-friend-add-remove>
+  <div class="info-user">
+    <img *ngIf="user.avatar?.location" [src]="user.avatar?.location" alt="photo de profil de {{user.username}}"/>
+    <p>{{user.username}}</p>
+  </div>
+  <app-friend-add-remove [isFriend]="false" [idFriend]="user._id!" style="position: absolute; right: 2%"></app-friend-add-remove>
 </div>
