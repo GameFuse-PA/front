@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../services/users/users.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-member-search',
@@ -10,8 +10,8 @@ import {ActivatedRoute} from "@angular/router";
 export class MemberSearchComponent implements OnInit {
 
   search: string = '';
-  users = this.usersServices.user;
-  constructor(private usersServices: UsersService, private routes: ActivatedRoute) { }
+  users = this.usersServices.usersSearched;
+  constructor(private usersServices: UsersService, private routes: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.routes.queryParams.subscribe(params => {
@@ -24,6 +24,8 @@ export class MemberSearchComponent implements OnInit {
     this.usersServices.searchUsers(newValue).subscribe({
       next: (users: any) => {
         this.users = users;
+        this.usersServices.usersSearched = users;
+        this.router.navigate([], {relativeTo: this.routes, queryParams: {search: newValue}})
       },
       error: (err: any) => {
         alert(err.message);

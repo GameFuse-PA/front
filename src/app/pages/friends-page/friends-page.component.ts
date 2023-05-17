@@ -40,7 +40,7 @@ export class FriendsPageComponent implements OnInit {
         this.userSearch = newValue;
         this.usersService.searchUsers(newValue).subscribe({
             next: (users: any) => {
-              this.usersService.user = users;
+              this.usersService.usersSearched = users;
               this.router.navigate(['/MemberSearch'], { queryParams: { search: newValue } });
             },
             error: (err: any) => {

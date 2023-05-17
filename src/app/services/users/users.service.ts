@@ -11,7 +11,7 @@ const URL = environment.apiUrl + '/users';
 })
 export class UsersService {
 
-  user: User[] | null = null;
+  usersSearched: User[] | null = null;
   constructor(private http: HttpClient) { }
 
   searchUsers(search: string) {
