@@ -4,6 +4,7 @@ import { User } from '../../models/user.model';
 import {Collection} from "ngx-pagination";
 import {AuthService} from "../../services/auth/auth.service";
 import {UsersService} from "../../services/users/users.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-friends-page',
@@ -11,7 +12,7 @@ import {UsersService} from "../../services/users/users.service";
     styleUrls: ['./friends-page.component.css'],
 })
 export class FriendsPageComponent implements OnInit {
-    constructor(private profilServices: ProfilService, private authServices: AuthService, private usersService: UsersService) {}
+    constructor(private profilServices: ProfilService, private authServices: AuthService, private usersService: UsersService, private router: Router) {}
 
     users: Collection<User | undefined> = [];
     page: number = 1;
@@ -39,7 +40,8 @@ export class FriendsPageComponent implements OnInit {
         this.userSearch = newValue;
         this.usersService.searchUsers(newValue).subscribe({
             next: (users: any) => {
-              console.log(users);
+              this.usersService.user = users;
+              this.router.navigate(['/MemberSearch'], { queryParams: { search: newValue } });
             },
             error: (err: any) => {
                 alert(err.message);

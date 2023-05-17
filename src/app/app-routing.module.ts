@@ -5,6 +5,7 @@ import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
+import {MemberSearchComponent} from "./pages/member-search/member-search.component";
 
 const routes: Routes = [
     {
@@ -24,6 +25,7 @@ const routes: Routes = [
         component: NewPasswordComponent,
     },
     { path: 'MyFriends', component: FriendsPageComponent },
+  { path: 'MemberSearch', component: MemberSearchComponent },
 ];
 
 @NgModule({

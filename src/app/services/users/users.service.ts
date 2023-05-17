@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
+import {User} from "../../models/user.model";
 
 const URL = environment.apiUrl + '/users';
 
@@ -10,6 +11,7 @@ const URL = environment.apiUrl + '/users';
 })
 export class UsersService {
 
+  user: User[] | null = null;
   constructor(private http: HttpClient) { }
 
   searchUsers(search: string) {

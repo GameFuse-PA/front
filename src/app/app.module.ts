@@ -33,6 +33,8 @@ import { FriendsComponent } from './components/friends-view/friends-view/friends
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { SearchBar } from './components/search-bar-component/search-bar';
 import {NgxPaginationModule} from "ngx-pagination";
+import { UserMemberSearchComponent } from './components/user-member-search/user-member-search.component';
+import { MemberSearchComponent } from './pages/member-search/member-search.component';
 
 @NgModule({
     declarations: [
@@ -57,6 +59,8 @@ import {NgxPaginationModule} from "ngx-pagination";
         FriendsComponent,
         FriendsPageComponent,
         SearchBar,
+        UserMemberSearchComponent,
+        MemberSearchComponent,
     ],
     imports: [
         BrowserAnimationsModule,
