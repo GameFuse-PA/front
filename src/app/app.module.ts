@@ -28,7 +28,6 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
-import { FriendAddRemoveComponent } from './components/friends-view/friend-add-remove/friend-add-remove.component';
 import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import {NgxPaginationModule} from "ngx-pagination";
@@ -52,7 +51,6 @@ import {NgxPaginationModule} from "ngx-pagination";
         PasswordFieldComponent,
         HeaderComponent,
         ChangePasswordUserFormComponent,
-        FriendAddRemoveComponent,
         FriendsComponent,
         FriendsPageComponent,
     ],
