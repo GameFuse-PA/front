@@ -26,7 +26,7 @@ export class ProfilService {
     }
 
     getFriends() {
-        return this.http.get(`${URL}/MyFriends`);
+        return this.http.get(`${URL}/friends`);
     }
 
 }

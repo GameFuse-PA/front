@@ -24,9 +24,9 @@ export class FriendsPageComponent implements OnInit {
     ngOnInit(): void {
         this.profilServices.getFriends().subscribe({
             next: (users: any) => {
-                this.users = users.idFriend;
+                this.users = users.idFriends;
                 const user = JSON.parse(localStorage.getItem('user') as string);
-                user.friends = users.idFriend;
+                user.friends = users.idFriends;
                 this.authServices.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
             },
