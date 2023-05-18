@@ -28,6 +28,9 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
+import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
+import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
     declarations: [
@@ -48,10 +51,12 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
         PasswordFieldComponent,
         HeaderComponent,
         ChangePasswordUserFormComponent,
+        FriendsComponent,
+        FriendsPageComponent,
     ],
     imports: [
-        BrowserModule,
         BrowserAnimationsModule,
+        BrowserModule,
         AppRoutingModule,
         MatInputModule,
         FormsModule,
@@ -60,8 +65,9 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
         MatButtonModule,
         HttpClientModule,
         MatToolbarModule,
-        MatMenuModule,
         MatProgressBarModule,
+        MatMenuModule,
+        NgxPaginationModule,
     ],
     providers: [
         {
