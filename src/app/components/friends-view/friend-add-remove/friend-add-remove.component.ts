@@ -32,6 +32,7 @@ export class FriendAddRemoveComponent implements OnInit {
                     this.isFriend = false;
                   setTimeout(() => {
                     this.ok = '';
+                    window.location.reload()
                   }, 10000);
                 },
                 error: (err: Error) => {
@@ -48,6 +49,7 @@ export class FriendAddRemoveComponent implements OnInit {
                     this.isFriend = true;
                   setTimeout(() => {
                     this.ok = '';
+                    window.location.reload();
                   }, 10000);
                 },
                 error: (err: Error) => {

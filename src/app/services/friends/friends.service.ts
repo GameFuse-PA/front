@@ -15,7 +15,7 @@ export class FriendsService {
 
     addFriend(friend: string) {
         return this.http.post(`${URL}`, {
-            idFriend: friend,
+            idFriends: friend,
         });
     }
 

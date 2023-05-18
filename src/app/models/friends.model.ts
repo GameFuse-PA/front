@@ -1,4 +1,4 @@
 export class FriendsModel {
     idUser?: string;
-    idFriend?: string;
+    idFriends?: string;
 }
