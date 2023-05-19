@@ -31,6 +31,9 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
 import { MyGamesComponent } from './pages/my-games/my-games.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddGameDialogComponent } from './components/add-game-dialog/add-game-dialog.component';
+import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
+import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
     declarations: [
@@ -53,10 +56,12 @@ import { AddGameDialogComponent } from './components/add-game-dialog/add-game-di
         ChangePasswordUserFormComponent,
         MyGamesComponent,
         AddGameDialogComponent,
+        FriendsComponent,
+        FriendsPageComponent,
     ],
     imports: [
-        BrowserModule,
         BrowserAnimationsModule,
+        BrowserModule,
         AppRoutingModule,
         MatInputModule,
         FormsModule,
@@ -65,7 +70,9 @@ import { AddGameDialogComponent } from './components/add-game-dialog/add-game-di
         MatButtonModule,
         HttpClientModule,
         MatToolbarModule,
+        MatProgressBarModule,
         MatMenuModule,
+        NgxPaginationModule,
         MatDialogModule,
         MatProgressBarModule,
     ],
