@@ -10,13 +10,7 @@ import { AddGameDialogComponent } from '../../components/add-game-dialog/add-gam
 export class MyGamesComponent implements OnInit {
     constructor(public dialog: MatDialog) {}
 
-    ngOnInit(): void {
-        this.dialog.open(AddGameDialogComponent, {
-            width: '700px',
-            autoFocus: false,
-            disableClose: true,
-        });
-    }
+    ngOnInit(): void {}
 
     addGameDialog() {
         this.dialog.open(AddGameDialogComponent, {

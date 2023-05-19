@@ -33,7 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddGameDialogComponent } from './components/add-game-dialog/add-game-dialog.component';
 import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
-import {NgxPaginationModule} from "ngx-pagination";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     declarations: [

@@ -14,6 +14,8 @@ export class AddGameDialogComponent implements OnInit {
         banner: undefined,
         file: undefined,
     };
+    loading: boolean = false;
+    error: string = '';
 
     constructor(public gameService: GameService) {}
 
@@ -31,12 +33,16 @@ export class AddGameDialogComponent implements OnInit {
     }
 
     addGame() {
+        this.loading = true;
+        this.error = '';
         this.gameService.addGame(this.game).subscribe({
             next: (res: any) => {
-                console.log('ok');
+                console.log(res); // will be handled later
+                this.loading = false;
             },
             error: (err: Error) => {
-                console.log(err);
+                this.error = err.message;
+                this.loading = false;
             },
         });
     }

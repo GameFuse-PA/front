@@ -1,7 +1,7 @@
 <div class="flex">
     <span mat-dialog-title> Ajouter un jeu </span>
     <span class="flex flex-1"></span>
-    <button mat-icon-button mat-dialog-close>
+    <button mat-icon-button mat-dialog-close [disabled]="loading">
         <mat-icon class="text-[color:var(--error)]">close</mat-icon>
     </button>
 </div>
@@ -57,10 +57,17 @@
                 <mat-icon>file_download</mat-icon>
             </button>
         </div>
+        <span class="block text-[color:var(--error)] mt-5" *ngIf="error">{{ error }}</span>
     </div>
 </div>
 <div mat-dialog-actions class="flex justify-center mt-5">
-    <button mat-flat-button class="text-white bg-[color:var(--success)] w-1/2" (click)="addGame()">
+    <button
+        mat-flat-button
+        class="text-white bg-[color:var(--success)] w-1/2"
+        (click)="addGame()"
+        [disabled]="loading"
+    >
         Ajouter mon jeu
     </button>
+    <mat-progress-bar mode="indeterminate" class="mt-5" *ngIf="loading"></mat-progress-bar>
 </div>
