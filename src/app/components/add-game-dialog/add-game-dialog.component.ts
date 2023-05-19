@@ -11,7 +11,6 @@ export class AddGameDialogComponent implements OnInit {
     game: Game = {
         name: '',
         description: '',
-        logo: undefined,
         banner: undefined,
         file: undefined,
     };
@@ -23,9 +22,7 @@ export class AddGameDialogComponent implements OnInit {
     onFileChange(event: any, type: string) {
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
-            if (type === 'logo') {
-                this.game.logo = file;
-            } else if (type === 'banner') {
+            if (type === 'banner') {
                 this.game.banner = file;
             } else if (type === 'file') {
                 this.game.file = file;

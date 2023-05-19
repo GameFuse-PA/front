@@ -23,24 +23,6 @@
             ></textarea>
             <mat-icon matSuffix>description</mat-icon>
         </mat-form-field>
-        <div class="w-11/12 flex">
-            <span class="mr-auto my-auto"> Logo : {{ game.logo ? game.logo.name : '...' }} </span>
-            <input
-                type="file"
-                (change)="onFileChange($event, 'logo')"
-                accept=".png, .jpg, .jpeg"
-                #logoUpload
-                class="hidden"
-            />
-            <button
-                mat-flat-button
-                (click)="logoUpload.click()"
-                class="text-white bg-[color:var(--primary)]"
-            >
-                Ajouter un logo
-                <mat-icon>file_download</mat-icon>
-            </button>
-        </div>
         <div class="w-11/12 flex mt-7">
             <span class="mr-auto my-auto">
                 Bannière : {{ game.banner ? game.banner.name : '...' }}
