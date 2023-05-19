@@ -25,7 +25,7 @@ const routes: Routes = [
         component: NewPasswordComponent,
     },
     { path: 'MyFriends', component: FriendsPageComponent },
-  { path: 'MemberSearch', component: MemberSearchComponent },
+  { path: 'member-search', component: MemberSearchComponent },
 ];
 
 @NgModule({
