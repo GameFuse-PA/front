@@ -34,6 +34,7 @@ import { AddGameDialogComponent } from './components/add-game-dialog/add-game-di
 import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { GameCardComponent } from './components/game-card/game-card.component';
 
 @NgModule({
     declarations: [
@@ -58,6 +59,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
         AddGameDialogComponent,
         FriendsComponent,
         FriendsPageComponent,
+        GameCardComponent,
     ],
     imports: [
         BrowserAnimationsModule,
