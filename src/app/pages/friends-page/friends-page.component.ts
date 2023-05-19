@@ -18,17 +18,20 @@ export class FriendsPageComponent implements OnInit {
     page: number = 1;
 
     @Input() pagination: boolean = true
+    @Input() maxSize: number = 10
 
     userSearch: string = '';
 
     ngOnInit(): void {
         this.profilServices.getFriends().subscribe({
             next: (users: any) => {
+              if (users && users.idFriends){
                 this.users = users.idFriends;
                 const user = JSON.parse(localStorage.getItem('user') as string);
                 user.friends = users.idFriends;
                 this.authServices.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
+              }
             },
             error: (err: any) => {
                 alert(err.message);

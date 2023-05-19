@@ -10,5 +10,6 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-flat-button class="w-64 bg-[color:var(--primary)] text-white">Voir le profil</button>
+      <app-friend-add-remove [isFriend]="true" [idFriend]="user?._id!"></app-friend-add-remove>
     </mat-card-actions>
 </mat-card>
