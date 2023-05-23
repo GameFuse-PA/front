@@ -12,6 +12,5 @@ export class FriendsComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input() user: User | undefined = undefined;
-  protected readonly undefined = undefined;
-
+    protected readonly undefined = undefined;
 }

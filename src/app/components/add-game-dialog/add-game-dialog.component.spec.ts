@@ -3,23 +3,22 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddGameDialogComponent } from './add-game-dialog.component';
 
 describe('AddGameDialogComponent', () => {
-  let component: AddGameDialogComponent;
-  let fixture: ComponentFixture<AddGameDialogComponent>;
+    let component: AddGameDialogComponent;
+    let fixture: ComponentFixture<AddGameDialogComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AddGameDialogComponent ]
-    })
-    .compileComponents();
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [AddGameDialogComponent],
+        }).compileComponents();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AddGameDialogComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AddGameDialogComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

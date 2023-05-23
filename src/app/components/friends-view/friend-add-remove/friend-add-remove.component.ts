@@ -30,10 +30,10 @@ export class FriendAddRemoveComponent implements OnInit {
                 next: (res) => {
                     this.ok = 'Ami supprimé';
                     this.isFriend = false;
-                  setTimeout(() => {
-                    this.ok = '';
-                    window.location.reload()
-                  }, 10000);
+                    setTimeout(() => {
+                        this.ok = '';
+                        window.location.reload();
+                    }, 10000);
                 },
                 error: (err: Error) => {
                     this.error = err.message;
@@ -47,10 +47,10 @@ export class FriendAddRemoveComponent implements OnInit {
                 next: (res) => {
                     this.ok = 'Ami ajouté';
                     this.isFriend = true;
-                  setTimeout(() => {
-                    this.ok = '';
-                    window.location.reload();
-                  }, 10000);
+                    setTimeout(() => {
+                        this.ok = '';
+                        window.location.reload();
+                    }, 10000);
                 },
                 error: (err: Error) => {
                     this.error = err.message;

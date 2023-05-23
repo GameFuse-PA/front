@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestInterceptor } from './services/request.interceptor';
+import { ChatHomeComponent } from './components/home/chat-home.component';
+import { PageNotFoundComponent } from './components/not-found/page-not-found.component';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { ChangeUserFormComponent } from './components/change-user-form/change-user-form.component';
 import { PictureServerComponent } from './components/picture-server/picture-server.component';
@@ -55,6 +57,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
         PasswordFieldComponent,
         HeaderComponent,
         ChangePasswordUserFormComponent,
+        ChatHomeComponent,
+        PageNotFoundComponent,
         MyGamesComponent,
         AddGameDialogComponent,
         FriendAddRemoveComponent,
