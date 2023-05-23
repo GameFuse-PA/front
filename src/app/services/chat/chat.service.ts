@@ -5,21 +5,19 @@ import { environment } from 'src/environments/environment';
 import { NO_AUTH } from '../request.interceptor';
 import { Router } from '@angular/router';
 
-const URL = environment.apiUrl + "/chat/";
+const URL = environment.apiUrl + '/chat/';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ChatService {
+    user: User | null = null;
 
-  user: User | null = null;
+    constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {}
-
-  createConversation(roomId: string) {
-    return this.http.post(URL + `/rooms`, {
-      roomId: roomId
-    });
-  }
-
+    createConversation(roomId: string) {
+        return this.http.post(URL + `/rooms`, {
+            roomId: roomId,
+        });
+    }
 }

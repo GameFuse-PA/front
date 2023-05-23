@@ -1,0 +1,17 @@
+.friends-page {
+  padding: 30px;
+  text-align: center;
+}
+
+.friends-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.paginator-friends {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}

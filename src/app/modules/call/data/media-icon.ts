@@ -5,4 +5,4 @@ export const MediaIconUrl = {
     cameraOffIconUrl: 'assets/cameraOff.png',
     soundIconUrl: 'assets/soundOn.png',
     soundOffIconUrl: 'assets/soundOff.png',
-}
+};

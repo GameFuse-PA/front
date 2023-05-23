@@ -2,6 +2,6 @@ export interface Chat {
     content: string;
     time: number;
     isMe: boolean;
-    userName: string,
+    userName: string;
     //userPhoto: string,
 }

@@ -1,7 +1,15 @@
 <div class="profil-page">
     <h1 class="title">Mon profil</h1>
     <div class="my-profil">
-        <app-change-user-form></app-change-user-form>
+        <div class="first-part">
+            <app-change-user-form></app-change-user-form>
+            <div class="friends-view-page">
+                <app-friends-page [pagination]="false" [maxSize]="2"></app-friends-page>
+                <button mat-flat-button class="bg-[color:var(--primary)] text-white">
+                    <a routerLink="/MyFriends">Voir tous mes amis</a>
+                </button>
+            </div>
+        </div>
         <div class="second-part">
             <div class="profil-picture-comp">
                 <app-change-profil-pic

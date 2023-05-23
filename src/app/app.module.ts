@@ -16,8 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestInterceptor } from './services/request.interceptor';
-import {ChatHomeComponent} from "./components/home/chat-home.component";
-import {PageNotFoundComponent} from "./components/not-found/page-not-found.component";
+import { ChatHomeComponent } from './components/home/chat-home.component';
+import { PageNotFoundComponent } from './components/not-found/page-not-found.component';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { ChangeUserFormComponent } from './components/change-user-form/change-user-form.component';
 import { PictureServerComponent } from './components/picture-server/picture-server.component';
@@ -30,6 +30,13 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
+import { MyGamesComponent } from './pages/my-games/my-games.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddGameDialogComponent } from './components/add-game-dialog/add-game-dialog.component';
+import { FriendAddRemoveComponent } from './components/friends-view/friend-add-remove/friend-add-remove.component';
+import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
+import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     declarations: [
@@ -50,12 +57,17 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
         PasswordFieldComponent,
         HeaderComponent,
         ChangePasswordUserFormComponent,
-      ChatHomeComponent,
-      PageNotFoundComponent
+        ChatHomeComponent,
+        PageNotFoundComponent,
+        MyGamesComponent,
+        AddGameDialogComponent,
+        FriendAddRemoveComponent,
+        FriendsComponent,
+        FriendsPageComponent,
     ],
     imports: [
-        BrowserModule,
         BrowserAnimationsModule,
+        BrowserModule,
         AppRoutingModule,
         MatInputModule,
         FormsModule,
@@ -64,7 +76,10 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
         MatButtonModule,
         HttpClientModule,
         MatToolbarModule,
+        MatProgressBarModule,
         MatMenuModule,
+        NgxPaginationModule,
+        MatDialogModule,
         MatProgressBarModule,
     ],
     providers: [

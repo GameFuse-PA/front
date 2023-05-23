@@ -43,9 +43,11 @@ export class RequestInterceptor implements HttpInterceptor {
 
                 if (error.error instanceof ErrorEvent) {
                     // client-side error
+                    console.log('client-side error');
                     errorMessage = error.error.message;
                 } else {
                     // server-side error
+                    console.log('server-side error');
                     if (Array.isArray(error.error.message)) {
                         errorMessage = error.error.message[0];
                     } else {

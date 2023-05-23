@@ -1,7 +1,7 @@
 .profil-page {
   display: flex;
   flex-direction: column;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .title {
@@ -14,13 +14,18 @@
   display: flex;
   flex-direction: row;
   margin-top: 2%;
-  padding-left: 5%;
+  padding-left: 3%;
   padding-right: 5%;
 }
 
-.my-profil > app-change-user-form {
+.first-part {
   flex: 80;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
 }
+
 
 .second-part{
   flex: 20;
@@ -54,3 +59,14 @@
   justify-content: center;
   padding: 10px;
 }
+
+.friends-view-page {
+  border-radius: 10px;
+  text-align: center;
+  padding-bottom: 5px;
+  width: 70%;
+  border: 1px solid rgba(141, 141, 141, 0.11);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+
