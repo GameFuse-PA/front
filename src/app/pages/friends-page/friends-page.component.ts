@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProfilService } from '../../services/profil/profil.service';
 import { User } from '../../models/user.model';
 import {Collection} from "ngx-pagination";
@@ -25,13 +25,13 @@ export class FriendsPageComponent implements OnInit {
     ngOnInit(): void {
         this.profilServices.getFriends().subscribe({
             next: (users: any) => {
-              if (users && users.idFriends){
-                this.users = users.idFriends;
-                const user = JSON.parse(localStorage.getItem('user') as string);
-                user.friends = users.idFriends;
-                this.authServices.user = user;
-                localStorage.setItem('user', JSON.stringify(user));
-              }
+                if (users && users.idFriends) {
+                    this.users = users.idFriends;
+                    const user = JSON.parse(localStorage.getItem('user') as string);
+                    user.friends = users.idFriends;
+                    this.authServices.user = user;
+                    localStorage.setItem('user', JSON.stringify(user));
+                }
             },
             error: (err: any) => {
                 alert(err.message);

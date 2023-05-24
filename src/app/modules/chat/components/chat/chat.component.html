@@ -1,0 +1,21 @@
+<div class="chat">
+    <div class="chat-header">
+        <div class="chat-title">Chat</div>
+        <div id="copyText" class="copy-text" (click)="copyLinkInClipBoard()">
+            Cliquez ici pour partager le lien avec un amis
+        </div>
+    </div>
+    <div class="conversation" #conversation>
+        <div
+            class="message"
+            *ngFor="let chat of chats; index as i"
+            [id]="i"
+            [ngClass]="chat.isMe ? 'my-message' : 'cor-message'"
+        >
+            <h2 [innerHTML]="chat.userName"></h2>
+            <p [innerHTML]="chat.content"></p>
+        </div>
+    </div>
+    <app-chat-input (whenSubmitMessage)="addMessage($event)"></app-chat-input>
+</div>
+<div id="notification" class="notification hidden">Le texte a été copié dans le presse-papiers</div>

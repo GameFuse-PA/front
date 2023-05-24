@@ -1,0 +1,33 @@
+.video-player {
+  position: relative;
+  text-align: center;
+  padding: 0.5rem;
+
+  height: fit-content;
+  margin: 0.5px;
+
+  video {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    display: initial;
+  }
+
+  .action {
+    width: 100%;
+    position: absolute;
+    bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+
+    .icon {
+      background: white;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 5px;
+      max-width: 50px;
+      width: 5%;
+      min-width: 30px;
+    }
+  }
+}
