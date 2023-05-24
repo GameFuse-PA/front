@@ -3,6 +3,7 @@ import { ProfilService } from '../../services/profil/profil.service';
 import { User } from '../../models/user.model';
 import { Collection } from 'ngx-pagination';
 import { AuthService } from '../../services/auth/auth.service';
+import {TokenUtils} from "../../utils/tokenUtils";
 
 @Component({
     selector: 'app-friends-page',
@@ -10,7 +11,12 @@ import { AuthService } from '../../services/auth/auth.service';
     styleUrls: ['./friends-page.component.css'],
 })
 export class FriendsPageComponent implements OnInit {
-    constructor(private profilServices: ProfilService, private authServices: AuthService) {}
+    constructor(private profilServices: ProfilService, private authServices: AuthService) {
+      if (!this.authServices.user?.access_token || TokenUtils.isTokenExpired(this.authServices.user?.access_token)) {
+        this.authServices.logout()
+        return
+      }
+    }
 
     users: Collection<User | undefined> = [];
     page: number = 1;
