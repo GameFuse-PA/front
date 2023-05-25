@@ -4,7 +4,7 @@ import { User } from '../../models/user.model';
 import {Router} from "@angular/router";
 import { Collection } from 'ngx-pagination';
 import { AuthService } from '../../services/auth/auth.service';
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
     selector: 'app-friends-page',
@@ -12,7 +12,7 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     styleUrls: ['./friends-page.component.css'],
 })
 export class FriendsPageComponent implements OnInit {
-  
+
     constructor(private profilServices: ProfilService, private authServices: AuthService, private _snackBar: MatSnackBar, private router: Router) {}
 
     users: Collection<User | undefined> = [];
@@ -45,7 +45,10 @@ export class FriendsPageComponent implements OnInit {
 
     search(newValue: string) {
         if (!newValue) {
-          alert('Please enter a search value');
+          this._snackBar.open("Une valeur de recherche est nécessaire avant de confirmer", 'Fermer', {
+            duration: 5000,
+            panelClass: ['error-snackbar'],
+          })
           return
         }
         this.userSearch = newValue;
