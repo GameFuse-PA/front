@@ -48,8 +48,8 @@ const routes: Routes = [
     },
     { path: 'MyFriends', component: FriendsPageComponent },
     {
-      path: '**',
-      component: PageNotFoundComponent,
+        path: '**',
+        component: PageNotFoundComponent,
     },
 ];
 

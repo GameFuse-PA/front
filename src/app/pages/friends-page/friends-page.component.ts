@@ -3,7 +3,7 @@ import { ProfilService } from '../../services/profil/profil.service';
 import { User } from '../../models/user.model';
 import { Collection } from 'ngx-pagination';
 import { AuthService } from '../../services/auth/auth.service';
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-friends-page',
@@ -11,7 +11,11 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     styleUrls: ['./friends-page.component.css'],
 })
 export class FriendsPageComponent implements OnInit {
-    constructor(private profilServices: ProfilService, private authServices: AuthService, private _snackBar: MatSnackBar) {}
+    constructor(
+        private profilServices: ProfilService,
+        private authServices: AuthService,
+        private _snackBar: MatSnackBar,
+    ) {}
 
     users: Collection<User | undefined> = [];
     page: number = 1;
@@ -30,10 +34,10 @@ export class FriendsPageComponent implements OnInit {
                 }
             },
             error: (err: any) => {
-              this._snackBar.open(err.message, 'Fermer', {
-                duration: 5000,
-                panelClass: ['error-snackbar'],
-              })
+                this._snackBar.open(err.message, 'Fermer', {
+                    duration: 5000,
+                    panelClass: ['error-snackbar'],
+                });
             },
         });
     }
