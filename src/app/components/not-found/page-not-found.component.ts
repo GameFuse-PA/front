@@ -8,8 +8,8 @@ import {Component, OnInit} from '@angular/core';
 export class PageNotFoundComponent implements OnInit{
 
   ngOnInit() {
-    let audio = new Audio();
-    audio.src = "assets/myinstants.mp3";
+    const audio = new Audio();
+    audio.src = "assets/error404sound.mp3";
     audio.load();
     audio.play();
   }
