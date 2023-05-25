@@ -40,6 +40,7 @@ import { SearchBar } from './components/search-bar-component/search-bar';
 import { UserMemberSearchComponent } from './components/user-member-search/user-member-search.component';
 import { MemberSearchComponent } from './pages/member-search/member-search.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { GameCardComponent } from './components/game-card/game-card.component';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
         SearchBar,
         UserMemberSearchComponent,
         MemberSearchComponent,
+        GameCardComponent,
     ],
     imports: [
         BrowserAnimationsModule,
