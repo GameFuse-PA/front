@@ -4,7 +4,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { PageNotFoundComponent } from './components/not-found/page-not-found.component';
-import { ChatHomeComponent } from './components/home/chat-home.component';
+import { ChatHomeComponent } from './components/chat-home/chat-home.component';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { MyGamesComponent } from './pages/my-games/my-games.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';

@@ -12,3 +12,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --success: #4CAF50;
     --warning: #FC9674;
 }
+
+.error-snackbar {
+  background-color: var(--error) !important;
+  color: white !important;
+}
+
+.error-snackbar .mat-simple-snackbar-action {
+  color: white !important;
+}
