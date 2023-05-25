@@ -38,6 +38,7 @@ import { FriendsComponent } from './components/friends-view/friends-view/friends
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GameCardComponent } from './components/game-card/game-card.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
     declarations: [
@@ -76,6 +77,7 @@ import { GameCardComponent } from './components/game-card/game-card.component';
         MatCardModule,
         MatIconModule,
         MatButtonModule,
+        MatSnackBarModule,
         HttpClientModule,
         MatToolbarModule,
         MatProgressBarModule,
