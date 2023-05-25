@@ -1,6 +1,7 @@
 .friends-page {
   padding: 30px;
   text-align: center;
+  position: relative;
 }
 
 .friends-container {

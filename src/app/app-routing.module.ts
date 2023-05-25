@@ -8,6 +8,7 @@ import { ChatHomeComponent } from './components/chat-home/chat-home.component';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { MyGamesComponent } from './pages/my-games/my-games.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
+import {MemberSearchComponent} from "./pages/member-search/member-search.component";
 
 const routes: Routes = [
     {
@@ -46,7 +47,14 @@ const routes: Routes = [
         path: 'my-games',
         component: MyGamesComponent,
     },
-    { path: 'MyFriends', component: FriendsPageComponent },
+    { 
+      path: 'MyFriends',
+      component: FriendsPageComponent 
+    },
+    { 
+      path: 'member-search', 
+      component: MemberSearchComponent 
+    },
     {
         path: '**',
         component: PageNotFoundComponent,
