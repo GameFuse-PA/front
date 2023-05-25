@@ -43,14 +43,14 @@ const routes: Routes = [
         loadChildren: () => import('./modules/call/call.module').then((c) => c.CallModule),
     },
     {
-        path: '**',
-        component: PageNotFoundComponent,
-    },
-    {
         path: 'my-games',
         component: MyGamesComponent,
     },
     { path: 'MyFriends', component: FriendsPageComponent },
+    {
+      path: '**',
+      component: PageNotFoundComponent,
+    },
 ];
 
 @NgModule({
