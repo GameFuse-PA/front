@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
-import {TokenUtils} from "../../utils/tokenUtils";
+import {ProfilService} from "../../services/profil/profil.service";
 
 @Component({
     selector: 'app-profilpagesolo',
@@ -11,13 +11,10 @@ import {TokenUtils} from "../../utils/tokenUtils";
 export class ProfilPageComponent implements OnInit {
     profilPic: string | undefined = undefined;
 
-    constructor(private router: Router, private authServices: AuthService) {
+    constructor(private router: Router, private profilService: ProfilService,
+                private authServices: AuthService) {
         const user = JSON.parse(localStorage.getItem('user') as string);
         if (!this.authServices.user?.access_token) {
-          this.authServices.logout()
-          return
-        }
-        if (TokenUtils.isTokenExpired(this.authServices.user?.access_token)) {
           this.authServices.logout()
           return
         }
@@ -26,5 +23,14 @@ export class ProfilPageComponent implements OnInit {
         }
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+      this.profilService.getMe().subscribe({
+        next: (user: any) => {
+          this.authServices.user = user
+          if (this.authServices.user?.avatar) {
+            this.profilPic = user.avatar.location;
+          }
+        }
+      })
+    }
 }

@@ -11,12 +11,7 @@ import {TokenUtils} from "../../utils/tokenUtils";
     styleUrls: ['./friends-page.component.css'],
 })
 export class FriendsPageComponent implements OnInit {
-    constructor(private profilServices: ProfilService, private authServices: AuthService) {
-      if (!this.authServices.user?.access_token || TokenUtils.isTokenExpired(this.authServices.user?.access_token)) {
-        this.authServices.logout()
-        return
-      }
-    }
+    constructor(private profilServices: ProfilService, private authServices: AuthService) {}
 
     users: Collection<User | undefined> = [];
     page: number = 1;
