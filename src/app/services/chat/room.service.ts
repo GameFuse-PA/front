@@ -15,11 +15,8 @@ export class RoomService {
     constructor(private http: HttpClient) {}
 
     createRoom(): Observable<string> {
-      console.log("coucou in createRoom service");
       const url = `${URL}/roomCreation`;
-      console.log(url);
-      var res: Observable<string> = this.http.get<string>(url);
-      console.log(res);
+      var res: Observable<string> = this.http.get(url, {responseType: 'text'});
       return res;
     }
 }

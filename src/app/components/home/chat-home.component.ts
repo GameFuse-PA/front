@@ -16,13 +16,10 @@ export class ChatHomeComponent {
       public async createRoom() {
         this.roomService.createRoom().subscribe({
           next: (roomId:string) => {
-                console.log('voici la roomid : ' + roomId);
-                this.router.navigateByUrl(`/call/${roomId}`);
+            this.router.navigateByUrl(`/call/${roomId}`);
           },
           error: (err: Error) => {
-            console.log("il y a une erreur lol");
             console.log(err)
-            console.log(err.message)
           },
         });
     }
