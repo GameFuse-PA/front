@@ -40,16 +40,12 @@ export class FriendsPageComponent implements OnInit {
     }
 
     search(newValue: string) {
+        if (!newValue) {
+          alert('Please enter a search value');
+          return
+        }
         this.userSearch = newValue;
-        this.usersService.searchUsers(newValue).subscribe({
-            next: (users: any) => {
-              this.usersService.usersSearched = users;
-              this.router.navigate(['/member-search'], { queryParams: { search: newValue } });
-            },
-            error: (err: any) => {
-                alert(err.message);
-            }
-        })
+        this.router.navigate(['/member-search'], { queryParams: { search: newValue } });
     }
 
 }

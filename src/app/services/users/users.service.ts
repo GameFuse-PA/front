@@ -11,11 +11,10 @@ const URL = environment.apiUrl + '/users';
 })
 export class UsersService {
 
-  usersSearched: User[] | null = null;
   constructor(private http: HttpClient) { }
 
   searchUsers(search: string) {
-    return this.http.get(`${URL}/search?value=${search}`);
+    return this.http.get(`${URL}?search=${search}`);
   }
 
 }
