@@ -33,7 +33,6 @@ export class MemberSearchComponent implements OnInit {
         for (const user of users) {
           if (this.authServices.user?.friends){
             if (this.authServices.user.friends.filter((u: any) => u._id === user._id).length > 0) {
-              console.log('true')
               this.isFriends.push(true);
             }else{
               this.isFriends.push(false);
