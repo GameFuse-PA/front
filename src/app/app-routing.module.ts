@@ -56,8 +56,8 @@ const routes: Routes = [
       component: MemberSearchComponent 
     },
     {
-      path: '**',
-      component: PageNotFoundComponent,
+        path: '**',
+        component: PageNotFoundComponent,
     },
 ];
 

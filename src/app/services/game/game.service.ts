@@ -18,4 +18,8 @@ export class GameService {
         if (game.description) formData.append('description', game.description);
         return this.http.post(URL, formData);
     }
+
+    deleteGame(gameId: string | undefined) {
+        return this.http.delete(URL + gameId);
+    }
 }

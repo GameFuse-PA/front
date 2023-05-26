@@ -41,7 +41,7 @@ import { UserMemberSearchComponent } from './components/user-member-search/user-
 import { MemberSearchComponent } from './pages/member-search/member-search.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GameCardComponent } from './components/game-card/game-card.component';
-import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [

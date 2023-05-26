@@ -35,10 +35,10 @@ export class FriendsPageComponent implements OnInit {
                 }
             },
             error: (err: any) => {
-              this._snackBar.open(err.message, 'Fermer', {
-                duration: 5000,
-                panelClass: ['error-snackbar'],
-              })
+                this._snackBar.open(err.message, 'Fermer', {
+                    duration: 5000,
+                    panelClass: ['error-snackbar'],
+                });
             },
         });
     }
