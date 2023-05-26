@@ -1,0 +1,8 @@
+<div class="relative">
+  <app-search-bar [placeholder]="search" (newValueUser)="searchUser($event)"></app-search-bar>
+  <h1 style="text-align: center; font-weight: bold; margin-bottom: 5%; margin-top: 10px">Rechercher membre de la communauté</h1>
+  <app-user-member-search *ngIf="search" [users]="users" [isFriends]="isFriends"></app-user-member-search>
+  <div *ngIf="!search">
+    <h2>Aucune recherche effectué</h2>
+  </div>
+</div>

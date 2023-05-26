@@ -1,0 +1,22 @@
+.users {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border: rgba(0, 0, 0, 0.6) 1px solid;
+  margin: auto auto 25px;
+  padding: 40px;
+  width: 80%;
+}
+
+.info-user {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+}
+
+.info-user > p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}

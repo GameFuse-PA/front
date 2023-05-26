@@ -1,10 +1,12 @@
 .friends-page {
   padding: 30px;
   text-align: center;
+  position: relative;
 }
 
 .friends-container {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 12px;
 }

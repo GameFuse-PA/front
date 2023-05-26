@@ -25,6 +25,10 @@ export class ProfilService {
         return this.http.put(`${URL}/password`, { password: password });
     }
 
+    getMe() {
+        return this.http.get(`${URL}`);
+    }
+
     getFriends() {
         return this.http.get(`${URL}/friends`);
     }

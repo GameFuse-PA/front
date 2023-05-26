@@ -16,6 +16,7 @@
   margin-top: 2%;
   padding-left: 3%;
   padding-right: 5%;
+  padding-bottom: 3%;
 }
 
 .first-part {
@@ -69,4 +70,10 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
+@media screen and (max-width: 915px) {
 
+  .my-profil {
+    gap: 10vw;
+  }
+
+}
