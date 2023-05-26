@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestInterceptor } from './services/request.interceptor';
-import { ChatHomeComponent } from './components/home/chat-home.component';
+import { ChatHomeComponent } from './components/chat-home/chat-home.component';
 import { PageNotFoundComponent } from './components/not-found/page-not-found.component';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { ChangeUserFormComponent } from './components/change-user-form/change-user-form.component';
@@ -36,7 +36,12 @@ import { AddGameDialogComponent } from './components/add-game-dialog/add-game-di
 import { FriendAddRemoveComponent } from './components/friends-view/friend-add-remove/friend-add-remove.component';
 import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
+import { SearchBar } from './components/search-bar-component/search-bar';
+import { UserMemberSearchComponent } from './components/user-member-search/user-member-search.component';
+import { MemberSearchComponent } from './pages/member-search/member-search.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { GameCardComponent } from './components/game-card/game-card.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
@@ -64,6 +69,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
         FriendAddRemoveComponent,
         FriendsComponent,
         FriendsPageComponent,
+        SearchBar,
+        UserMemberSearchComponent,
+        MemberSearchComponent,
+        GameCardComponent,
     ],
     imports: [
         BrowserAnimationsModule,
@@ -74,6 +83,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
         MatCardModule,
         MatIconModule,
         MatButtonModule,
+        MatSnackBarModule,
         HttpClientModule,
         MatToolbarModule,
         MatProgressBarModule,

@@ -13,9 +13,13 @@ export class GameService {
     addGame(game: Game) {
         const formData: FormData = new FormData();
         if (game.banner) formData.append('banner', game.banner);
-        if (game.file) formData.append('program', game.file);
+        if (game.program) formData.append('program', game.program);
         if (game.name) formData.append('name', game.name);
         if (game.description) formData.append('description', game.description);
         return this.http.post(URL, formData);
+    }
+
+    deleteGame(gameId: string | undefined) {
+        return this.http.delete(URL + gameId);
     }
 }

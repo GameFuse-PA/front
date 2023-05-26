@@ -1,0 +1,16 @@
+<mat-card class="max-w-xs !p-0">
+    <mat-card-header class="pt-3">
+        <mat-card-title>{{ game.name }}</mat-card-title>
+        <mat-card-subtitle>créé par {{ game.createdBy?.username }}</mat-card-subtitle>
+    </mat-card-header>
+    <img src="{{ game.banner?.location }}" class="w-full" />
+    <mat-card-content class="p-3 mt-3 !mb-0">
+        <p class="text-justify">
+            {{ game.description }}
+        </p>
+    </mat-card-content>
+    <mat-card-actions class="!p-3">
+        <button mat-button>Modifier</button>
+        <button mat-button (click)="deleteGame()">Supprimer</button>
+    </mat-card-actions>
+</mat-card>

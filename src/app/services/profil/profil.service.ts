@@ -32,4 +32,8 @@ export class ProfilService {
     getFriends() {
         return this.http.get(`${URL}/friends`);
     }
+
+    getGames() {
+        return this.http.get(`${URL}/games`);
+    }
 }
