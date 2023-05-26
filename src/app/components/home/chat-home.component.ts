@@ -13,14 +13,15 @@ const URL = environment.apiUrl;
 export class ChatHomeComponent {
     constructor(private router: Router, private roomService: RoomService) {}
 
-      public async createRoom() {
-        this.roomService.createRoom().subscribe({
-          next: (roomId:string) => {
-            this.router.navigateByUrl(`/call/${roomId}`);
-          },
-          error: (err: Error) => {
-            console.log(err)
-          },
+    public async createRoom() {
+        this.roomService.create().subscribe({
+            next: (room: any) => {
+                const roomId = room._id;
+                this.router.navigateByUrl(`/call/${roomId}`);
+            },
+            error: (err: Error) => {
+                console.log(err);
+            },
         });
     }
 }
