@@ -41,10 +41,18 @@ export class SaveGameDialogComponent implements OnInit {
         }
     }
 
-    addGame() {
+    saveGame() {
         this.loading = true;
         this.error = '';
-        this.gameService.addGame(this.game).subscribe({
+        let request;
+
+        if (this.game._id) {
+            request = this.gameService.updateGame(this.game);
+        } else {
+            request = this.gameService.addGame(this.game);
+        }
+
+        request.subscribe({
             next: (res: any) => {
                 this.loading = false;
                 this.dialogRef.close();
@@ -57,7 +65,6 @@ export class SaveGameDialogComponent implements OnInit {
     }
 
     showFile(url: any) {
-        console.log(this.game);
-        //window.open(url);
+        window.open(url);
     }
 }

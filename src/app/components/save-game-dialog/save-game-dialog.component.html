@@ -87,7 +87,7 @@
     <button
         mat-flat-button
         class="text-white bg-[color:var(--success)] w-1/2"
-        (click)="addGame()"
+        (click)="saveGame()"
         [disabled]="loading"
     >
         {{ game._id ? 'Modifier' : 'Ajouter' }} le jeu
