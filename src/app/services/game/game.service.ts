@@ -31,4 +31,8 @@ export class GameService {
     deleteGame(gameId: string | undefined) {
         return this.http.delete(URL + gameId);
     }
+
+    getGames(search: string = '') {
+        return this.http.get(URL + '?search=' + search);
+    }
 }

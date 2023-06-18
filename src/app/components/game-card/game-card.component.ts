@@ -11,6 +11,7 @@ import { SaveGameDialogComponent } from '../save-game-dialog/save-game-dialog.co
 })
 export class GameCardComponent implements OnInit {
     @Input() game: Game = {};
+    @Input() readonly: boolean = false;
     @Output() reload: EventEmitter<void> = new EventEmitter();
 
     constructor(public gameService: GameService, public dialog: MatDialog) {}
