@@ -44,6 +44,8 @@ import { GameCardComponent } from './components/game-card/game-card.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ListPartiesComponent } from './pages/list-parties/list-parties.component';
 import { PartiesCardComponent } from './components/parties/parties-card/parties-card.component';
+import { CreatePartyDialogComponent } from './components/parties/create-party-dialog/create-party-dialog.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
     declarations: [
@@ -77,25 +79,27 @@ import { PartiesCardComponent } from './components/parties/parties-card/parties-
         GameCardComponent,
         ListPartiesComponent,
         PartiesCardComponent,
+        CreatePartyDialogComponent,
     ],
-    imports: [
-        BrowserAnimationsModule,
-        BrowserModule,
-        AppRoutingModule,
-        MatInputModule,
-        FormsModule,
-        MatCardModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        HttpClientModule,
-        MatToolbarModule,
-        MatProgressBarModule,
-        MatMenuModule,
-        NgxPaginationModule,
-        MatDialogModule,
-        MatProgressBarModule,
-    ],
+  imports: [
+    BrowserAnimationsModule,
+    BrowserModule,
+    AppRoutingModule,
+    MatInputModule,
+    FormsModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatMenuModule,
+    NgxPaginationModule,
+    MatDialogModule,
+    MatProgressBarModule,
+    MatSelectModule,
+  ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

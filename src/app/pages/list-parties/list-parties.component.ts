@@ -3,6 +3,8 @@ import {User} from "../../models/user.model";
 import {PartyModel} from "../../models/party.model";
 import {Collection} from "ngx-pagination";
 import {ProfilService} from "../../services/profil/profil.service";
+import {MatDialog} from "@angular/material/dialog";
+import {CreatePartyDialogComponent} from "../../components/parties/create-party-dialog/create-party-dialog.component";
 
 @Component({
   selector: 'app-list-parties',
@@ -18,7 +20,7 @@ export class ListPartiesComponent implements OnInit {
 
   @Input() maxSize: number = 5
 
-  constructor(private profilService: ProfilService) { }
+  constructor(private profilService: ProfilService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -30,6 +32,14 @@ export class ListPartiesComponent implements OnInit {
 
       }
     })
+  }
+
+  createParty() {
+    this.dialog.open(CreatePartyDialogComponent, {
+      width: '700px',
+      autoFocus: false,
+      disableClose: true,
+    });
   }
 
 }
