@@ -42,6 +42,7 @@ import { MemberSearchComponent } from './pages/member-search/member-search.compo
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GameCardComponent } from './components/game-card/game-card.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ListPartiesComponent } from './pages/list-parties/list-parties.component';
 
 @NgModule({
     declarations: [
@@ -73,6 +74,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         UserMemberSearchComponent,
         MemberSearchComponent,
         GameCardComponent,
+        ListPartiesComponent,
     ],
     imports: [
         BrowserAnimationsModule,

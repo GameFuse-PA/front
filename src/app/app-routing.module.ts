@@ -9,6 +9,7 @@ import { NewPasswordComponent } from './pages/new-password/new-password.componen
 import { MyGamesComponent } from './pages/my-games/my-games.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import {MemberSearchComponent} from "./pages/member-search/member-search.component";
+import {ListPartiesComponent} from "./pages/list-parties/list-parties.component";
 
 const routes: Routes = [
     {
@@ -47,13 +48,17 @@ const routes: Routes = [
         path: 'my-games',
         component: MyGamesComponent,
     },
-    { 
+    {
       path: 'MyFriends',
-      component: FriendsPageComponent 
+      component: FriendsPageComponent
     },
-    { 
-      path: 'member-search', 
-      component: MemberSearchComponent 
+    {
+      path: 'member-search',
+      component: MemberSearchComponent
+    },
+    {
+      path: 'my-parties',
+      component: ListPartiesComponent,
     },
     {
         path: '**',
