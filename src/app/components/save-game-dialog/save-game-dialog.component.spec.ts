@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddGameDialogComponent } from './add-game-dialog.component';
+import { SaveGameDialogComponent } from './save-game-dialog.component';
 
-describe('AddGameDialogComponent', () => {
-    let component: AddGameDialogComponent;
-    let fixture: ComponentFixture<AddGameDialogComponent>;
+describe('SaveGameDialogComponent', () => {
+    let component: SaveGameDialogComponent;
+    let fixture: ComponentFixture<SaveGameDialogComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [AddGameDialogComponent],
+            declarations: [SaveGameDialogComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(AddGameDialogComponent);
+        fixture = TestBed.createComponent(SaveGameDialogComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
