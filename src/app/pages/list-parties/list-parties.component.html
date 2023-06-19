@@ -1,1 +1,18 @@
-<p>list-parties works!</p>
+<div>
+  <h1 style="text-align: center; margin-top: 15px; font-weight: bold; font-size: 25pt">Voici vos parties {{ user.username }}</h1>
+  <div class="flex flex-row justify-center mt-9">
+    <div *ngFor="let party of parties | paginate: {itemsPerPage: maxSize, currentPage: page}" class="parties-card">
+      <app-parties-card [party]="party"></app-parties-card>
+    </div>
+    <div *ngIf="!parties || parties.length === 0">
+      <h2 style="color: var(--accent)">Vous n'avez pas encore de parties en cours ou démarrée</h2>
+    </div>
+  </div>
+  <pagination-controls
+    *ngIf="parties.length > maxSize"
+    previousLabel="Précédent"
+    nextLabel="Suivant"
+    (pageChange)="page = $event"
+    class="paginator-friends">
+  </pagination-controls>
+</div>

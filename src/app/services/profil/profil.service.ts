@@ -36,4 +36,8 @@ export class ProfilService {
     getGames() {
         return this.http.get(`${URL}/games`);
     }
+
+    getParties() {
+        return this.http.get(`${URL}/parties`);
+    }
 }

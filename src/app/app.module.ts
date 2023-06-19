@@ -43,6 +43,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { GameCardComponent } from './components/game-card/game-card.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ListPartiesComponent } from './pages/list-parties/list-parties.component';
+import { PartiesCardComponent } from './components/parties/parties-card/parties-card.component';
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import { ListPartiesComponent } from './pages/list-parties/list-parties.componen
         MemberSearchComponent,
         GameCardComponent,
         ListPartiesComponent,
+        PartiesCardComponent,
     ],
     imports: [
         BrowserAnimationsModule,
