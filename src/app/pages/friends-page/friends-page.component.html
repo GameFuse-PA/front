@@ -1,21 +1,27 @@
 <div class="friends-page">
     <h2>Mes amis</h2>
-    <app-search-bar *ngIf="pagination" (newValueUser)="search($event)" [placeholder]="'Cherchez votre ami'"></app-search-bar>
+    <app-search-bar
+        *ngIf="pagination"
+        (newValueUser)="search($event)"
+        [placeholder]="'Cherchez votre ami'"
+    ></app-search-bar>
     <ng-container *ngIf="users && users.length > 0; else noFriends">
-      <div class="friends-container">
-        <div *ngFor="let user of users | paginate : { itemsPerPage: maxSize, currentPage: page }">
-          <app-friends [user]="user"></app-friends>
+        <div class="friends-container">
+            <div
+                *ngFor="let user of users | paginate : { itemsPerPage: maxSize, currentPage: page }"
+            >
+                <app-friends [user]="user"></app-friends>
+            </div>
         </div>
-      </div>
     </ng-container>
     <ng-template #noFriends>
         <p>Vous n'avez pas encore d'amis 😥</p>
     </ng-template>
 </div>
 <pagination-controls
-  *ngIf="pagination"
-  previousLabel="Précédent"
-  nextLabel="Suivant"
-  (pageChange)="page = $event"
-  class="paginator-friends"
+    *ngIf="pagination"
+    previousLabel="Précédent"
+    nextLabel="Suivant"
+    (pageChange)="page = $event"
+    class="paginator-friends"
 ></pagination-controls>
