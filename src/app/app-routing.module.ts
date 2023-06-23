@@ -41,7 +41,7 @@ const routes: Routes = [
         component: ChatHomeComponent,
     },
     {
-        path: 'call/:roomId',
+        path: 'room/:roomId',
         loadChildren: () => import('./modules/call/call.module').then((c) => c.CallModule),
     },
     {

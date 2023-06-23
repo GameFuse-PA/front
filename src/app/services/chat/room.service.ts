@@ -4,20 +4,17 @@ import { User } from 'src/app/models/user.model';
 import { environment } from 'src/environments/environment';
 import { NO_AUTH } from '../request.interceptor';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
-const URL = environment.apiUrl + '/chat/';
+const URL = environment.apiUrl + '/rooms';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ChatService {
-    user: User | null = null;
-
+export class RoomService {
     constructor(private http: HttpClient) {}
 
-    createConversation(roomId: string) {
-        return this.http.post(URL + `/rooms`, {
-            roomId: roomId,
-        });
+    create() {
+        return this.http.post(URL, { responseType: 'text' });
     }
 }
