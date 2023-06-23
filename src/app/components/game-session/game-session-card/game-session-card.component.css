@@ -1,0 +1,19 @@
+.card-game-session{
+  width: 15vw;
+  height: 15vw;
+}
+
+.nb-player {
+  right: 5%;
+  top: 10%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: black;
+}
+
+.button-game {
+  position: absolute;
+  bottom: 5%;
+  width: 14vw;
+}
