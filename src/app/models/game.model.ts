@@ -7,5 +7,6 @@ export class Game {
     description?: string;
     banner?: File & ApiFile;
     program?: File & ApiFile;
+    entry?: File & ApiFile;
     createdBy?: User;
 }

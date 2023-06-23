@@ -37,6 +37,8 @@ export class SaveGameDialogComponent implements OnInit {
                 this.game.banner = file;
             } else if (type === 'program') {
                 this.game.program = file;
+            } else if (type === 'entry') {
+                this.game.entry = file;
             }
         }
     }
