@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddGameDialogComponent } from '../../components/add-game-dialog/add-game-dialog.component';
+import { SaveGameDialogComponent } from '../../components/save-game-dialog/save-game-dialog.component';
 import { Game } from '../../models/game.model';
 import { ProfilService } from '../../services/profil/profil.service';
-import { User } from '../../models/user.model';
 
 @Component({
     selector: 'app-my-games',
@@ -19,7 +18,7 @@ export class MyGamesComponent implements OnInit {
     }
 
     addGameDialog() {
-        this.dialog.open(AddGameDialogComponent, {
+        this.dialog.open(SaveGameDialogComponent, {
             width: '700px',
             autoFocus: false,
             disableClose: true,

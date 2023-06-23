@@ -1,0 +1,29 @@
+<div class="flex justify-center">
+    <div class="w-full lg:w-3/4 mt-16">
+        <div class="mt-10 flex flex-row">
+            <mat-form-field appearance="outline" class="w-2/3">
+                <mat-label>Nom du jeu</mat-label>
+                <input matInput name="name" [(ngModel)]="search" (keydown.enter)="searchGames()" />
+            </mat-form-field>
+            <div class="w-1/3 pl-5 mt-1.5">
+                <button
+                    mat-flat-button
+                    (click)="searchGames()"
+                    class="text-white bg-[color:var(--primary)] w-full h-12"
+                >
+                    Rechercher un jeu
+                </button>
+            </div>
+        </div>
+        <mat-progress-bar mode="indeterminate" class="" *ngIf="loading"></mat-progress-bar>
+        <div class="flex flex-wrap mt-10">
+            <app-game-card
+                *ngFor="let game of games"
+                class="w-1/2 md:w-1/3 2xl:w-1/4 p-4"
+                [game]="game"
+                [readonly]="true"
+            >
+            </app-game-card>
+        </div>
+    </div>
+</div>

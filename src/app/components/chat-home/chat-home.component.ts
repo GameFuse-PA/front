@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import Utils from '../../utils/utils';
 import { environment } from '../../../environments/environment';
-import { ChatService } from '../../services/chat/chat.service';
+import { RoomService } from '../../services/chat/room.service';
 const URL = environment.apiUrl;
 @Component({
     selector: 'app-home',
@@ -11,10 +11,17 @@ const URL = environment.apiUrl;
     styleUrls: ['./chat-home.component.scss'],
 })
 export class ChatHomeComponent {
-    constructor(private router: Router, private chatService: ChatService) {}
+    constructor(private router: Router, private roomService: RoomService) {}
 
-    public async createRoom(): Promise<void> {
-        const roomId = Utils.genRoomId();
-        this.router.navigateByUrl(`/call/${roomId}`);
+    public async createRoom() {
+        this.roomService.create().subscribe({
+            next: (room: any) => {
+                const roomId = room._id;
+                this.router.navigateByUrl(`/room/${roomId}`);
+            },
+            error: (err: Error) => {
+                console.log(err);
+            },
+        });
     }
 }
