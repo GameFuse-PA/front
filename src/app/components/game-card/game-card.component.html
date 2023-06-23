@@ -10,7 +10,14 @@
         </p>
     </mat-card-content>
     <mat-card-actions class="!p-3">
-        <button mat-button>Modifier</button>
-        <button mat-button (click)="deleteGame()">Supprimer</button>
+        <div class="px-2">
+            <button mat-button class="text-white bg-[color:var(--primary)] w-full" *ngIf="readonly">
+                Jouer
+            </button>
+        </div>
+        <div *ngIf="!readonly">
+            <button mat-button *ngIf="!readonly" (click)="modifyGame()">Modifier</button>
+            <button mat-button *ngIf="!readonly" (click)="deleteGame()">Supprimer</button>
+        </div>
     </mat-card-actions>
 </mat-card>

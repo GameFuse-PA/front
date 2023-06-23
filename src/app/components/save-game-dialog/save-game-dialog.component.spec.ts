@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserMemberSearchComponent } from './user-member-search.component';
+import { SaveGameDialogComponent } from './save-game-dialog.component';
 
-describe('UserMemberSearchComponent', () => {
-    let component: UserMemberSearchComponent;
-    let fixture: ComponentFixture<UserMemberSearchComponent>;
+describe('SaveGameDialogComponent', () => {
+    let component: SaveGameDialogComponent;
+    let fixture: ComponentFixture<SaveGameDialogComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [UserMemberSearchComponent],
+            declarations: [SaveGameDialogComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(UserMemberSearchComponent);
+        fixture = TestBed.createComponent(SaveGameDialogComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
