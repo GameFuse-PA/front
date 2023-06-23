@@ -8,6 +8,8 @@ import {FormControl} from "@angular/forms";
 import {PartyModel} from "../../../models/party.model";
 import {RoomService} from "../../../services/chat/room.service";
 import {Router} from "@angular/router";
+import {GameSessionService} from "../../../services/game-session/game-session.service";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-create-party-dialog',
@@ -29,10 +31,12 @@ export class CreateGameSessionDialogComponent implements OnInit {
   listUsers: User[] = []
 
   loading: boolean = false;
+  error: string|undefined
 
   users = new FormControl('');
 
-  constructor(private profilService: ProfilService, private _snackBar: MatSnackBar, private roomService: RoomService, private router: Router) { }
+  constructor(private profilService: ProfilService, private _snackBar: MatSnackBar, private roomService: RoomService, private router: Router,
+              private gameSessionService: GameSessionService, public dialogRef: MatDialogRef<CreateGameSessionDialogComponent>) { }
   ngOnInit(): void {
 
     this.profilService.getFriends().subscribe({
@@ -83,14 +87,23 @@ export class CreateGameSessionDialogComponent implements OnInit {
 
     this.session.members = this.users.value
     console.log(this.session)
-    this.createRoom().then(r => console.log(r)).catch(err => console.error(err))
+
+    this.gameSessionService.createGameSession(this.session).subscribe({
+      next: async (res: any) => {
+        await this.createRoom(res._id)
+      },
+      error: (err: any) => {
+        this.error = err.message
+      }
+    })
 
   }
 
-  private async createRoom() {
+  private async createRoom(id: string) {
     this.roomService.create().subscribe({
       next: (room: any) => {
         const roomId = room._id;
+        this.dialogRef.close();
         this.router.navigateByUrl(`/room/${roomId}`);
       },
       error: (err: Error) => {
