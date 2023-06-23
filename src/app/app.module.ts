@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AuthComponent } from './pages/auth/auth.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
@@ -99,6 +99,7 @@ import {MatSelectModule} from "@angular/material/select";
     MatDialogModule,
     MatProgressBarModule,
     MatSelectModule,
+    ReactiveFormsModule,
   ],
     providers: [
         {

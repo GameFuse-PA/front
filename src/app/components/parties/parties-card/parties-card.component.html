@@ -4,9 +4,6 @@
     <mat-card-subtitle *ngIf="party?.createdBy?._id === user?._id"> {{ party?.createdBy?.username }} </mat-card-subtitle>
     <mat-card-subtitle> nombre de joueurs: {{ party?.members?.length }} </mat-card-subtitle>
   </mat-card-header>
-    <mat-card-content>
-        <p> {{party?.description}} </p>
-    </mat-card-content>
   <mat-card-content>
     <p>jeu: {{party?.game?.name}}</p>
     <img src="{{ party?.game?.banner?.location }}" class="w-full" [alt]="'Logo ' + party?.game?.name"/>
