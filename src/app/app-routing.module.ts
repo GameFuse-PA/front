@@ -10,7 +10,7 @@ import { MyGamesComponent } from './pages/my-games/my-games.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { MemberSearchComponent } from './pages/member-search/member-search.component';
 import { SearchGamesComponent } from './pages/search-games/search-games.component';
-import {ListPartiesComponent} from "./pages/list-parties/list-parties.component";
+import {ListGameSessionComponent} from "./pages/list-game-session/list-game-session.component";
 
 const routes: Routes = [
     {
@@ -63,7 +63,7 @@ const routes: Routes = [
     },
     {
       path: 'my-parties',
-      component: ListPartiesComponent,
+      component: ListGameSessionComponent,
     },
     {
         path: '**',

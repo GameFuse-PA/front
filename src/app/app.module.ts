@@ -43,8 +43,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { GameCardComponent } from './components/game-card/game-card.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SearchGamesComponent } from './pages/search-games/search-games.component';
-import { ListPartiesComponent } from './pages/list-parties/list-parties.component';
-import { PartiesCardComponent } from './components/parties/parties-card/parties-card.component';
+import { ListGameSessionComponent } from './pages/list-game-session/list-game-session.component';
+import { GameSessionCardComponent } from './components/game-session/game-session-card/game-session-card.component';
 
 @NgModule({
     declarations: [
@@ -77,8 +77,8 @@ import { PartiesCardComponent } from './components/parties/parties-card/parties-
         MemberSearchComponent,
         GameCardComponent,
         SearchGamesComponent,
-        ListPartiesComponent,
-        PartiesCardComponent,
+        ListGameSessionComponent,
+        GameSessionCardComponent,
     ],
     imports: [
         BrowserAnimationsModule,

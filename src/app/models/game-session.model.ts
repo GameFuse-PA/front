@@ -1,7 +1,7 @@
 import {Game} from "./game.model";
 import {User} from "./user.model";
 
-export class PartyModel {
+export class GameSessionModel {
   name?: string;
   description?: string;
   game?: Game;
