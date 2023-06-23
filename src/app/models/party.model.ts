@@ -8,4 +8,13 @@ export class PartyModel {
   winner?: string;
   createdBy?: User;
   members?: User[];
+  status?: number;
+}
+
+export class GameSessionCreateModel {
+  name?: string;
+  game?: string;
+  createdBy?: string;
+  members?: string[];
+  status?: number;
 }

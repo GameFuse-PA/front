@@ -5,11 +5,12 @@ import {UsersService} from "../../../services/users/users.service";
 import {ProfilService} from "../../../services/profil/profil.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormControl} from "@angular/forms";
-import {PartyModel} from "../../../models/party.model";
+import {GameSessionCreateModel, PartyModel} from "../../../models/party.model";
 import {RoomService} from "../../../services/chat/room.service";
 import {Router} from "@angular/router";
 import {GameSessionService} from "../../../services/game-session/game-session.service";
 import {MatDialogRef} from "@angular/material/dialog";
+import {AuthService} from "../../../services/auth/auth.service";
 
 @Component({
   selector: 'app-create-party-dialog',
@@ -19,12 +20,12 @@ import {MatDialogRef} from "@angular/material/dialog";
 export class CreateGameSessionDialogComponent implements OnInit {
 
 
-  session: PartyModel = {
+  session: GameSessionCreateModel = {
     name: undefined,
     game: undefined,
-    winner: undefined,
     createdBy: undefined,
-    members: undefined
+    members: undefined,
+    status: undefined
   };
 
   listGames: Game[] = []
@@ -36,7 +37,8 @@ export class CreateGameSessionDialogComponent implements OnInit {
   users = new FormControl('');
 
   constructor(private profilService: ProfilService, private _snackBar: MatSnackBar, private roomService: RoomService, private router: Router,
-              private gameSessionService: GameSessionService, public dialogRef: MatDialogRef<CreateGameSessionDialogComponent>) { }
+              private gameSessionService: GameSessionService, public dialogRef: MatDialogRef<CreateGameSessionDialogComponent>,
+              private authServices: AuthService) { }
   ngOnInit(): void {
 
     this.profilService.getFriends().subscribe({
@@ -80,13 +82,13 @@ export class CreateGameSessionDialogComponent implements OnInit {
 
 
   onCreateRoom(){
-
     if (!this.users.value || !this.session.name || !this.session.game) {
+      this.error = "Veuillez remplir tous les champs"
       return
     }
-
-    this.session.members = this.users.value
-    console.log(this.session)
+    this.session.members = [this.authServices.user?._id, ...this.users.value]
+    this.session.status = 0
+    this.session.createdBy = this.authServices.user?._id
 
     this.gameSessionService.createGameSession(this.session).subscribe({
       next: async (res: any) => {

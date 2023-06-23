@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {PartyModel} from "../../models/party.model";
+import {GameSessionCreateModel} from "../../models/party.model";
 
 const URL = environment.apiUrl + '/game-session';
 @Injectable({
@@ -11,7 +11,7 @@ export class GameSessionService {
 
   constructor(private http: HttpClient) { }
 
-  createGameSession(body: PartyModel) {
+  createGameSession(body: GameSessionCreateModel) {
     return this.http.post(`${URL}`, body);
   }
 
