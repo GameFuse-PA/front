@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../models/user.model";
-import {PartyModel} from "../../models/party.model";
 import {Collection} from "ngx-pagination";
 import {ProfilService} from "../../services/profil/profil.service";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateGameSessionDialogComponent} from "../../components/game-session/create-game-session-dialog/create-game-session-dialog.component";
+import {GameSessionModel} from "../../models/game-session.model";
 
 @Component({
   selector: 'app-list-parties',
@@ -14,7 +14,7 @@ import {CreateGameSessionDialogComponent} from "../../components/game-session/cr
 export class ListGameSessionComponent implements OnInit {
 
   readonly user: User = JSON.parse(localStorage.getItem('user') || '{}');
-  parties: Collection<PartyModel> = [];
+  parties: Collection<GameSessionModel> = [];
 
   page: number = 1;
 

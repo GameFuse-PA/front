@@ -1,15 +1,15 @@
 <mat-card class="card-game-session border-2 border-black">
   <mat-card-header class="header-title">
-    <mat-card-title> {{ party?.name }} </mat-card-title>
-    <mat-card-subtitle *ngIf="party?.createdBy?._id === user?._id"> {{ party?.createdBy?.username }} </mat-card-subtitle>
+    <mat-card-title> {{ gameSession?.name }} </mat-card-title>
+    <mat-card-subtitle *ngIf="gameSession?.createdBy?._id === user?._id"> {{ gameSession?.createdBy?.username }} </mat-card-subtitle>
     <mat-card-subtitle class="absolute nb-player">
-      {{ party?.members?.length }}
+      {{ gameSession?.members?.length }}
       <mat-icon>people</mat-icon>
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <p>jeu: {{party?.game?.name}}</p>
-    <img src="{{ party?.game?.banner?.location }}" class="w-full" [alt]="'Logo ' + party?.game?.name"/>
+    <p>jeu: {{gameSession?.game?.name}}</p>
+    <img src="{{ gameSession?.game?.banner?.location }}" class="w-full" [alt]="'Logo ' + gameSession?.game?.name"/>
   </mat-card-content>
     <mat-card-actions>
       <button

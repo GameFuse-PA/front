@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PartyModel} from "../../../models/party.model";
+import {GameSessionModel} from "../../../models/game-session.model";
 import {User} from "../../../models/user.model";
 
 @Component({
@@ -9,7 +9,7 @@ import {User} from "../../../models/user.model";
 })
 export class GameSessionCardComponent implements OnInit {
 
-  @Input() party: PartyModel | undefined;
+  @Input() gameSession: GameSessionModel | undefined;
   @Input() user: User | undefined;
 
   constructor() { }

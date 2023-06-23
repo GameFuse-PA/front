@@ -5,9 +5,9 @@
     style="position:absolute; top: 5vw; right: 2vw"
     class="text-white bg-[color:var(--primary)] w-64"
     (click)="createParty()">Créer une partie</button>
-  <div class="flex flex-row justify-center mt-9">
+  <div class="flex flex-row justify-center mt-9 gap-5">
     <div *ngFor="let party of parties | paginate: {itemsPerPage: maxSize, currentPage: page}" class="parties-card">
-      <app-parties-card [party]="party"></app-parties-card>
+      <app-parties-card [gameSession]="party"></app-parties-card>
     </div>
     <div *ngIf="!parties || parties.length === 0">
       <h2 style="color: var(--accent)">Vous n'avez pas encore de parties en cours ou démarrée</h2>

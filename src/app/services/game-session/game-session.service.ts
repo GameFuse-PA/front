@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {GameSessionCreateModel} from "../../models/party.model";
+import {GameSessionCreateModel} from "../../models/game-session.model";
 
 const URL = environment.apiUrl + '/game-session';
 @Injectable({

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Game} from "../../../models/game.model";
 import {User} from "../../../models/user.model";
-import {UsersService} from "../../../services/users/users.service";
 import {ProfilService} from "../../../services/profil/profil.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormControl} from "@angular/forms";
-import {GameSessionCreateModel, PartyModel} from "../../../models/party.model";
+import {GameSessionCreateModel} from "../../../models/game-session.model";
 import {RoomService} from "../../../services/chat/room.service";
 import {Router} from "@angular/router";
 import {GameSessionService} from "../../../services/game-session/game-session.service";
