@@ -32,7 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { MyGamesComponent } from './pages/my-games/my-games.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AddGameDialogComponent } from './components/add-game-dialog/add-game-dialog.component';
+import { SaveGameDialogComponent } from './components/save-game-dialog/save-game-dialog.component';
 import { FriendAddRemoveComponent } from './components/friends-view/friend-add-remove/friend-add-remove.component';
 import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
@@ -42,6 +42,7 @@ import { MemberSearchComponent } from './pages/member-search/member-search.compo
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GameCardComponent } from './components/game-card/game-card.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SearchGamesComponent } from './pages/search-games/search-games.component';
 import { ListPartiesComponent } from './pages/list-parties/list-parties.component';
 import { PartiesCardComponent } from './components/parties/parties-card/parties-card.component';
 import { CreatePartyDialogComponent } from './components/parties/create-party-dialog/create-party-dialog.component';
@@ -69,7 +70,7 @@ import {MatSelectModule} from "@angular/material/select";
         ChatHomeComponent,
         PageNotFoundComponent,
         MyGamesComponent,
-        AddGameDialogComponent,
+        SaveGameDialogComponent,
         FriendAddRemoveComponent,
         FriendsComponent,
         FriendsPageComponent,
@@ -77,6 +78,7 @@ import {MatSelectModule} from "@angular/material/select";
         UserMemberSearchComponent,
         MemberSearchComponent,
         GameCardComponent,
+        SearchGamesComponent,
         ListPartiesComponent,
         PartiesCardComponent,
         CreatePartyDialogComponent,

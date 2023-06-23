@@ -8,7 +8,8 @@ import { ChatHomeComponent } from './components/chat-home/chat-home.component';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { MyGamesComponent } from './pages/my-games/my-games.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
-import {MemberSearchComponent} from "./pages/member-search/member-search.component";
+import { MemberSearchComponent } from './pages/member-search/member-search.component';
+import { SearchGamesComponent } from './pages/search-games/search-games.component';
 import {ListPartiesComponent} from "./pages/list-parties/list-parties.component";
 
 const routes: Routes = [
@@ -41,7 +42,7 @@ const routes: Routes = [
         component: ChatHomeComponent,
     },
     {
-        path: 'call/:roomId',
+        path: 'room/:roomId',
         loadChildren: () => import('./modules/call/call.module').then((c) => c.CallModule),
     },
     {
@@ -49,12 +50,16 @@ const routes: Routes = [
         component: MyGamesComponent,
     },
     {
-      path: 'MyFriends',
-      component: FriendsPageComponent
+        path: 'MyFriends',
+        component: FriendsPageComponent,
     },
     {
-      path: 'member-search',
-      component: MemberSearchComponent
+        path: 'member-search',
+        component: MemberSearchComponent,
+    },
+    {
+        path: 'search-games',
+        component: SearchGamesComponent,
     },
     {
       path: 'my-parties',
