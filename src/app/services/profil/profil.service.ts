@@ -38,6 +38,6 @@ export class ProfilService {
     }
 
     getParties() {
-        return this.http.get(`${URL}/parties`);
+        return this.http.get(`${URL}/game-sessions`);
     }
 }
