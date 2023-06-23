@@ -17,7 +17,7 @@ export class ChatHomeComponent {
         this.roomService.create().subscribe({
             next: (room: any) => {
                 const roomId = room._id;
-                this.router.navigateByUrl(`/call/${roomId}`);
+                this.router.navigateByUrl(`/room/${roomId}`);
             },
             error: (err: Error) => {
                 console.log(err);

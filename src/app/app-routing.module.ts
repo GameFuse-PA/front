@@ -40,20 +40,20 @@ const routes: Routes = [
         component: ChatHomeComponent,
     },
     {
-        path: 'call/:roomId',
+        path: 'room/:roomId',
         loadChildren: () => import('./modules/call/call.module').then((c) => c.CallModule),
     },
     {
         path: 'my-games',
         component: MyGamesComponent,
     },
-    { 
+    {
       path: 'MyFriends',
-      component: FriendsPageComponent 
+      component: FriendsPageComponent
     },
-    { 
-      path: 'member-search', 
-      component: MemberSearchComponent 
+    {
+      path: 'member-search',
+      component: MemberSearchComponent
     },
     {
         path: '**',
