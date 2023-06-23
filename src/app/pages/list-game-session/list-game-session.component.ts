@@ -4,14 +4,14 @@ import {PartyModel} from "../../models/party.model";
 import {Collection} from "ngx-pagination";
 import {ProfilService} from "../../services/profil/profil.service";
 import {MatDialog} from "@angular/material/dialog";
-import {CreatePartyDialogComponent} from "../../components/parties/create-party-dialog/create-party-dialog.component";
+import {CreateGameSessionDialogComponent} from "../../components/game-session/create-game-session-dialog/create-game-session-dialog.component";
 
 @Component({
   selector: 'app-list-parties',
-  templateUrl: './list-parties.component.html',
-  styleUrls: ['./list-parties.component.css']
+  templateUrl: './list-game-session.component.html',
+  styleUrls: ['./list-game-session.component.css']
 })
-export class ListPartiesComponent implements OnInit {
+export class ListGameSessionComponent implements OnInit {
 
   readonly user: User = JSON.parse(localStorage.getItem('user') || '{}');
   parties: Collection<PartyModel> = [];
@@ -35,7 +35,7 @@ export class ListPartiesComponent implements OnInit {
   }
 
   createParty() {
-    this.dialog.open(CreatePartyDialogComponent, {
+    this.dialog.open(CreateGameSessionDialogComponent, {
       width: '700px',
       autoFocus: false,
       disableClose: true,

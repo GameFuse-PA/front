@@ -4,13 +4,13 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { PageNotFoundComponent } from './components/not-found/page-not-found.component';
-import { ChatHomeComponent } from './components/chat-home/chat-home.component';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { MyGamesComponent } from './pages/my-games/my-games.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { MemberSearchComponent } from './pages/member-search/member-search.component';
 import { SearchGamesComponent } from './pages/search-games/search-games.component';
-import {ListPartiesComponent} from "./pages/list-parties/list-parties.component";
+import {ListGameSessionComponent} from "./pages/list-game-session/list-game-session.component";
+import {RoomComponent} from "./components/game-session/room/room.component";
 
 const routes: Routes = [
     {
@@ -38,11 +38,8 @@ const routes: Routes = [
         component: AuthComponent,
     },
     {
-        path: 'chatHome',
-        component: ChatHomeComponent,
-    },
-    {
         path: 'room/:roomId',
+        component: RoomComponent,
         loadChildren: () => import('./modules/call/call.module').then((c) => c.CallModule),
     },
     {
@@ -63,7 +60,7 @@ const routes: Routes = [
     },
     {
       path: 'my-parties',
-      component: ListPartiesComponent,
+      component: ListGameSessionComponent,
     },
     {
         path: '**',

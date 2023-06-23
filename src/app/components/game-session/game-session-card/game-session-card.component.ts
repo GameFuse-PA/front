@@ -4,10 +4,10 @@ import {User} from "../../../models/user.model";
 
 @Component({
   selector: 'app-parties-card',
-  templateUrl: './parties-card.component.html',
-  styleUrls: ['./parties-card.component.css']
+  templateUrl: './game-session-card.component.html',
+  styleUrls: ['./game-session-card.component.css']
 })
-export class PartiesCardComponent implements OnInit {
+export class GameSessionCardComponent implements OnInit {
 
   @Input() party: PartyModel | undefined;
   @Input() user: User | undefined;

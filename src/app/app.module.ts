@@ -16,7 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestInterceptor } from './services/request.interceptor';
-import { ChatHomeComponent } from './components/chat-home/chat-home.component';
 import { PageNotFoundComponent } from './components/not-found/page-not-found.component';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { ChangeUserFormComponent } from './components/change-user-form/change-user-form.component';
@@ -43,10 +42,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { GameCardComponent } from './components/game-card/game-card.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SearchGamesComponent } from './pages/search-games/search-games.component';
-import { ListPartiesComponent } from './pages/list-parties/list-parties.component';
-import { PartiesCardComponent } from './components/parties/parties-card/parties-card.component';
-import { CreatePartyDialogComponent } from './components/parties/create-party-dialog/create-party-dialog.component';
+import { ListGameSessionComponent } from './pages/list-game-session/list-game-session.component';
+import { GameSessionCardComponent } from './components/game-session/game-session-card/game-session-card.component';
+import { CreateGameSessionDialogComponent } from './components/game-session/create-game-session-dialog/create-game-session-dialog.component';
 import {MatSelectModule} from "@angular/material/select";
+import { RoomComponent } from './components/game-session/room/room.component';
+import {ChatModule} from "./modules/chat/chat.module";
+import {CallModule} from "./modules/call/call.module";
 
 @NgModule({
     declarations: [
@@ -67,7 +69,6 @@ import {MatSelectModule} from "@angular/material/select";
         PasswordFieldComponent,
         HeaderComponent,
         ChangePasswordUserFormComponent,
-        ChatHomeComponent,
         PageNotFoundComponent,
         MyGamesComponent,
         SaveGameDialogComponent,
@@ -79,9 +80,10 @@ import {MatSelectModule} from "@angular/material/select";
         MemberSearchComponent,
         GameCardComponent,
         SearchGamesComponent,
-        ListPartiesComponent,
-        PartiesCardComponent,
-        CreatePartyDialogComponent,
+        ListGameSessionComponent,
+        GameSessionCardComponent,
+        CreateGameSessionDialogComponent,
+        RoomComponent,
     ],
   imports: [
     BrowserAnimationsModule,
@@ -102,6 +104,8 @@ import {MatSelectModule} from "@angular/material/select";
     MatProgressBarModule,
     MatSelectModule,
     ReactiveFormsModule,
+    ChatModule,
+    CallModule,
   ],
     providers: [
         {
