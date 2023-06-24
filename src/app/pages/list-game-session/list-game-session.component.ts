@@ -5,14 +5,14 @@ import {Collection} from "ngx-pagination";
 import {ProfilService} from "../../services/profil/profil.service";
 
 @Component({
-  selector: 'app-list-parties',
+  selector: 'app-list-game-session',
   templateUrl: './list-game-session.component.html',
   styleUrls: ['./list-game-session.component.css']
 })
 export class ListGameSessionComponent implements OnInit {
 
   readonly user: User = JSON.parse(localStorage.getItem('user') || '{}');
-  parties: Collection<GameSessionModel> = [];
+  gameSessions: Collection<GameSessionModel> = [];
 
   page: number = 1;
 
@@ -22,9 +22,9 @@ export class ListGameSessionComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.profilService.getParties().subscribe({
-      next: (parties: any) => {
-        this.parties = parties;
+    this.profilService.getGameSessions().subscribe({
+      next: (gameSessions: any) => {
+        this.gameSessions = gameSessions;
       },
       error: (err: any) => {
 
