@@ -14,6 +14,7 @@ export class GameService {
         const formData: FormData = new FormData();
         if (game.banner) formData.append('banner', game.banner);
         if (game.program) formData.append('program', game.program);
+        if (game.entry) formData.append('entry', game.entry);
         if (game.name) formData.append('name', game.name);
         if (game.description) formData.append('description', game.description);
         return this.http.post(URL, formData);
@@ -23,6 +24,7 @@ export class GameService {
         const formData: FormData = new FormData();
         if (game.banner && !game.banner.location) formData.append('banner', game.banner);
         if (game.program && !game.program.location) formData.append('program', game.program);
+        if (game.entry && !game.entry.location) formData.append('entry', game.entry);
         if (game.name) formData.append('name', game.name);
         if (game.description) formData.append('description', game.description);
         return this.http.put(URL + game._id, formData);
