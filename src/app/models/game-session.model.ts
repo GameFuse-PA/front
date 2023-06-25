@@ -8,4 +8,5 @@ export class GameSessionModel {
   winner?: string;
   createdBy?: User;
   members?: User[];
+  status?: number;
 }
