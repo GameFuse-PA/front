@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 import {GameSessionService} from "../../../services/game-session/game-session.service";
 import {MatDialogRef} from "@angular/material/dialog";
 import {AuthService} from "../../../services/auth/auth.service";
+import {GameSessionStatus} from "../../../utils/enum";
 
 @Component({
   selector: 'app-create-party-dialog',
@@ -17,7 +18,6 @@ import {AuthService} from "../../../services/auth/auth.service";
   styleUrls: ['./create-game-session-dialog.component.css']
 })
 export class CreateGameSessionDialogComponent implements OnInit {
-
 
   session: GameSessionCreateModel = {
     name: undefined,
@@ -86,7 +86,7 @@ export class CreateGameSessionDialogComponent implements OnInit {
       return
     }
     this.session.members = [this.authServices.user?._id, ...this.users.value]
-    this.session.status = 0
+    this.session.status = GameSessionStatus.In_Progress
     this.session.createdBy = this.authServices.user?._id
 
     this.gameSessionService.createGameSession(this.session).subscribe({
@@ -94,7 +94,9 @@ export class CreateGameSessionDialogComponent implements OnInit {
         await this.createRoom(res._id)
       },
       error: (err: any) => {
-        this.error = err.message
+        this._snackBar.open(err.message, 'Fermer', {
+          panelClass: ['error-snackbar'],
+        })
       }
     })
 

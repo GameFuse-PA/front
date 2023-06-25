@@ -3,7 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {GameSessionCreateModel} from "../../models/game-session.model";
 
-const URL = environment.apiUrl + '/game-session';
+const URL = environment.apiUrl + '/game-sessions';
 @Injectable({
   providedIn: 'root'
 })
