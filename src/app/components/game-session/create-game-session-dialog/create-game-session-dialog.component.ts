@@ -30,6 +30,9 @@ export class CreateGameSessionDialogComponent implements OnInit {
   listGames: Game[] = []
   listUsers: User[] = []
 
+  minPlayers: number = 0;
+  maxPlayers: number = 0;
+
   loading: boolean = false;
   error: string|undefined
 
@@ -70,7 +73,7 @@ export class CreateGameSessionDialogComponent implements OnInit {
         }
         this.listGames = games;
       },
-      error: (err: any) => {
+      error: (_: any) => {
         this._snackBar.open("Il n'y a aucun jeu de disponible, veuillez créer un jeu avant", 'Fermer', {
           duration: 5000,
           panelClass: ['error-snackbar'],
@@ -79,6 +82,10 @@ export class CreateGameSessionDialogComponent implements OnInit {
     })
   }
 
+  onGameSelected(game: Game) {
+    this.minPlayers = game.minPlayers!
+    this.maxPlayers = game.maxPlayers!
+  }
 
   onCreateRoom(){
     if (!this.users.value || !this.session.name || !this.session.game) {
@@ -90,8 +97,8 @@ export class CreateGameSessionDialogComponent implements OnInit {
     this.session.createdBy = this.authServices.user?._id
 
     this.gameSessionService.createGameSession(this.session).subscribe({
-      next: async (res: any) => {
-        await this.createRoom(res._id)
+      next: async (_: any) => {
+        await this.createRoom()
       },
       error: (err: any) => {
         this._snackBar.open(err.message, 'Fermer', {
@@ -99,10 +106,9 @@ export class CreateGameSessionDialogComponent implements OnInit {
         })
       }
     })
-
   }
 
-  private async createRoom(id: string) {
+  private async createRoom() {
     this.roomService.create().subscribe({
       next: (room: any) => {
         const roomId = room._id;
