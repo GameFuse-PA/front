@@ -29,12 +29,11 @@ export class ProfilPageComponent implements OnInit {
     ngOnInit(): void {
         this.profilService.getMe().subscribe({
             next: (user: any) => {
-              const token = this.authServices.user?.access_token;
+              user.access_token = this.authServices.user?.access_token;
                 this.authServices.user = user;
                 if (this.authServices.user?.avatar) {
                     this.profilPic = user.avatar.location;
                 }
-                this.authServices.user!.access_token = token;
             },
         });
     }
