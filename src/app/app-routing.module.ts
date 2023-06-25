@@ -59,7 +59,7 @@ const routes: Routes = [
         component: SearchGamesComponent,
     },
     {
-      path: 'my-parties',
+      path: 'my-game-sessions',
       component: ListGameSessionComponent,
     },
     {
