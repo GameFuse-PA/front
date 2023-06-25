@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GameSessionModel} from "../../../models/game-session.model";
 import {User} from "../../../models/user.model";
-import {GameSessionEnum} from "../../../utils/enum";
+import {GameSessionStatus} from "../../../utils/enum";
 
 @Component({
   selector: 'app-game-session-card',
@@ -24,13 +24,13 @@ export class GameSessionCardComponent implements OnInit {
   ngOnInit(): void {
 
     switch (this.gameSession?.status) {
-      case GameSessionEnum.In_Progress:
+      case GameSessionStatus.In_Progress:
         this.gameSessionStatusClass = 'game-session-in-progress';
         this.gameSessionStatusText = 'Partie en cours';
         this.gameSessionButtonClass = 'button-game mt-10 bg-[color:var(--success)] text-white';
         this.gameSessionButtonText = 'Rejoindre la partie';
         break;
-      case GameSessionEnum.Terminated:
+      case GameSessionStatus.Terminated:
         this.gameSessionStatusClass = 'game-session-terminated';
         this.gameSessionStatusText = 'Partie terminé';
         this.gameSessionButtonClass = 'button-game mt-10 bg-[color:var(--primary)] text-white';
@@ -45,5 +45,5 @@ export class GameSessionCardComponent implements OnInit {
 
   }
 
-  protected readonly gameSessionEnum = GameSessionEnum;
+  protected readonly gameSessionEnum = GameSessionStatus;
 }
