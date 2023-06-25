@@ -1,26 +1,55 @@
 .card-game-session{
-  width: 15vw;
+  width: 17vw;
 }
 
 .game-session-in-progress {
   background-color: var(--success);
   border-radius: 10px;
   max-width: 5vw;
-  max-height: 5vh;
+  max-height: 2vh;
+  font-size: 9pt;
+  text-align: center;
   color: white;
 }
 
+.game-session-terminated {
+  background-color: var(--error);
+  border-radius: 10px;
+  max-width: 5vw;
+  max-height: 2vh;
+  font-size: 9pt;
+  text-align: center;
+  color: white;
+}
+
+.error-game-status {
+  background-color: var(--accent);
+  border-radius: 10px;
+  max-width: 5vw;
+  max-height: 2vh;
+  font-size: 9pt;
+  text-align: center;
+  color: white;
+}
 
 .nb-player {
   right: 5%;
-  top: 10%;
+  top: 4%;
   display: flex;
   align-items: center;
   gap: 5px;
   color: black;
 }
 
+.header-title {
+  margin: 0;
+}
+
+.game-name {
+  margin: 0 16px 15px;
+}
+
 .button-game {
   bottom: 5%;
-  width: 14vw;
+  width: 100%;
 }
