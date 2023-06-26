@@ -14,4 +14,9 @@ export class UsersService {
     searchUsers(search: string) {
         return this.http.get(`${URL}?search=${search}`);
     }
+
+    sendInvitations(id: string){
+        return this.http.post(`${URL}/invitations`, {receiver: id});
+    }
+
 }

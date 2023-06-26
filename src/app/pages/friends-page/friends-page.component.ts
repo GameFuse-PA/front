@@ -30,10 +30,10 @@ export class FriendsPageComponent implements OnInit {
     ngOnInit(): void {
         this.profilServices.getFriends().subscribe({
             next: (users: any) => {
-                if (users && users.idFriends) {
-                    this.users = users.idFriends;
+                if (users && users.friends) {
+                    this.users = users.friends;
                     const user = JSON.parse(localStorage.getItem('user') as string);
-                    user.friends = users.idFriends;
+                    user.friends = users.friends;
                     this.authServices.user = user;
                     localStorage.setItem('user', JSON.stringify(user));
                 }
