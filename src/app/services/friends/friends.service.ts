@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { FriendsModel } from '../../models/friends.model';
+import { FriendRequestModel } from '../../models/friend-request.model';
 
 const URL = environment.apiUrl + '/friends';
 
@@ -9,7 +9,7 @@ const URL = environment.apiUrl + '/friends';
     providedIn: 'root',
 })
 export class FriendsService {
-    friends: FriendsModel | null = null;
+    friends: FriendRequestModel | null = null;
 
     constructor(private http: HttpClient) {}
 
