@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ProfilService} from "../../services/profil/profil.service";
 import {InvitationsModel} from "../../models/invitations.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -14,7 +14,7 @@ export class InvitationsComponent implements OnInit {
 
   invitation: InvitationsModel|undefined;
 
-  constructor(private profilService: ProfilService, private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
+  constructor(private profilService: ProfilService, private route: ActivatedRoute, private _snackBar: MatSnackBar, private router: Router) { }
   ngOnInit(): void {
 
     const id = this.route.snapshot.queryParamMap.get('token');
@@ -23,11 +23,12 @@ export class InvitationsComponent implements OnInit {
       next: (res: any) => {
         this.invitation = res;
       },
-      error: (err: any) => {
-        this._snackBar.open(err.message, "Fermer", {
+      error: (_: any) => {
+        this._snackBar.open("Oups une erreur s'est produite", "Fermer", {
           duration: 2000,
           panelClass: ['error-snackbar'],
         })
+        this.router.navigate(['/']);
       }
     })
   }
