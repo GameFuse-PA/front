@@ -41,9 +41,20 @@ export class InvitationCardComponent implements OnInit {
   }
 
   refuseInvitation() {
-    this._snackBar.open("Invitation refusée", "Fermer", {
-      duration: 7000,
-      panelClass: ['success-snackbar'],
+    this.friendService.refuseFriend(this.sender!._id!).subscribe({
+      next: (res: any) => {
+        this._snackBar.open(res.message, "Fermer", {
+          duration: 7000,
+          panelClass: ['error-snackbar'],
+        })
+        this.router.navigate(['/profil']);
+      },
+      error: (err: any) => {
+        console.log(this.sender!._id!);
+        this._snackBar.open(err.message, "Fermer", {
+          panelClass: ['error-snackbar'],
+        })
+      }
     })
   }
 

@@ -14,8 +14,14 @@ export class FriendsService {
     constructor(private http: HttpClient) {}
 
     addFriend(friend: string) {
-        return this.http.post(`${URL}`, {
+        return this.http.post(`${URL}/accept`, {
             idFriends: friend,
+        });
+    }
+
+    refuseFriend(id: string) {
+        return this.http.post(`${URL}/refuse`, {
+            idFriends: id,
         });
     }
 
