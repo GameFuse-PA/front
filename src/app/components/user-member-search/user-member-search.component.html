@@ -1,16 +1,16 @@
-<ng-container *ngIf="users && users.length > 0; else noResults">
-    <div *ngFor="let user of users; let index = index" class="users">
+<ng-container *ngIf="searchUsers && searchUsers.length > 0; else noResults">
+    <div *ngFor="let user of searchUsers; let index = index" class="users">
         <div class="info-user">
             <img
-                *ngIf="user.avatar?.location"
-                [src]="user.avatar?.location"
-                alt="photo de profil de {{ user.username }}"
+                *ngIf="user.user?.avatar?.location"
+                [src]="user.user?.avatar?.location"
+                alt="photo de profil de {{ user.user?.username }}"
             />
-            <p>{{ user.username }}</p>
+            <p>{{ user.user?.username }}</p>
         </div>
         <app-friend-add-remove
-            [isFriend]="isFriends[index]"
-            [idFriend]="user._id!"
+            [isFriend]="user.isFriend!"
+            [idFriend]="user.user?._id!"
             style="position: absolute; right: 2%"
         ></app-friend-add-remove>
     </div>
