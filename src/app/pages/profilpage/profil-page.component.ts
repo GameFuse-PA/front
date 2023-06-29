@@ -37,6 +37,4 @@ export class ProfilPageComponent implements OnInit {
             },
         });
     }
-
-    protected readonly undefined = undefined;
 }
