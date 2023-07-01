@@ -5,12 +5,12 @@
         (newValueUser)="search($event)"
         [placeholder]="'Cherchez votre ami'"
     ></app-search-bar>
-    <ng-container *ngIf="users && users.length > 0; else noFriends">
+    <ng-container *ngIf="friends && friends.length > 0; else noFriends">
         <div class="friends-container">
             <div
-                *ngFor="let user of users | paginate : { itemsPerPage: maxSize, currentPage: page }"
+                *ngFor="let friend of friends | paginate : { itemsPerPage: maxSize, currentPage: page }"
             >
-                <app-friends [user]="user"></app-friends>
+                <app-friends [user]="friend"></app-friends>
             </div>
         </div>
     </ng-container>

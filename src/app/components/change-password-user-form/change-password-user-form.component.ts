@@ -20,6 +20,8 @@ export class ChangePasswordUserFormComponent implements OnInit {
     ngOnInit(): void {}
 
     onSubmit(): void {
+        this.error = null;
+
         if (!this.changePassword.password || !this.changePassword.checkPassword) {
             this.error = 'Les champs ne peuvent pas être vides !';
             return;
@@ -34,8 +36,8 @@ export class ChangePasswordUserFormComponent implements OnInit {
             next: (res: any) => {
                 this.ok = res.message;
                 setTimeout(() => {
-                    this.authService.logout();
-                }, 6000);
+                    this.ok = null;
+                }, 3000);
             },
             error: (err: Error) => {
                 this.error = err.message;
