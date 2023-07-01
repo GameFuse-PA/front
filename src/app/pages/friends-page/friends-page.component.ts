@@ -19,7 +19,7 @@ export class FriendsPageComponent implements OnInit {
         private router: Router,
     ) {}
 
-    users: Collection<User | undefined> = [];
+    friends: Collection<User | undefined> = [];
     page: number = 1;
 
     @Input() pagination: boolean = true;
@@ -29,13 +29,9 @@ export class FriendsPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.profilServices.getFriends().subscribe({
-            next: (users: any) => {
-                if (users && users.idFriends) {
-                    this.users = users.idFriends;
-                    const user = JSON.parse(localStorage.getItem('user') as string);
-                    user.friends = users.idFriends;
-                    this.authServices.user = user;
-                    localStorage.setItem('user', JSON.stringify(user));
+            next: (res: any) => {
+                if (res && res.friends) {
+                    this.friends = res.friends;
                 }
             },
             error: (err: any) => {

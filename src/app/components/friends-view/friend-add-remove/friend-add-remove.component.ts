@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FriendsService } from '../../../services/friends/friends.service';
+import {UsersService} from "../../../services/users/users.service";
 
 @Component({
     selector: 'app-friend-add-remove',
@@ -7,7 +8,7 @@ import { FriendsService } from '../../../services/friends/friends.service';
     styleUrls: ['./friend-add-remove.component.css'],
 })
 export class FriendAddRemoveComponent implements OnInit {
-    constructor(private friendsServices: FriendsService) {}
+    constructor(private friendsServices: FriendsService, private userService: UsersService) {}
 
     error: string = '';
     ok: string = '';
@@ -43,10 +44,9 @@ export class FriendAddRemoveComponent implements OnInit {
                 },
             });
         } else {
-            this.friendsServices.addFriend(this.idFriend).subscribe({
+            this.userService.sendInvitations(this.idFriend).subscribe({
                 next: (res) => {
-                    this.ok = 'Ami ajouté';
-                    this.isFriend = true;
+                    this.ok = 'Invitation envoyé';
                     setTimeout(() => {
                         this.ok = '';
                         window.location.reload();
