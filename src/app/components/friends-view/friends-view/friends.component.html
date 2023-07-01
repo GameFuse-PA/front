@@ -1,23 +1,12 @@
 <mat-card class="friends-page">
   <mat-card-title class="text-center">Mes amis</mat-card-title>
-<!--  <ng-container *ngIf="friends && friends.length > 0; else noFriends">
-    <div class="friends-container">
-      <div
-        *ngFor="let friend of friends"
-      >
-        <app-friends [user]="friend"></app-friends>
-      </div>
-    </div>
-  </ng-container>-->
   <mat-card-content>
   </mat-card-content>
   <div class="bg-black w-2/3 h-1 rounded-xl m-auto"></div>
   <mat-card-content class="mt-9">
     <ng-container *ngIf="friends && friends.length > 0; else noFriends">
       <div class="friends-container">
-        <div
-          *ngFor="let friend of friends"
-        >
+        <div *ngFor="let friend of friends">
           <app-user-member-search [user]="friend"></app-user-member-search>
         </div>
       </div>
