@@ -12,6 +12,7 @@ import {SearchModel} from "../../models/search.model";
 })
 export class MemberSearchComponent implements OnInit {
     search: string = '';
+    searchResult: boolean = false;
     users: SearchModel[] = [];
     constructor(
         private usersServices: UsersService,
@@ -22,31 +23,23 @@ export class MemberSearchComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.routes.queryParams.subscribe((params) => {
-            this.search = params['search'];
-            this.searchUser(this.search);
-        });
     }
 
     searchUser(newValue: string) {
-        this.search = newValue;
         this.usersServices.searchUsers(newValue).subscribe({
-            next: (users: any) => {
-                this.users = users;
-                /*this.router.navigate([], {
-                    relativeTo: this.routes,
-                    queryParams: { search: newValue },
-                });*/
-            },
-            error: (_: any) => {
-                this._snackBar.open(
-                    'Une valeur de recherche est nécessaire avant de confirmer',
-                    'Fermer',
-                    {
-                        duration: 5000,
-                        panelClass: ['error-snackbar'],
-                    },
-                );
+          next: (users: any) => {
+            this.users = users;
+            this.searchResult = true;
+          },
+          error: (_: any) => {
+            this._snackBar.open(
+              "Une erreur s'est produite lors de la recherche",
+              'Fermer',
+              {
+                duration: 5000,
+                panelClass: ['error-snackbar'],
+              },
+            );
             },
         });
     }
