@@ -16,7 +16,7 @@ export class UsersService {
     }
 
     sendInvitations(id: string){
-        return this.http.post(`${URL}/invitations`, {receiver: id});
+        return this.http.post(`${URL}/${id}/invite`, undefined);
     }
 
 }
