@@ -20,4 +20,10 @@ export class InvitationsService {
     });
   }
 
+  refuseInviteFriend(friend: string) {
+    return this.http.post(`${URL}/refuse`, {
+      idFriend: friend,
+    });
+  }
+
 }

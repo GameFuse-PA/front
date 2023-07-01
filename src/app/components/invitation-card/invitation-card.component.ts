@@ -42,7 +42,7 @@ export class InvitationCardComponent implements OnInit {
   }
 
   refuseInvitation() {
-    this.friendService.refuseFriend(this.sender!._id!).subscribe({
+    this.invitationsService.refuseInviteFriend(this.sender!._id!).subscribe({
       next: (res: any) => {
         this._snackBar.open(res.message, "Fermer", {
           duration: 7000,
