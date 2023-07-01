@@ -33,10 +33,10 @@ export class MemberSearchComponent implements OnInit {
         this.usersServices.searchUsers(newValue).subscribe({
             next: (users: any) => {
                 this.users = users;
-                this.router.navigate([], {
+                /*this.router.navigate([], {
                     relativeTo: this.routes,
                     queryParams: { search: newValue },
-                });
+                });*/
             },
             error: (_: any) => {
                 this._snackBar.open(

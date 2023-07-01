@@ -1,13 +1,12 @@
 <div class="relative">
-    <app-search-bar [placeholder]="search" (newValueUser)="searchUser($event)"></app-search-bar>
-    <h1 style="text-align: center; font-weight: bold; margin-bottom: 5%; margin-top: 10px">
-        Rechercher membre de la communauté
-    </h1>
-    <app-user-member-search
-        *ngIf="search"
-        [searchUsers]="users"
-    ></app-user-member-search>
-    <div *ngIf="!search">
-        <h2>Aucune recherche effectué</h2>
-    </div>
+  <div class="flex flex-row items-center justify-center gap-3">
+    <app-search-bar [placeholder]="'Rechercher par pseudo, mail, nom'" (newValueUser)="search = $event" class="w-2/3"></app-search-bar>
+    <button mat-flat-button class="text-white bg-[color:var(--success)] flex-initial w-1/3 h-2/3" (click)="searchUser(search)">Rechercher</button>
+  </div>
+
+  <div class="mt-2 flex flex-col gap-3.5">
+    <app-user-member-search *ngFor="let resultUser of users" [user]="resultUser.user" [isFriend]="resultUser.isFriend"></app-user-member-search>
+  </div>
+
+
 </div>

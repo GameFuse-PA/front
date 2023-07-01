@@ -8,11 +8,14 @@ import {SearchModel} from "../../models/search.model";
     styleUrls: ['./user-member-search.component.css'],
 })
 export class UserMemberSearchComponent implements OnInit {
-    @Input() searchUsers: SearchModel[] = [];
-    users: User[] = [];
+    @Input() user: User |undefined;
+    @Input() isFriend: boolean | undefined = true;
+    @Input() isInvite: boolean | undefined = false;
+    @Input() fromSearch: boolean = false;
   constructor() {}
 
     ngOnInit(): void {
-        this.users = this.searchUsers.map((user) => user.user!);
     }
+
+  protected readonly undefined = undefined;
 }
