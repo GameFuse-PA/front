@@ -26,7 +26,7 @@ export class InvitationCardComponent implements OnInit {
 
     this.friendService.addFriend(this.sender!._id!).subscribe({
       next: (res: any) => {
-        this._snackBar.open(res.message, "Fermer", {
+        this._snackBar.open("Ami ajouté", "Fermer", {
           duration: 7000,
           panelClass: ['success-snackbar'],
         })
