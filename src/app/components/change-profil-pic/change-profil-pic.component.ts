@@ -20,7 +20,6 @@ export class ChangeProfilPicComponent implements OnInit {
     error: string | undefined = undefined;
 
     isLoading: boolean = false;
-    userName: string = '';
 
     imgCompil = this.image;
     constructor(
@@ -32,12 +31,7 @@ export class ChangeProfilPicComponent implements OnInit {
 
     @Input() profilPicOnServer: string | undefined = undefined;
 
-    ngOnInit(): void {
-        if (!localStorage.getItem('user')) {
-            return;
-        }
-        this.userName = JSON.parse(localStorage.getItem('user') as string).username;
-    }
+    ngOnInit(): void {}
 
     getValue(event: Event): File {
         const file = (event.target as HTMLInputElement).files as FileList;
@@ -48,22 +42,25 @@ export class ChangeProfilPicComponent implements OnInit {
     }
 
     submitFile(): void {
-        this.isLoading = true;
+        this.error = undefined;
         if (!this.imgCompil.FileUpload) {
             this.error = 'Veuillez sélectionner une image';
             return;
         }
+        this.isLoading = true;
         this.profilService.uploadImage(this.imgCompil.FileUpload).subscribe({
             next: (value: any) => {
                 this.isLoading = false;
-                this.ok = 'Image enregistrée, la page va se recharger';
+                this.ok = 'Image enregistrée';
+
                 const user: User = JSON.parse(localStorage.getItem('user') as string);
                 user.avatar = { location: value.pic };
                 localStorage.setItem('user', JSON.stringify(user));
                 this.authService.user = user;
+
                 setTimeout(() => {
-                    window.location.reload();
-                }, 5000);
+                    this.ok = undefined;
+                }, 3000);
             },
             error: (err) => {
                 this.isLoading = false;
@@ -71,6 +68,4 @@ export class ChangeProfilPicComponent implements OnInit {
             },
         });
     }
-
-    protected readonly String = String;
 }

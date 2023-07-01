@@ -45,6 +45,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SearchGamesComponent } from './pages/search-games/search-games.component';
 import { ListGameSessionComponent } from './pages/list-game-session/list-game-session.component';
 import { GameSessionCardComponent } from './components/game-session/game-session-card/game-session-card.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { InvitationCardComponent } from './components/invitation-card/invitation-card.component';
 
@@ -101,6 +103,8 @@ import { InvitationCardComponent } from './components/invitation-card/invitation
         NgxPaginationModule,
         MatDialogModule,
         MatProgressBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ],
     providers: [
         {
