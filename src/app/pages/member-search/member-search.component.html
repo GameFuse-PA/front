@@ -5,7 +5,7 @@
   </div>
 
   <div class="mt-2 flex flex-col gap-3.5">
-    <app-user-member-search *ngFor="let resultUser of users" [user]="resultUser.user" [isFriend]="resultUser.isFriend"></app-user-member-search>
+    <app-user-member-search *ngFor="let resultUser of users" [user]="resultUser.user" [isFriend]="resultUser.isFriend" [fromSearch]="true"></app-user-member-search>
   </div>
 
 

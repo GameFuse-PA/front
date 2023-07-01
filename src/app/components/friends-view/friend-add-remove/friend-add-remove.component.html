@@ -1,14 +1,4 @@
-<button
-    mat-flat-button
-    [class]="
-        !isFriend
-            ? 'w-64 bg-[color:var(--primary)] text-white'
-            : 'w-64 bg-[color:var(--error)] text-white'
-    "
-    (click)="addRemoveFriend()"
->
-    {{ !isFriend ? 'Ajouter ami' : 'Retirer ami' }}
-</button>
+<img class="cursor-pointer" (click)="addRemoveFriend()" [src]="isFriend ? 'assets/friends/remove_friend.png' : 'assets/friends/add_friend.png'" alt="image_add_friend_friend"/>
 <div *ngIf="ok" class="text-center rounded-lg bg-[color:var(--success)] text-white mt-2">
     {{ ok }}
 </div>

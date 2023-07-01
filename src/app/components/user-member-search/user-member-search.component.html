@@ -6,14 +6,20 @@
   <p class="m-0 text-lg">{{user?.username}}</p>
   <div class="ml-auto">
     <div *ngIf="isFriend && !fromSearch && !isInvite">
-      <img src="https://img.icons8.com/ios/50/000000/friends.png"/>
+      <app-friend-add-remove [isFriend]="isFriend" [idFriend]="user?._id!"></app-friend-add-remove>
     </div>
-    <div *ngIf="isInvite">
+    <div class="flex flex-row" *ngIf="isInvite">
       <div>
-
+        <img src="assets/friends/accept.png" alt="image_accept_friend"/>
+      </div>
+      <div>
+        <img src="assets/friends/cross.png" alt="image_refuse_friend"/>
       </div>
     </div>
-    <div *ngIf="fromSearch && !isFriend"></div>
+    <div *ngIf="fromSearch">
+      <img *ngIf="isFriend === true" src="assets/friends/already_friend.png" alt="image_already_friend"/>
+      <app-friend-add-remove *ngIf="isFriend === false" [isFriend]="isFriend" [idFriend]="user?._id!"></app-friend-add-remove>
+    </div>
   </div>
 
 </div>
