@@ -40,4 +40,12 @@ export class ProfilService {
     getGameSessions() {
         return this.http.get(`${URL}/game-sessions`);
     }
+
+    getInvitations() {
+      return this.http.get(`${URL}/invitations`);
+    }
+
+    getInvitation(id: string) {
+        return this.http.get(`${URL}/invitations/${id}`);
+    }
 }

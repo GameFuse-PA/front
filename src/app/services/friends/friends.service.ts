@@ -12,14 +12,7 @@ export class FriendsService {
     friends: FriendRequestModel | null = null;
 
     constructor(private http: HttpClient) {}
-
-    addFriend(friend: string) {
-        return this.http.post(`${URL}`, {
-            idFriends: friend,
-        });
-    }
-
     removeFriend(friend: string) {
-        return this.http.delete(`${URL}/${friend}`);
+      return this.http.delete(`${URL}/${friend}`);
     }
 }
