@@ -9,12 +9,6 @@
       <app-friend-add-remove [isFriend]="isFriend" [idFriend]="user?._id!"></app-friend-add-remove>
     </div>
     <div class="flex flex-row" *ngIf="isInvite">
-      <div>
-        <img src="assets/friends/accept.png" alt="image_accept_friend"/>
-      </div>
-      <div>
-        <img src="assets/friends/cross.png" alt="image_refuse_friend"/>
-      </div>
     </div>
     <div *ngIf="fromSearch">
       <mat-icon *ngIf="isFriend === true" [ngStyle]="{'color': '#CECECE'}" class="text-4xl mr-4">person_add_alt_1</mat-icon>
