@@ -17,7 +17,7 @@
       </div>
     </div>
     <div *ngIf="fromSearch">
-      <img *ngIf="isFriend === true" src="assets/friends/already_friend.png" alt="image_already_friend"/>
+      <mat-icon *ngIf="isFriend === true" [ngStyle]="{'color': '#CECECE'}" class="text-4xl mr-4">person_add_alt_1</mat-icon>
       <app-friend-add-remove *ngIf="isFriend === false" [isFriend]="isFriend" [idFriend]="user?._id!"></app-friend-add-remove>
     </div>
   </div>
