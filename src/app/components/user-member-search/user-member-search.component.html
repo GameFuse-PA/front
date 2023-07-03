@@ -9,11 +9,12 @@
       <app-friend-add-remove [isFriend]="isFriend" [idFriend]="user?._id!"></app-friend-add-remove>
     </div>
     <div class="flex flex-row" *ngIf="isInvite">
+      <mat-icon (click)="acceptInvitation(user?._id!)" *ngIf="isFriend === true" [ngStyle]="{'color': 'var(--success)'}" class="text-4xl mr-4 cursor-pointer">check</mat-icon>
+      <mat-icon (click)="refuseInvitation(user?._id!)" *ngIf="isFriend === true" [ngStyle]="{'color': 'var(--error)'}" class="text-4xl mr-4 cursor-pointer">close</mat-icon>
     </div>
     <div *ngIf="fromSearch">
       <mat-icon *ngIf="isFriend === true" [ngStyle]="{'color': '#CECECE'}" class="text-4xl mr-4">person_add_alt_1</mat-icon>
       <app-friend-add-remove *ngIf="isFriend === false" [isFriend]="isFriend" [idFriend]="user?._id!"></app-friend-add-remove>
     </div>
   </div>
-
 </div>
