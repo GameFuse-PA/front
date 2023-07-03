@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProfilService } from '../../services/profil/profil.service';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
-import { Collection } from 'ngx-pagination';
 import { AuthService } from '../../services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -28,19 +27,23 @@ export class FriendsPageComponent implements OnInit {
     userSearch: string = '';
 
     ngOnInit(): void {
-        this.profilServices.getFriends().subscribe({
-            next: (res: any) => {
-                if (res && res.friends) {
-                    this.friends = res.friends;
-                }
-            },
-            error: (err: any) => {
-                this._snackBar.open(err.message, 'Fermer', {
-                    duration: 5000,
-                    panelClass: ['error-snackbar'],
-                });
-            },
-        });
+        this.getFriends();
+    }
+
+    getFriends() {
+      this.profilServices.getFriends().subscribe({
+        next: (res: any) => {
+          if (res && res.friends) {
+            this.friends = res.friends;
+          }
+        },
+        error: (err: any) => {
+          this._snackBar.open(err.message, 'Fermer', {
+            duration: 5000,
+            panelClass: ['error-snackbar'],
+          });
+        },
+      });
     }
 
     search(newValue: string) {

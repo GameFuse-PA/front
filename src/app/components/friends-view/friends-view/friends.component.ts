@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { User } from '../../../models/user.model';
-import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-friends',
@@ -8,14 +7,15 @@ import {Router} from "@angular/router";
     styleUrls: ['./friends.component.css'],
 })
 export class FriendsComponent implements OnInit {
-    constructor(private router: Router) {}
+    constructor() {}
 
     @Input() friends: User[] = [];
+    @Output() reload: EventEmitter<void> = new EventEmitter();
 
     ngOnInit(): void {}
 
     reloadFriends() {
-      this.ngOnInit()
+      this.reload.emit();
     }
 
     @Input() user: User | undefined = undefined;

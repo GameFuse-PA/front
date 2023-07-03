@@ -7,9 +7,13 @@
   overflow: auto;
 }
 
-friends-container {
+.friends-container {
   max-height: 55vh;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 12px;
 }
 
 .card-friend {

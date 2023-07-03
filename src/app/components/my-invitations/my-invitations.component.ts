@@ -11,7 +11,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class MyInvitationsComponent implements OnInit {
   @Input() maxSize: number = 1
-  @Input() callbackFunction: () => void = () => {};
+  @Output() reload: EventEmitter<void> = new EventEmitter();
 
   invitations: InvitationsModel[] = [];
   page: number = 1;
@@ -20,6 +20,12 @@ export class MyInvitationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getInvitations()
+  }
+
+
+  onInvitationAccepted() {
+    this.getInvitations();
+    this.reload.emit();
   }
 
   getInvitations() {

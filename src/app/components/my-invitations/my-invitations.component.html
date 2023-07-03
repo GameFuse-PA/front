@@ -1,4 +1,4 @@
 <div class="mt-5" *ngIf="invitations && invitations.length > 0">
-  <app-user-member-search (reload)="callbackFunction()" *ngFor="let invitation of invitations" [isInvite]="true" [user]="invitation.sender"></app-user-member-search>
+  <app-user-member-search (reload)="onInvitationAccepted()" *ngFor="let invitation of invitations" [isInvite]="true" [user]="invitation.sender"></app-user-member-search>
   <div class="bg-black w-2/3 h-1 rounded-xl m-auto mt-5"></div>
 </div>
