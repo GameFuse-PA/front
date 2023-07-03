@@ -44,6 +44,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SearchGamesComponent } from './pages/search-games/search-games.component';
 import { ListGameSessionComponent } from './pages/list-game-session/list-game-session.component';
 import { GameSessionCardComponent } from './components/game-session/game-session-card/game-session-card.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { InvitationsComponent } from './pages/invitations/invitations.component';
+import { InvitationCardComponent } from './components/invitation-card/invitation-card.component';
+import { MyInvitationsComponent } from './components/my-invitations/my-invitations.component';
 import { CreateGameSessionDialogComponent } from './components/game-session/create-game-session-dialog/create-game-session-dialog.component';
 import {MatSelectModule} from "@angular/material/select";
 import { RoomComponent } from './components/game-session/room/room.component';
@@ -82,31 +87,36 @@ import {CallModule} from "./modules/call/call.module";
         SearchGamesComponent,
         ListGameSessionComponent,
         GameSessionCardComponent,
+        InvitationsComponent,
+        InvitationCardComponent,
+        MyInvitationsComponent,
         CreateGameSessionDialogComponent,
         RoomComponent,
     ],
-  imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
-    AppRoutingModule,
-    MatInputModule,
-    FormsModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatProgressBarModule,
-    MatMenuModule,
-    NgxPaginationModule,
-    MatDialogModule,
-    MatProgressBarModule,
+    imports: [
+        BrowserAnimationsModule,
+        BrowserModule,
+        AppRoutingModule,
+        MatInputModule,
+        FormsModule,
+        MatCardModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatProgressBarModule,
+        MatMenuModule,
+        NgxPaginationModule,
+        MatDialogModule,
+        MatProgressBarModule,
+        MatDatepickerModule,
     MatSelectModule,
     ReactiveFormsModule,
+        MatNativeDateModule,
     ChatModule,
     CallModule,
-  ],
+    ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

@@ -10,6 +10,8 @@ import { FriendsPageComponent } from './pages/friends-page/friends-page.componen
 import { MemberSearchComponent } from './pages/member-search/member-search.component';
 import { SearchGamesComponent } from './pages/search-games/search-games.component';
 import {ListGameSessionComponent} from "./pages/list-game-session/list-game-session.component";
+import {InvitationsComponent} from "./pages/invitations/invitations.component";
+import {MyInvitationsComponent} from "./components/my-invitations/my-invitations.component";
 import {RoomComponent} from "./components/game-session/room/room.component";
 
 const routes: Routes = [
@@ -61,6 +63,10 @@ const routes: Routes = [
     {
       path: 'my-game-sessions',
       component: ListGameSessionComponent,
+    },
+    {
+      path: 'invitation',
+      component: InvitationsComponent
     },
     {
         path: '**',

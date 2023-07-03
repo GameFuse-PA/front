@@ -13,6 +13,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --warning: #FC9674;
 }
 
+
+.success-snackbar {
+  background-color: var(--success) !important;
+  color: white !important;
+}
+
+.success-snackbar .mat-simple-snackbar-action {
+  color: white !important;
+}
+
 .error-snackbar {
   background-color: var(--error) !important;
   color: white !important;
