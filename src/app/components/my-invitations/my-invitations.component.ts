@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProfilService} from "../../services/profil/profil.service";
 import {AuthService} from "../../services/auth/auth.service";
 import {InvitationsModel} from "../../models/invitations.model";
@@ -11,6 +11,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class MyInvitationsComponent implements OnInit {
   @Input() maxSize: number = 1
+  @Input() callbackFunction: () => void = () => {};
+
   invitations: InvitationsModel[] = [];
   page: number = 1;
 
@@ -25,8 +27,6 @@ export class MyInvitationsComponent implements OnInit {
         next: (res: any) => {
           const invitations = [];
           for (let user of res){
-            console.log(user.sender._id)
-            console.log(this.authService.user?._id)
             if(user.sender._id !== this.authService.user?._id){
               invitations.push(user);
             }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { User } from '../../models/user.model';
 import {SearchModel} from "../../models/search.model";
 import {InvitationsService} from "../../services/invitations/invitations.service";
@@ -15,6 +15,7 @@ export class UserMemberSearchComponent implements OnInit {
     @Input() isFriend: boolean | undefined = true;
     @Input() isInvite: boolean | undefined = false;
     @Input() fromSearch: boolean = false;
+    @Output() reload: EventEmitter<void> = new EventEmitter();
   constructor(private invitationsService: InvitationsService, private _snackBar: MatSnackBar, private router: Router) {}
 
     ngOnInit(): void {
@@ -29,6 +30,7 @@ export class UserMemberSearchComponent implements OnInit {
           duration: 7000,
           panelClass: ['success-snackbar'],
         })
+        this.reload.emit();
       },
       error: (err: any) => {
         this._snackBar.open(err.message, "Fermer", {
@@ -45,7 +47,7 @@ export class UserMemberSearchComponent implements OnInit {
           duration: 7000,
           panelClass: ['error-snackbar'],
         })
-        this.router.navigate(['/profil']);
+        this.reload.emit();
       },
       error: (err: any) => {
         this._snackBar.open(err.message, "Fermer", {

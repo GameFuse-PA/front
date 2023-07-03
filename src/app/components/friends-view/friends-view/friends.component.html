@@ -1,7 +1,7 @@
 <mat-card class="friends-page">
   <mat-card-title class="text-center">Mes amis</mat-card-title>
   <mat-card-content class="invitations-component">
-    <app-my-invitations></app-my-invitations>
+    <app-my-invitations [callbackFunction]="reloadFriends"></app-my-invitations>
   </mat-card-content>
   <mat-card-content class="mt-9">
     <ng-container *ngIf="friends && friends.length > 0; else noFriends">
