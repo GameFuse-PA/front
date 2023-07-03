@@ -42,7 +42,7 @@ export class ProfilService {
     }
 
     getInvitations() {
-      return this.http.get(`${URL}/invitations`);
+        return this.http.get(`${URL}/invitations`);
     }
 
     getInvitation(id: string) {

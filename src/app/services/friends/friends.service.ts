@@ -13,6 +13,6 @@ export class FriendsService {
 
     constructor(private http: HttpClient) {}
     removeFriend(friend: string) {
-      return this.http.delete(`${URL}/${friend}`);
+        return this.http.delete(`${URL}/${friend}`);
     }
 }

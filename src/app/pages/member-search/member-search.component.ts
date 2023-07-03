@@ -3,7 +3,7 @@ import { UsersService } from '../../services/users/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {SearchModel} from "../../models/search.model";
+import { SearchModel } from '../../models/search.model';
 
 @Component({
     selector: 'app-member-search',
@@ -22,24 +22,19 @@ export class MemberSearchComponent implements OnInit {
         private _snackBar: MatSnackBar,
     ) {}
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     searchUser(newValue: string) {
         this.usersServices.searchUsers(newValue).subscribe({
-          next: (users: any) => {
-            this.users = users;
-            this.searchResult = true;
-          },
-          error: (_: any) => {
-            this._snackBar.open(
-              "Une erreur s'est produite lors de la recherche",
-              'Fermer',
-              {
-                duration: 5000,
-                panelClass: ['error-snackbar'],
-              },
-            );
+            next: (users: any) => {
+                this.users = users;
+                this.searchResult = true;
+            },
+            error: (_: any) => {
+                this._snackBar.open("Une erreur s'est produite lors de la recherche", 'Fermer', {
+                    duration: 5000,
+                    panelClass: ['error-snackbar'],
+                });
             },
         });
     }

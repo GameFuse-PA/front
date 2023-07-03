@@ -1,5 +1,4 @@
 export default class Utils {
-
     static getMediaStream(constraints?: MediaStreamConstraints): Promise<MediaStream> {
         return new Promise<MediaStream>((resolve, reject) => {
             navigator.mediaDevices

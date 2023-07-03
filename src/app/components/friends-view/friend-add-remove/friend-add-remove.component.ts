@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FriendsService } from '../../../services/friends/friends.service';
-import {UsersService} from "../../../services/users/users.service";
+import { UsersService } from '../../../services/users/users.service';
 
 @Component({
     selector: 'app-friend-add-remove',
