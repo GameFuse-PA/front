@@ -1,19 +1,18 @@
 <mat-card class="friends-page">
-  <mat-card-title class="text-center">Mes amis</mat-card-title>
-  <mat-card-content class="invitations-component">
-    <app-my-invitations (reload)="reloadFriends()"></app-my-invitations>
-  </mat-card-content>
-  <mat-card-content class="mt-9">
-    <ng-container *ngIf="friends && friends.length > 0; else noFriends">
-      <div class="friends-container">
-        <div *ngFor="let friend of friends">
-          <app-user-member-search [user]="friend"></app-user-member-search>
-        </div>
-      </div>
-    </ng-container>
-    <ng-template #noFriends>
-      <p class="text-center">Vous n'avez pas encore d'amis 😥</p>
-    </ng-template>
-  </mat-card-content>
-
+    <mat-card-title class="text-center">Mes amis</mat-card-title>
+    <mat-card-content class="invitations-component">
+        <app-my-invitations (reload)="reloadFriends()"></app-my-invitations>
+    </mat-card-content>
+    <mat-card-content class="mt-9">
+        <ng-container *ngIf="friends && friends.length > 0; else noFriends">
+            <div class="friends-container">
+                <div *ngFor="let friend of friends">
+                    <app-user-member-search [user]="friend"></app-user-member-search>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #noFriends>
+            <p class="text-center">Vous n'avez pas encore d'amis 😥</p>
+        </ng-template>
+    </mat-card-content>
 </mat-card>

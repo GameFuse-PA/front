@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../../../models/user.model';
 
 @Component({
@@ -15,7 +15,7 @@ export class FriendsComponent implements OnInit {
     ngOnInit(): void {}
 
     reloadFriends() {
-      this.reload.emit();
+        this.reload.emit();
     }
 
     @Input() user: User | undefined = undefined;

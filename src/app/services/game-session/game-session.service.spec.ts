@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GameSession.ServiceService } from './game-session.service.service';
+import { GameSessionService } from './game-session.service';
 
 describe('GameSession.ServiceService', () => {
-  let service: GameSession.ServiceService;
+    let service: GameSessionService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(GameSession.ServiceService);
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({});
+        service = TestBed.inject(GameSessionService);
+    });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
 });

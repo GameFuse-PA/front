@@ -1,20 +1,48 @@
 <div class="flex flex-row w-full border-b pb-2.5 border-gray-500 justify-center items-center">
-  <app-picture-server
-    class="pic-server mr-5"
-    [pictureServerUrl]="user?.avatar ? user?.avatar?.location! : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png'"
-  ></app-picture-server>
-  <p class="m-0 text-lg">{{user?.username}}</p>
-  <div class="ml-auto">
-    <div *ngIf="isFriend && !fromSearch && !isInvite">
-      <app-friend-add-remove [isFriend]="isFriend" [idFriend]="user?._id!"></app-friend-add-remove>
+    <app-picture-server
+        class="pic-server mr-5"
+        [pictureServerUrl]="
+            user?.avatar
+                ? user?.avatar?.location!
+                : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png'
+        "
+    ></app-picture-server>
+    <p class="m-0 text-lg">{{ user?.username }}</p>
+    <div class="ml-auto">
+        <div *ngIf="isFriend && !fromSearch && !isInvite">
+            <app-friend-add-remove
+                [isFriend]="isFriend"
+                [idFriend]="user?._id!"
+            ></app-friend-add-remove>
+        </div>
+        <div class="flex flex-row" *ngIf="isInvite">
+            <mat-icon
+                (click)="acceptInvitation(user?._id!)"
+                *ngIf="isFriend === true"
+                [ngStyle]="{ color: 'var(--success)' }"
+                class="text-4xl mr-4 cursor-pointer"
+                >check</mat-icon
+            >
+            <mat-icon
+                (click)="refuseInvitation(user?._id!)"
+                *ngIf="isFriend === true"
+                [ngStyle]="{ color: 'var(--error)' }"
+                class="text-4xl mr-4 cursor-pointer"
+                >close</mat-icon
+            >
+        </div>
+        <div *ngIf="fromSearch">
+            <mat-icon
+                *ngIf="isFriend === true"
+                [ngStyle]="{ color: '#CECECE' }"
+                class="text-4xl mr-4"
+                >person_add_alt_1</mat-icon
+            >
+            <app-friend-add-remove
+                *ngIf="isFriend === false"
+                [isFriend]="isFriend"
+                [idFriend]="user?._id!"
+            ></app-friend-add-remove>
+        </div>
     </div>
-    <div class="flex flex-row" *ngIf="isInvite">
-      <mat-icon (click)="acceptInvitation(user?._id!)" *ngIf="isFriend === true" [ngStyle]="{'color': 'var(--success)'}" class="text-4xl mr-4 cursor-pointer">check</mat-icon>
-      <mat-icon (click)="refuseInvitation(user?._id!)" *ngIf="isFriend === true" [ngStyle]="{'color': 'var(--error)'}" class="text-4xl mr-4 cursor-pointer">close</mat-icon>
-    </div>
-    <div *ngIf="fromSearch">
-      <mat-icon *ngIf="isFriend === true" [ngStyle]="{'color': '#CECECE'}" class="text-4xl mr-4">person_add_alt_1</mat-icon>
-      <app-friend-add-remove *ngIf="isFriend === false" [isFriend]="isFriend" [idFriend]="user?._id!"></app-friend-add-remove>
-    </div>
-  </div>
 </div>

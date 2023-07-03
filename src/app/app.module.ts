@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatInputModule } from '@angular/material/input';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './pages/auth/auth.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
@@ -50,10 +50,10 @@ import { InvitationsComponent } from './pages/invitations/invitations.component'
 import { InvitationCardComponent } from './components/invitation-card/invitation-card.component';
 import { MyInvitationsComponent } from './components/my-invitations/my-invitations.component';
 import { CreateGameSessionDialogComponent } from './components/game-session/create-game-session-dialog/create-game-session-dialog.component';
-import {MatSelectModule} from "@angular/material/select";
+import { MatSelectModule } from '@angular/material/select';
 import { RoomComponent } from './components/game-session/room/room.component';
-import {ChatModule} from "./modules/chat/chat.module";
-import {CallModule} from "./modules/call/call.module";
+import { ChatModule } from './modules/chat/chat.module';
+import { CallModule } from './modules/call/call.module';
 
 @NgModule({
     declarations: [
@@ -111,11 +111,11 @@ import {CallModule} from "./modules/call/call.module";
         MatDialogModule,
         MatProgressBarModule,
         MatDatepickerModule,
-    MatSelectModule,
-    ReactiveFormsModule,
+        MatSelectModule,
+        ReactiveFormsModule,
         MatNativeDateModule,
-    ChatModule,
-    CallModule,
+        ChatModule,
+        CallModule,
     ],
     providers: [
         {

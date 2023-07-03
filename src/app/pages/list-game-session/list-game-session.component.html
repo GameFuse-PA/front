@@ -1,23 +1,39 @@
 <div>
-  <h1 style="text-align: center; margin-top: 15px; font-weight: bold; font-size: 25pt">Voici vos parties {{ user.username }}</h1>
-  <button
-    mat-flat-button
-    style="position:absolute; top: 5vw; right: 2vw"
-    class="text-white bg-[color:var(--primary)] w-64"
-    (click)="createParty()">Créer une partie</button>
-  <div class="flex flex-row justify-center mt-9 gap-5">
-    <div *ngFor="let gameSession of gameSessions | paginate: {itemsPerPage: maxSize, currentPage: page}">
-      <app-game-session-card [gameSession]="gameSession" [user]="user"></app-game-session-card>
+    <h1 style="text-align: center; margin-top: 15px; font-weight: bold; font-size: 25pt">
+        Voici vos parties {{ user.username }}
+    </h1>
+    <button
+        mat-flat-button
+        style="position: absolute; top: 5vw; right: 2vw"
+        class="text-white bg-[color:var(--primary)] w-64"
+        (click)="createParty()"
+    >
+        Créer une partie
+    </button>
+    <div class="flex flex-row justify-center mt-9 gap-5">
+        <div
+            *ngFor="
+                let gameSession of gameSessions
+                    | paginate : { itemsPerPage: maxSize, currentPage: page }
+            "
+        >
+            <app-game-session-card
+                [gameSession]="gameSession"
+                [user]="user"
+            ></app-game-session-card>
+        </div>
+        <div *ngIf="!gameSessions || gameSessions.length === 0">
+            <h2 style="color: var(--accent)">
+                Vous n'avez pas encore de parties en cours ou démarrée
+            </h2>
+        </div>
     </div>
-    <div *ngIf="!gameSessions || gameSessions.length === 0">
-      <h2 style="color: var(--accent)">Vous n'avez pas encore de parties en cours ou démarrée</h2>
-    </div>
-  </div>
-  <pagination-controls
-    *ngIf="gameSessions.length > maxSize"
-    previousLabel="Précédent"
-    nextLabel="Suivant"
-    (pageChange)="page = $event"
-    class="paginator-friends">
-  </pagination-controls>
+    <pagination-controls
+        *ngIf="gameSessions.length > maxSize"
+        previousLabel="Précédent"
+        nextLabel="Suivant"
+        (pageChange)="page = $event"
+        class="paginator-friends"
+    >
+    </pagination-controls>
 </div>

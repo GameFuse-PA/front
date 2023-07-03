@@ -31,19 +31,19 @@ export class FriendsPageComponent implements OnInit {
     }
 
     getFriends() {
-      this.profilServices.getFriends().subscribe({
-        next: (res: any) => {
-          if (res && res.friends) {
-            this.friends = res.friends;
-          }
-        },
-        error: (err: any) => {
-          this._snackBar.open(err.message, 'Fermer', {
-            duration: 5000,
-            panelClass: ['error-snackbar'],
-          });
-        },
-      });
+        this.profilServices.getFriends().subscribe({
+            next: (res: any) => {
+                if (res && res.friends) {
+                    this.friends = res.friends;
+                }
+            },
+            error: (err: any) => {
+                this._snackBar.open(err.message, 'Fermer', {
+                    duration: 5000,
+                    panelClass: ['error-snackbar'],
+                });
+            },
+        });
     }
 
     search(newValue: string) {

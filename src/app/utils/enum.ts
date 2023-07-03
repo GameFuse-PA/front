@@ -1,4 +1,4 @@
 export enum GameSessionStatus {
-  In_Progress,
-  Terminated
+    In_Progress,
+    Terminated,
 }

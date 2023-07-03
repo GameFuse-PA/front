@@ -1,6 +1,6 @@
-import {User} from "./user.model";
+import { User } from './user.model';
 
 export class SearchModel {
-  user?: User;
-  isFriend?: boolean;
+    user?: User;
+    isFriend?: boolean;
 }

@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-room',
-  templateUrl: './room.component.html',
-  styleUrls: ['./room.component.css']
+    selector: 'app-room',
+    templateUrl: './room.component.html',
+    styleUrls: ['./room.component.css'],
 })
 export class RoomComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
+    isHideChat = true;
 
-  isHideChat = true;
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }
