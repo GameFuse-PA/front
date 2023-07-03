@@ -26,7 +26,7 @@ export class InvitationCardComponent implements OnInit {
   acceptInvitation() {
 
     this.invitationsService.acceptInviteFriend(this.sender!._id!).subscribe({
-      next: (res: any) => {
+      next: (_: any) => {
         this._snackBar.open("Ami ajouté", "Fermer", {
           duration: 7000,
           panelClass: ['success-snackbar'],
@@ -51,7 +51,6 @@ export class InvitationCardComponent implements OnInit {
         this.router.navigate(['/profil']);
       },
       error: (err: any) => {
-        console.log(this.sender!._id!);
         this._snackBar.open(err.message, "Fermer", {
           panelClass: ['error-snackbar'],
         })

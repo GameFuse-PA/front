@@ -12,7 +12,7 @@ import { MemberSearchComponent } from './pages/member-search/member-search.compo
 import { SearchGamesComponent } from './pages/search-games/search-games.component';
 import {ListGameSessionComponent} from "./pages/list-game-session/list-game-session.component";
 import {InvitationsComponent} from "./pages/invitations/invitations.component";
-import {MyInvitationsComponent} from "./pages/my-invitations/my-invitations.component";
+import {MyInvitationsComponent} from "./components/my-invitations/my-invitations.component";
 
 const routes: Routes = [
     {
@@ -70,10 +70,6 @@ const routes: Routes = [
     {
       path: 'invitation',
       component: InvitationsComponent
-    },
-    {
-      path: 'my-invitations',
-      component: MyInvitationsComponent
     },
     {
         path: '**',

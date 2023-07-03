@@ -1,8 +1,8 @@
 <mat-card class="friends-page">
   <mat-card-title class="text-center">Mes amis</mat-card-title>
-  <mat-card-content>
+  <mat-card-content class="invitations-component">
+    <app-my-invitations></app-my-invitations>
   </mat-card-content>
-  <div class="bg-black w-2/3 h-1 rounded-xl m-auto"></div>
   <mat-card-content class="mt-9">
     <ng-container *ngIf="friends && friends.length > 0; else noFriends">
       <div class="friends-container">
@@ -12,7 +12,7 @@
       </div>
     </ng-container>
     <ng-template #noFriends>
-      <p>Vous n'avez pas encore d'amis 😥</p>
+      <p class="text-center">Vous n'avez pas encore d'amis 😥</p>
     </ng-template>
   </mat-card-content>
 

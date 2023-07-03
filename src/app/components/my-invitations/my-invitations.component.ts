@@ -23,7 +23,15 @@ export class MyInvitationsComponent implements OnInit {
   getInvitations() {
       this.profilServices.getInvitations().subscribe({
         next: (res: any) => {
-          this.invitations = res;
+          const invitations = [];
+          for (let user of res){
+            console.log(user.sender._id)
+            console.log(this.authService.user?._id)
+            if(user.sender._id !== this.authService.user?._id){
+              invitations.push(user);
+            }
+          }
+          this.invitations = invitations;
         },
         error: (err: any) => {
           this._snackBar.open(err.message, "Fermer", {

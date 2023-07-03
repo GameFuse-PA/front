@@ -49,7 +49,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { InvitationCardComponent } from './components/invitation-card/invitation-card.component';
-import { MyInvitationsComponent } from './pages/my-invitations/my-invitations.component';
+import { MyInvitationsComponent } from './components/my-invitations/my-invitations.component';
 
 @NgModule({
     declarations: [
