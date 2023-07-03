@@ -20,3 +20,13 @@
   font-size: 1.5rem;
   font-weight: 500;
 }
+
+.pic-server {
+  object-fit: cover;
+  clip-path:ellipse(50% 50%);
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+  border-radius: 100px;
+  z-index: 0;
+  width: 50px;
+  height: 50px;
+}

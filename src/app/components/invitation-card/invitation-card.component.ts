@@ -4,6 +4,7 @@ import {User} from "../../models/user.model";
 import {FriendsService} from "../../services/friends/friends.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {InvitationsService} from "../../services/invitations/invitations.service";
 
 @Component({
   selector: 'app-invitation-card',
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class InvitationCardComponent implements OnInit {
 
-  constructor(private friendService: FriendsService, private _snackBar: MatSnackBar, private router: Router) { }
+  constructor(private invitationsService: InvitationsService, private _snackBar: MatSnackBar, private router: Router) { }
 
   @Input() invitation: InvitationsModel | undefined;
 
@@ -24,9 +25,9 @@ export class InvitationCardComponent implements OnInit {
 
   acceptInvitation() {
 
-    this.friendService.addFriend(this.sender!._id!).subscribe({
+    this.invitationsService.acceptInviteFriend(this.sender!._id!).subscribe({
       next: (res: any) => {
-        this._snackBar.open(res.message, "Fermer", {
+        this._snackBar.open("Ami ajouté", "Fermer", {
           duration: 7000,
           panelClass: ['success-snackbar'],
         })
@@ -41,9 +42,20 @@ export class InvitationCardComponent implements OnInit {
   }
 
   refuseInvitation() {
-    this._snackBar.open("Invitation refusée", "Fermer", {
-      duration: 7000,
-      panelClass: ['success-snackbar'],
+    this.invitationsService.refuseInviteFriend(this.sender!._id!).subscribe({
+      next: (res: any) => {
+        this._snackBar.open(res.message, "Fermer", {
+          duration: 7000,
+          panelClass: ['error-snackbar'],
+        })
+        this.router.navigate(['/profil']);
+      },
+      error: (err: any) => {
+        console.log(this.sender!._id!);
+        this._snackBar.open(err.message, "Fermer", {
+          panelClass: ['error-snackbar'],
+        })
+      }
     })
   }
 

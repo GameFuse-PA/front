@@ -1,20 +1,19 @@
-<ng-container *ngIf="users && users.length > 0; else noResults">
-    <div *ngFor="let user of users; let index = index" class="users">
-        <div class="info-user">
-            <img
-                *ngIf="user.avatar?.location"
-                [src]="user.avatar?.location"
-                alt="photo de profil de {{ user.username }}"
-            />
-            <p>{{ user.username }}</p>
-        </div>
-        <app-friend-add-remove
-            [isFriend]="isFriends[index]"
-            [idFriend]="user._id!"
-            style="position: absolute; right: 2%"
-        ></app-friend-add-remove>
+<div class="flex flex-row w-full border-b pb-2.5 border-gray-500 justify-center items-center">
+  <app-picture-server
+    class="pic-server mr-5"
+    [pictureServerUrl]="user?.avatar ? user?.avatar?.location! : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png'"
+  ></app-picture-server>
+  <p class="m-0 text-lg">{{user?.username}}</p>
+  <div class="ml-auto">
+    <div *ngIf="isFriend && !fromSearch && !isInvite">
+      <app-friend-add-remove [isFriend]="isFriend" [idFriend]="user?._id!"></app-friend-add-remove>
     </div>
-</ng-container>
-<ng-template #noResults>
-    <p class="mt-6 text-lg text-center">Aucun membre n'existe avec ce nom, c'est triste 😔</p>
-</ng-template>
+    <div class="flex flex-row" *ngIf="isInvite">
+    </div>
+    <div *ngIf="fromSearch">
+      <mat-icon *ngIf="isFriend === true" [ngStyle]="{'color': '#CECECE'}" class="text-4xl mr-4">person_add_alt_1</mat-icon>
+      <app-friend-add-remove *ngIf="isFriend === false" [isFriend]="isFriend" [idFriend]="user?._id!"></app-friend-add-remove>
+    </div>
+  </div>
+
+</div>

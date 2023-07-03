@@ -1,14 +1,4 @@
-<button
-    mat-flat-button
-    [class]="
-        !isFriend
-            ? 'w-64 bg-[color:var(--primary)] text-white'
-            : 'w-64 bg-[color:var(--error)] text-white'
-    "
-    (click)="addRemoveFriend()"
->
-    {{ !isFriend ? 'Ajouter ami' : 'Retirer ami' }}
-</button>
+<mat-icon (click)="addRemoveFriend()" [ngStyle]="{'color': isFriend ? '#FF5252' : '#4CAF50'}" class="text-4xl cursor-pointer mr-4">{{isFriend ? 'person_remove': 'person_add_alt_1'}}</mat-icon>
 <div *ngIf="ok" class="text-center rounded-lg bg-[color:var(--success)] text-white mt-2">
     {{ ok }}
 </div>

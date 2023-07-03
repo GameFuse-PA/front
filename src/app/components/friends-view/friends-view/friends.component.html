@@ -1,28 +1,19 @@
-<mat-card class="card-friend">
-    <mat-card-header>
-        <img
-            *ngIf="user?.avatar"
-            mat-card-avatar
-            class="example-header-image"
-            [src]="user?.avatar?.location"
-            alt="photo profil {{ user?.username }}"
-        />
-        <mat-card-title>{{ user?.firstname }} {{ user?.lastname }}</mat-card-title>
-        <mat-card-subtitle>{{ user?.username }}</mat-card-subtitle>
-    </mat-card-header>
-    <img
-        *ngIf="user?.avatar"
-        mat-card-image
-        [src]="user?.avatar?.location"
-        alt="photo profil {{ user?.username }}"
-    />
-    <mat-card-content>
-        <p>Votre ami</p>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-flat-button class="w-64 bg-[color:var(--primary)] text-white">
-            Voir le profil
-        </button>
-        <app-friend-add-remove [isFriend]="true" [idFriend]="user?._id!"></app-friend-add-remove>
-    </mat-card-actions>
+<mat-card class="friends-page">
+  <mat-card-title class="text-center">Mes amis</mat-card-title>
+  <mat-card-content>
+  </mat-card-content>
+  <div class="bg-black w-2/3 h-1 rounded-xl m-auto"></div>
+  <mat-card-content class="mt-9">
+    <ng-container *ngIf="friends && friends.length > 0; else noFriends">
+      <div class="friends-container">
+        <div *ngFor="let friend of friends">
+          <app-user-member-search [user]="friend"></app-user-member-search>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noFriends>
+      <p>Vous n'avez pas encore d'amis 😥</p>
+    </ng-template>
+  </mat-card-content>
+
 </mat-card>
