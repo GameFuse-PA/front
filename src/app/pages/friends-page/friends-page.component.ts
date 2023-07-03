@@ -19,7 +19,7 @@ export class FriendsPageComponent implements OnInit {
         private router: Router,
     ) {}
 
-    friends: Collection<User | undefined> = [];
+    friends: User[] = [];
     page: number = 1;
 
     @Input() pagination: boolean = true;

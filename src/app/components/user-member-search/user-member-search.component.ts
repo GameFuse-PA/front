@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
-import { AuthService } from '../../services/auth/auth.service';
+import {SearchModel} from "../../models/search.model";
 
 @Component({
     selector: 'app-user-member-search',
@@ -8,10 +8,14 @@ import { AuthService } from '../../services/auth/auth.service';
     styleUrls: ['./user-member-search.component.css'],
 })
 export class UserMemberSearchComponent implements OnInit {
-    @Input() users: User[] = [];
-    @Input() isFriends: boolean[] = [];
+    @Input() user: User |undefined;
+    @Input() isFriend: boolean | undefined = true;
+    @Input() isInvite: boolean | undefined = false;
+    @Input() fromSearch: boolean = false;
+  constructor() {}
 
-    constructor(private authServices: AuthService) {}
+    ngOnInit(): void {
+    }
 
-    ngOnInit(): void {}
+  protected readonly undefined = undefined;
 }

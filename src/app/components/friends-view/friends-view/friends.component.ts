@@ -9,6 +9,8 @@ import { User } from '../../../models/user.model';
 export class FriendsComponent implements OnInit {
     constructor() {}
 
+    @Input() friends: User[] = [];
+
     ngOnInit(): void {}
 
     @Input() user: User | undefined = undefined;
