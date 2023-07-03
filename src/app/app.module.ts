@@ -35,7 +35,7 @@ import { SaveGameDialogComponent } from './components/save-game-dialog/save-game
 import { FriendAddRemoveComponent } from './components/friends-view/friend-add-remove/friend-add-remove.component';
 import { FriendsComponent } from './components/friends-view/friends-view/friends.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
-import { SearchBar } from './components/search-bar-component/search-bar';
+import { SearchBarComponent } from './components/search-bar-component/search-bar.component';
 import { UserMemberSearchComponent } from './components/user-member-search/user-member-search.component';
 import { MemberSearchComponent } from './pages/member-search/member-search.component';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -80,7 +80,7 @@ import { CallModule } from './modules/call/call.module';
         FriendAddRemoveComponent,
         FriendsComponent,
         FriendsPageComponent,
-        SearchBar,
+        SearchBarComponent,
         UserMemberSearchComponent,
         MemberSearchComponent,
         GameCardComponent,
