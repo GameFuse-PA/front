@@ -7,7 +7,7 @@ export class GameSessionModel {
   game?: Game;
   winner?: string;
   createdBy?: User;
-  members?: User[];
+  players?: User[];
   status?: number;
 }
 
@@ -15,6 +15,6 @@ export class GameSessionCreateModel {
   name?: string;
   game?: string;
   createdBy?: string;
-  members?: string[];
+  players?: string[];
   status?: number;
 }

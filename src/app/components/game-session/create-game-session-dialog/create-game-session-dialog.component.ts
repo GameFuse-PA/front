@@ -23,7 +23,7 @@ export class CreateGameSessionDialogComponent implements OnInit {
     name: undefined,
     game: undefined,
     createdBy: undefined,
-    members: undefined,
+    players: undefined,
     status: undefined
   };
 
@@ -52,7 +52,7 @@ export class CreateGameSessionDialogComponent implements OnInit {
           })
           return
         }
-        this.listUsers = friends.idFriends;
+        this.listUsers = friends.friends;
       },
       error: () => {
         this._snackBar.open("Vous n'avez pas d'ami malheureusement", 'Fermer', {
@@ -92,7 +92,7 @@ export class CreateGameSessionDialogComponent implements OnInit {
       this.error = "Veuillez remplir tous les champs"
       return
     }
-    this.session.members = [this.authServices.user?._id, ...this.users.value]
+    this.session.players = [this.authServices.user?._id, ...this.users.value]
     this.session.status = GameSessionStatus.In_Progress
     this.session.createdBy = this.authServices.user?._id
 
