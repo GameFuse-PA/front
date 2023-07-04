@@ -4,7 +4,7 @@ import { User } from '../../../models/user.model';
 import { ProfilService } from '../../../services/profil/profil.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl } from '@angular/forms';
-import { GameSessionCreateModel } from '../../../models/game-session.model';
+import { GameSessionCreateModel } from '../../../models/game-session/game-session-create.model';
 import { RoomService } from '../../../services/chat/room.service';
 import { Router } from '@angular/router';
 import { GameSessionService } from '../../../services/game-session/game-session.service';
@@ -21,7 +21,6 @@ export class CreateGameSessionDialogComponent implements OnInit {
     session: GameSessionCreateModel = {
         name: undefined,
         game: undefined,
-        createdBy: undefined,
         players: undefined,
         status: undefined,
     };
@@ -100,19 +99,21 @@ export class CreateGameSessionDialogComponent implements OnInit {
     }
 
     onCreateRoom() {
-        if (!this.users.value || !this.session.name || !this.session.game) {
+        this.loading = true;
+        if (!this.users.value) {
+            this.loading = false;
             this.error = 'Veuillez remplir tous les champs';
             return;
         }
         this.session.players = [this.authServices.user?._id, ...this.users.value];
         this.session.status = GameSessionStatus.In_Progress;
-        this.session.createdBy = this.authServices.user?._id;
 
         this.gameSessionService.createGameSession(this.session).subscribe({
             next: async (_: any) => {
                 await this.createRoom();
             },
             error: (err: any) => {
+                this.loading = false;
                 this._snackBar.open(err.message, 'Fermer', {
                     panelClass: ['error-snackbar'],
                 });
@@ -123,15 +124,15 @@ export class CreateGameSessionDialogComponent implements OnInit {
     private async createRoom() {
         this.roomService.create().subscribe({
             next: (room: any) => {
+                this.loading = false;
                 const roomId = room._id;
                 this.dialogRef.close();
                 this.router.navigateByUrl(`/room/${roomId}`);
             },
             error: (err: Error) => {
+                this.loading = false;
                 console.log(err);
             },
         });
     }
-
-    protected readonly FormControl = FormControl;
 }
