@@ -2,10 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'app-search-bar',
-    templateUrl: './search-bar.html',
-    styleUrls: ['./search-bar.css'],
+    templateUrl: './search-bar.component.html',
+    styleUrls: ['./search-bar.component.css'],
 })
-export class SearchBar implements OnInit {
+export class SearchBarComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {}
