@@ -131,7 +131,10 @@ export class CreateGameSessionDialogComponent implements OnInit {
             },
             error: (err: Error) => {
                 this.loading = false;
-                console.log(err);
+                this._snackBar.open(err.message, 'Fermer', {
+                    panelClass: ['error-snackbar'],
+                    duration: 5000,
+                });
             },
         });
     }
