@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateGameSessionDialogComponent } from './create-game-session-dialog.component';
 
-describe('CreatePartyDialogComponent', () => {
+describe('CreateGameSessionDialogComponent', () => {
     let component: CreateGameSessionDialogComponent;
     let fixture: ComponentFixture<CreateGameSessionDialogComponent>;
 

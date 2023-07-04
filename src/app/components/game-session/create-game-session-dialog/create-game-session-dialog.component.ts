@@ -13,7 +13,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { GameSessionStatus } from '../../../utils/enum';
 
 @Component({
-    selector: 'app-create-party-dialog',
+    selector: 'app-create-game-session-dialog',
     templateUrl: './create-game-session-dialog.component.html',
     styleUrls: ['./create-game-session-dialog.component.css'],
 })

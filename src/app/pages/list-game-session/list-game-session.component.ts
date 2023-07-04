@@ -40,7 +40,7 @@ export class ListGameSessionComponent implements OnInit {
         });
     }
 
-    createParty() {
+    createGameSession() {
         this.dialog.open(CreateGameSessionDialogComponent, {
             width: '700px',
             autoFocus: false,
