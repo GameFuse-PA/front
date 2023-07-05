@@ -4,7 +4,6 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { PageNotFoundComponent } from './components/not-found/page-not-found.component';
-import { ChatHomeComponent } from './components/chat-home/chat-home.component';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { MyGamesComponent } from './pages/my-games/my-games.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
@@ -13,6 +12,7 @@ import { SearchGamesComponent } from './pages/search-games/search-games.componen
 import { ListGameSessionComponent } from './pages/list-game-session/list-game-session.component';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { MyInvitationsComponent } from './components/my-invitations/my-invitations.component';
+import { RoomComponent } from './components/game-session/room/room.component';
 
 const routes: Routes = [
     {
@@ -40,11 +40,8 @@ const routes: Routes = [
         component: AuthComponent,
     },
     {
-        path: 'chatHome',
-        component: ChatHomeComponent,
-    },
-    {
         path: 'room/:roomId',
+        component: RoomComponent,
         loadChildren: () => import('./modules/call/call.module').then((c) => c.CallModule),
     },
     {

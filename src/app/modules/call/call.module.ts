@@ -25,6 +25,6 @@ const callRoutes: Routes = [
         FormsModule,
         HttpClientModule,
     ],
-    exports: [RouterModule],
+    exports: [RouterModule, CallComponent],
 })
 export class CallModule {}

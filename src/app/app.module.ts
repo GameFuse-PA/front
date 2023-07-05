@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './pages/auth/auth.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
@@ -16,7 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestInterceptor } from './services/request.interceptor';
-import { ChatHomeComponent } from './components/chat-home/chat-home.component';
 import { PageNotFoundComponent } from './components/not-found/page-not-found.component';
 import { ProfilPageComponent } from './pages/profilpage/profil-page.component';
 import { ChangeUserFormComponent } from './components/change-user-form/change-user-form.component';
@@ -50,6 +49,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { InvitationCardComponent } from './components/invitation-card/invitation-card.component';
 import { MyInvitationsComponent } from './components/my-invitations/my-invitations.component';
+import { CreateGameSessionDialogComponent } from './components/game-session/create-game-session-dialog/create-game-session-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { RoomComponent } from './components/game-session/room/room.component';
+import { ChatModule } from './modules/chat/chat.module';
+import { CallModule } from './modules/call/call.module';
 
 @NgModule({
     declarations: [
@@ -70,7 +74,6 @@ import { MyInvitationsComponent } from './components/my-invitations/my-invitatio
         PasswordFieldComponent,
         HeaderComponent,
         ChangePasswordUserFormComponent,
-        ChatHomeComponent,
         PageNotFoundComponent,
         MyGamesComponent,
         SaveGameDialogComponent,
@@ -87,6 +90,8 @@ import { MyInvitationsComponent } from './components/my-invitations/my-invitatio
         InvitationsComponent,
         InvitationCardComponent,
         MyInvitationsComponent,
+        CreateGameSessionDialogComponent,
+        RoomComponent,
     ],
     imports: [
         BrowserAnimationsModule,
@@ -106,7 +111,11 @@ import { MyInvitationsComponent } from './components/my-invitations/my-invitatio
         MatDialogModule,
         MatProgressBarModule,
         MatDatepickerModule,
+        MatSelectModule,
+        ReactiveFormsModule,
         MatNativeDateModule,
+        ChatModule,
+        CallModule,
     ],
     providers: [
         {

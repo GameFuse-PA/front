@@ -9,4 +9,6 @@ export class Game {
     program?: File & ApiFile;
     entry?: File & ApiFile;
     createdBy?: User;
+    maxPlayers?: number;
+    minPlayers?: number;
 }
