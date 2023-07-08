@@ -14,13 +14,10 @@ export class UserMemberSearchComponent implements OnInit {
     @Input() user: User | undefined;
     @Input() isFriend: boolean | undefined = true;
     @Input() isInvite: boolean | undefined = false;
+    @Input() isInvited: boolean | undefined = false;
     @Input() fromSearch: boolean = false;
     @Output() reload: EventEmitter<void> = new EventEmitter();
-    constructor(
-        private invitationsService: InvitationsService,
-        private _snackBar: MatSnackBar,
-        private router: Router,
-    ) {}
+    constructor(private invitationsService: InvitationsService, private _snackBar: MatSnackBar) {}
 
     ngOnInit(): void {}
 
@@ -58,5 +55,17 @@ export class UserMemberSearchComponent implements OnInit {
         });
     }
 
-    protected readonly undefined = undefined;
+    reloadFriends() {
+        this.reload.emit();
+    }
+
+    getToolTipMSg() {
+        if (this.isFriend) {
+            return 'Cette personne est déjà votre ami';
+        } else if (this.isInvited) {
+            return 'Vous avez déjà envoyé une invitation à cette personne';
+        } else {
+            return '';
+        }
+    }
 }

@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FriendsService } from '../../../services/friends/friends.service';
 import { UsersService } from '../../../services/users/users.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-friend-add-remove',
@@ -8,55 +9,49 @@ import { UsersService } from '../../../services/users/users.service';
     styleUrls: ['./friend-add-remove.component.css'],
 })
 export class FriendAddRemoveComponent implements OnInit {
-    constructor(private friendsServices: FriendsService, private userService: UsersService) {}
-
-    error: string = '';
-    ok: string = '';
+    constructor(
+        private friendsServices: FriendsService,
+        private userService: UsersService,
+        private snackBar: MatSnackBar,
+    ) {}
 
     ngOnInit(): void {}
 
     @Input() isFriend: boolean = false;
     @Input() idFriend: string = '';
+    @Output() reload: EventEmitter<void> = new EventEmitter();
 
     addRemoveFriend() {
-        if (!this.idFriend) {
-            this.error = "Erreur à la récupération de l'ami";
-            setTimeout(() => {
-                this.error = '';
-            }, 5000);
-            return;
-        }
         if (this.isFriend) {
             this.friendsServices.removeFriend(this.idFriend).subscribe({
                 next: (res) => {
-                    this.ok = 'Ami supprimé';
-                    this.isFriend = false;
-                    setTimeout(() => {
-                        this.ok = '';
-                        window.location.reload();
-                    }, 10000);
+                    this.snackBar.open('Ami supprimé', 'Fermer', {
+                        duration: 5000,
+                        panelClass: ['success-snackbar'],
+                    });
+                    this.reload.emit();
                 },
                 error: (err: Error) => {
-                    this.error = err.message;
-                    setTimeout(() => {
-                        this.error = '';
-                    }, 10000);
+                    this.snackBar.open(err.message, 'Fermer', {
+                        duration: 5000,
+                        panelClass: ['error-snackbar'],
+                    });
                 },
             });
         } else {
             this.userService.sendInvitations(this.idFriend).subscribe({
                 next: (res) => {
-                    this.ok = 'Invitation envoyé';
-                    setTimeout(() => {
-                        this.ok = '';
-                        window.location.reload();
-                    }, 10000);
+                    this.snackBar.open('Invitation envoyé', 'Fermer', {
+                        duration: 5000,
+                        panelClass: ['success-snackbar'],
+                    });
+                    this.reload.emit();
                 },
                 error: (err: Error) => {
-                    this.error = err.message;
-                    setTimeout(() => {
-                        this.error = '';
-                    }, 10000);
+                    this.snackBar.open(err.message, 'Fermer', {
+                        duration: 5000,
+                        panelClass: ['error-snackbar'],
+                    });
                 },
             });
         }
