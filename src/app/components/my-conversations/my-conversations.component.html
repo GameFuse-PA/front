@@ -16,21 +16,7 @@
                     {{ conversations[selectedConversation]?.users?.[0]?._id === me?._id ? conversations[selectedConversation]?.users?.[1]?.firstname : conversations[selectedConversation]?.users?.[0]?.firstname}}
                 </div>
             </div>
-            <div class="conversation">
-                <div
-                    class="message"
-                    *ngFor="
-                        let chat of this.conversations[selectedConversation]?.messages;
-                        index as i
-                    "
-                    [id]="i"
-                    [ngClass]="chat.from?.username === me?.username ? 'my-message' : 'cor-message'"
-                >
-                    <h2 [innerHTML]="chat.from?.username"></h2>
-                    <p [innerHTML]="chat.content"></p>
-                </div>
-            </div>
-            <app-chat-input (whenSubmitMessage)="addMessage($event)"></app-chat-input>
+            <app-chat [conversation]="conversations[selectedConversation]" [me]="me"> </app-chat>
         </div>
         <div id="notification" class="notification hidden">
             Le texte a été copié dans le presse-papiers

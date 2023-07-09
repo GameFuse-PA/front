@@ -84,7 +84,6 @@ export class CallComponent implements OnInit, AfterViewInit {
             let userToBack: UserToBackDTO = {
                 id: '',
                 roomId: this.roomId,
-                peerId: myPeerId,
             };
             this.joinRoom(userToBack);
         });

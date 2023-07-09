@@ -7,6 +7,7 @@ import { User } from '../../models/user.model';
 import { SocketService } from '../../modules/call/services/socket.service';
 import { MessageModel } from '../../models/message.model';
 import { MessageForBackModel } from '../../models/messageForBack.model';
+import { UserToBackDTO } from '../../utils/UserToBackDTO';
 
 @Component({
     selector: 'app-my-conversations',
@@ -23,95 +24,81 @@ export class MyConversationsComponent implements OnInit {
         private profilServices: ProfilService,
         private authService: AuthService,
         private _snackBar: MatSnackBar,
+        private socketService: SocketService,
     ) {}
 
-    ngOnInit(): void {
-        this.getConversations();
+    async ngOnInit(): Promise<void> {
+        await this.getConversations();
         this.selectConversation(this.selectedConversation);
         const userFromLocalStorage = localStorage.getItem('user');
         if (userFromLocalStorage) {
             this.me = JSON.parse(userFromLocalStorage);
         }
-        if (this.conversations?.[this.selectedConversation]?.socket !== undefined) {
-            const conversationId = this.conversations[this.selectedConversation].id;
-            const conversationSocket = this.conversations?.[this.selectedConversation]?.socket;
-            if (conversationId != null && conversationSocket) {
-                conversationSocket.joinConversation(conversationId);
-                this.handleNewMessage(conversationSocket);
-            }
-            console.log('conversationId in ngoninit my conversation compo : ' + conversationId);
-        }
+        const user: UserToBackDTO = {
+            id: this.me?._id,
+            roomId: this.conversations[this.selectedConversation]._id,
+        };
+        await this.joinRoom(user);
     }
 
-    handleNewMessage(socketService: SocketService): void {
-        socketService.newMessageForConversation.subscribe((chat) => {
-            if (chat) {
-                const conversationIndex = this.conversations.findIndex(
-                    (conversation) => conversation.id === chat.conversationId,
-                );
-                if (conversationIndex !== -1) {
-                    const conversation = this.conversations[conversationIndex];
-                    if (conversation.messages) {
-                        conversation.messages.push(chat);
+    private async joinRoom(user: UserToBackDTO): Promise<void> {
+        await this.leaveRoom(user);
+        this.socketService.joinRoom(user);
+    }
+
+    async getConversations(): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            this.profilServices.getConversations().subscribe({
+                next: (res: any) => {
+                    const conversations = [];
+                    for (let conversation of res) {
+                        conversations.push(conversation);
                     }
-                }
-            }
+                    this.conversations = conversations;
+                    resolve(); // Résoudre la promesse lorsque la récupération des conversations est terminée
+                },
+                error: (err: any) => {
+                    this._snackBar.open(err.message, 'Fermer', {
+                        panelClass: ['error-snackbar'],
+                    });
+                    reject(err); // Rejeter la promesse en cas d'erreur
+                },
+            });
+            this.selectedConversation = 0;
         });
     }
 
-    getConversations() {
-        this.profilServices.getConversations().subscribe({
-            next: (res: any) => {
-                const conversations = [];
-                for (let conversation of res) {
-                    conversations.push(conversation);
-                }
-                this.conversations = conversations;
-                console.log(this.conversations);
-            },
-            error: (err: any) => {
-                this._snackBar.open(err.message, 'Fermer', {
-                    panelClass: ['error-snackbar'],
-                });
-            },
-        });
-        this.selectedConversation = 0;
-    }
+    async selectConversation(conversationIndex: number) {
+        // Désinscription du WebSocket de l'ancienne conversation
+        if (this.selectedConversation !== conversationIndex) {
+            const oldConversationId = this.conversations[this.selectedConversation]._id;
+            const oldUser: UserToBackDTO = {
+                id: this.me?._id,
+                roomId: oldConversationId,
+            };
+            await this.leaveRoom(oldUser);
+        }
 
-    selectConversation(conversationIndex: number) {
+        // Sélection de la nouvelle conversation
         this.selectedConversation = conversationIndex;
         this.receiver =
             this.conversations[this.selectedConversation]?.users?.[0]?.username ===
             this.me?.username
                 ? this.conversations[this.selectedConversation]?.users?.[1]
                 : this.conversations[this.selectedConversation]?.users?.[1];
+
+        // Abonnement au WebSocket de la nouvelle conversation
+        const newUser: UserToBackDTO = {
+            id: this.me?._id,
+            roomId: this.conversations[this.selectedConversation]._id,
+        };
+        await this.joinRoom(newUser);
     }
 
-    public addMessage(message: string): void {
-        let chat: MessageModel = {
-            content: message,
-            from: this.me,
-            date: Date.now(),
-        };
-        let messageForBack: MessageForBackModel = {
-            content: message,
-            conversationId: this.conversations[this.selectedConversation].id,
-        };
-        const socketService = this.conversations[this.selectedConversation].socket;
-        if (socketService !== undefined) {
-            socketService.chatConversation(messageForBack);
-        }
-        this.conversations[this.selectedConversation]?.messages?.push(chat);
-        this.scrollToNewMessage();
-    }
-
-    private scrollToNewMessage(): void {
-        setTimeout(() => {
-            // @ts-ignore
-            const lastMessage = document.getElementById(`${this.conversation?.length - 1}`);
-            if (lastMessage) {
-                lastMessage.scrollIntoView();
-            }
-        }, 200);
+    private async leaveRoom(user: UserToBackDTO): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            this.socketService.leaveRoom(user); // Ajoutez une méthode leaveRoom() à votre SocketService
+            resolve(); // Résoudre la promesse immédiatement
+        });
     }
 }

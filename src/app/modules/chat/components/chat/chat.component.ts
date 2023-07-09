@@ -1,26 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { SocketService } from 'src/app/modules/call/services/socket.service';
 import { Chat } from '../../models/chat.model';
 import { ChatRoom } from '../../models/chatRoom.model';
+import { MessageModel } from '../../../../models/message.model';
+import { ConversationModel } from '../../../../models/conversation.model';
+import { User } from '../../../../models/user.model';
 
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnInit {
-    public chats: ChatRoom[] = [];
+export class ChatComponent implements OnInit, OnChanges {
+    @Input() conversation: ConversationModel | undefined;
+    @Input() me: User | undefined;
     constructor(private socketService: SocketService) {}
 
     ngOnInit(): void {
         this.handleNewMessage();
     }
 
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['conversation'] && changes['conversation'].currentValue) {
+            this.conversation = changes['conversation'].currentValue;
+        }
+      console.log('ça a changé : ' + this.conversation?.users);
+    }
+
     handleNewMessage(): void {
-        this.socketService.newMessageForRoom.subscribe((chat) => {
+        this.socketService.newMessage.subscribe((chat) => {
             if (chat) {
-                this.chats.push(chat);
-                this.scrollToNewMessage();
+                if (this.conversation?.messages !== undefined) {
+                    this.conversation?.messages.push(chat);
+                    this.scrollToNewMessage();
+                } else {
+                    this.conversation = {
+                        messages: [],
+                    };
+                    this.conversation.messages?.push(chat);
+                }
             }
         });
     }
@@ -35,22 +53,27 @@ export class ChatComponent implements OnInit {
 
         //let photo = JSON.parse(localStorage.getItem("user")).avatar.location;
         let date = new Date();
-        let chat: ChatRoom = {
+        let chat: MessageModel = {
             content: message,
-            time: date.getTime(),
-            isMe: true,
-            userName: userName /*, userPhoto: photo*/,
+            from: userName,
+            date: date.getTime(),
         };
-        this.socketService.chatRoom(message);
-        this.chats.push(chat);
-        this.scrollToNewMessage();
+        this.socketService.chat(chat);
+        if (this.conversation?.messages) {
+            this.conversation?.messages.push(chat);
+            this.scrollToNewMessage();
+        }
     }
 
     private scrollToNewMessage(): void {
         setTimeout(() => {
-            const lastMessage = document.getElementById(`${this.chats.length - 1}`);
-            if (lastMessage) {
-                lastMessage.scrollIntoView();
+            if (this.conversation?.messages) {
+                const lastMessage = document.getElementById(
+                    `${this.conversation?.messages.length - 1}`,
+                );
+                if (lastMessage) {
+                    lastMessage.scrollIntoView();
+                }
             }
         }, 200);
     }
