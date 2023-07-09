@@ -1,0 +1,11 @@
+.conversation-container {
+  display: flex;
+  height: 95vh; /* Utilise 100% de la hauteur de la fenêtre */
+}
+
+.conversation-list {
+  width: 25%;
+  background: red;
+  border-right: 2px solid black;
+  overflow: auto;
+}

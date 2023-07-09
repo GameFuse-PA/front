@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from 'src/app/modules/call/services/socket.service';
 import { Chat } from '../../models/chat.model';
+import { ChatRoom } from '../../models/chatRoom.model';
 
 @Component({
     selector: 'app-chat',
@@ -8,7 +9,7 @@ import { Chat } from '../../models/chat.model';
     styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
-    public chats: Chat[] = [];
+    public chats: ChatRoom[] = [];
     constructor(private socketService: SocketService) {}
 
     ngOnInit(): void {
@@ -16,7 +17,7 @@ export class ChatComponent implements OnInit {
     }
 
     handleNewMessage(): void {
-        this.socketService.newMessage.subscribe((chat) => {
+        this.socketService.newMessageForRoom.subscribe((chat) => {
             if (chat) {
                 this.chats.push(chat);
                 this.scrollToNewMessage();
@@ -34,13 +35,13 @@ export class ChatComponent implements OnInit {
 
         //let photo = JSON.parse(localStorage.getItem("user")).avatar.location;
         let date = new Date();
-        let chat: Chat = {
+        let chat: ChatRoom = {
             content: message,
             time: date.getTime(),
             isMe: true,
             userName: userName /*, userPhoto: photo*/,
         };
-        this.socketService.chat(message);
+        this.socketService.chatRoom(message);
         this.chats.push(chat);
         this.scrollToNewMessage();
     }

@@ -1,0 +1,15 @@
+<div class="conversation-item">
+    <img
+        class="avatar"
+        [src]="conversation?.users?.[0]?._id === me?._id ?
+        conversation?.users?.[1]?.avatar?.location :
+        conversation?.users?.[0]?.avatar?.location"
+        alt="User Avatar"
+    />
+    <div class="info">
+        <h3>
+            {{ conversation?.users?.[0]?._id === me?._id ? conversation?.users?.[1]?.firstname : conversation?.users?.[0]?.firstname}}
+            {{ conversation?.users?.[0]?._id === me?._id ? conversation?.users?.[1]?.firstname : conversation?.users?.[0]?.lastname}}
+        </h3>
+    </div>
+</div>

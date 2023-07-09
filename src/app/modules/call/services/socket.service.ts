@@ -3,13 +3,17 @@ import { BehaviorSubject } from 'rxjs';
 import io, { Socket } from 'socket.io-client';
 import { UserToBackDTO } from '../../../utils/UserToBackDTO';
 import { Chat } from '../../chat/models/chat.model';
+import { MessageForBackModel } from '../../../models/messageForBack.model';
+import { ChatRoom } from '../../chat/models/chatRoom.model';
 
 @Injectable()
 export class SocketService {
     public joinedId = new BehaviorSubject(null);
     public leavedId = new BehaviorSubject(null);
     // @ts-ignore
-    public newMessage = new BehaviorSubject<Chat>(null);
+    public newMessageForRoom = new BehaviorSubject<ChatRoom>(null);
+    // @ts-ignore
+    public newMessageForConversation = new BehaviorSubject<Chat>(null);
     public socket: Socket;
 
     constructor() {
@@ -28,8 +32,16 @@ export class SocketService {
         this.socket.emit('roomAccessRequest', user);
     }
 
-    public chat(content: string): void {
+    public chatRoom(content: string): void {
         this.socket.emit('chat', content);
+    }
+
+    public joinConversation(conversationId: string): void {
+        this.socket.emit('conversationAccessRequest', conversationId);
+    }
+
+    public chatConversation(messageForBack: MessageForBackModel): void {
+        this.socket.emit('chatConversation', messageForBack);
     }
 
     private handleUserConnect(): void {
@@ -42,8 +54,13 @@ export class SocketService {
     }
 
     private handleNewMessage(): void {
-        this.socket.on('new-message', (chatStructure) => {
-            this.newMessage.next(chatStructure);
+        this.socket.on('new-message-room', (chatStructure) => {
+            console.log('nouveau message recu dans les room: ' + chatStructure);
+            this.newMessageForRoom.next(chatStructure);
+        });
+        this.socket.on('new-message-conversation', (chatStructure) => {
+            console.log('nouveau message recu dans les conversations: ' + chatStructure);
+            this.newMessageForConversation.next(chatStructure);
         });
     }
 }

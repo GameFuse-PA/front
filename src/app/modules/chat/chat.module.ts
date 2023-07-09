@@ -7,6 +7,6 @@ import { ChatInputComponent } from './components/chat-input/chat-input.component
 @NgModule({
     declarations: [ChatComponent, ChatInputComponent],
     imports: [FormsModule, CommonModule],
-    exports: [ChatComponent],
+  exports: [ChatComponent, ChatInputComponent],
 })
 export class ChatModule {}

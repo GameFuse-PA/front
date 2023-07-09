@@ -54,6 +54,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RoomComponent } from './components/game-session/room/room.component';
 import { ChatModule } from './modules/chat/chat.module';
 import { CallModule } from './modules/call/call.module';
+import {ConversationModule} from "./modules/chat/conversation.module";
 
 @NgModule({
     declarations: [
@@ -116,6 +117,7 @@ import { CallModule } from './modules/call/call.module';
         MatNativeDateModule,
         ChatModule,
         CallModule,
+      ConversationModule,
     ],
     providers: [
         {

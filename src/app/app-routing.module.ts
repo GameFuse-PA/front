@@ -13,6 +13,7 @@ import { ListGameSessionComponent } from './pages/list-game-session/list-game-se
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { MyInvitationsComponent } from './components/my-invitations/my-invitations.component';
 import { RoomComponent } from './components/game-session/room/room.component';
+import { MyConversationsComponent } from './components/my-conversations/my-conversations.component';
 
 const routes: Routes = [
     {
@@ -67,6 +68,10 @@ const routes: Routes = [
     {
         path: 'invitation',
         component: InvitationsComponent,
+    },
+  {
+        path: 'my-conversations',
+        component: MyConversationsComponent,
     },
     {
         path: '**',

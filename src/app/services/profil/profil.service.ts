@@ -48,4 +48,8 @@ export class ProfilService {
     getInvitation(id: string) {
         return this.http.get(`${URL}/invitations/${id}`);
     }
+
+    getConversations() {
+        return this.http.get(`${URL}/conversations`);
+    }
 }
