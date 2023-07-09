@@ -55,13 +55,13 @@ export class MyConversationsComponent implements OnInit {
                         conversations.push(conversation);
                     }
                     this.conversations = conversations;
-                    resolve(); // Résoudre la promesse lorsque la récupération des conversations est terminée
+                    resolve();
                 },
                 error: (err: any) => {
                     this._snackBar.open(err.message, 'Fermer', {
                         panelClass: ['error-snackbar'],
                     });
-                    reject(err); // Rejeter la promesse en cas d'erreur
+                    reject(err);
                 },
             });
             this.selectedConversation = 0;
@@ -69,7 +69,6 @@ export class MyConversationsComponent implements OnInit {
     }
 
     async selectConversation(conversationIndex: number) {
-        // Désinscription du WebSocket de l'ancienne conversation
         if (this.selectedConversation !== conversationIndex) {
             const oldConversationId = this.conversations[this.selectedConversation]._id;
             const oldUser: UserToBackDTO = {
@@ -78,16 +77,12 @@ export class MyConversationsComponent implements OnInit {
             };
             await this.leaveRoom(oldUser);
         }
-
-        // Sélection de la nouvelle conversation
         this.selectedConversation = conversationIndex;
         this.receiver =
             this.conversations[this.selectedConversation]?.users?.[0]?.username ===
             this.me?.username
                 ? this.conversations[this.selectedConversation]?.users?.[1]
                 : this.conversations[this.selectedConversation]?.users?.[1];
-
-        // Abonnement au WebSocket de la nouvelle conversation
         const newUser: UserToBackDTO = {
             id: this.me?._id,
             roomId: this.conversations[this.selectedConversation]._id,
@@ -97,8 +92,8 @@ export class MyConversationsComponent implements OnInit {
 
     private async leaveRoom(user: UserToBackDTO): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            this.socketService.leaveRoom(user); // Ajoutez une méthode leaveRoom() à votre SocketService
-            resolve(); // Résoudre la promesse immédiatement
+            this.socketService.leaveRoom(user);
+            resolve();
         });
     }
 }

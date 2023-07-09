@@ -36,14 +36,6 @@ export class SocketService {
     }
 
     public chat(content: MessageModel): void {
-        console.log(
-            'jenvoie le message : ' +
-                content.content +
-                'de la part de ' +
-                content.from +
-                "à l'heeure : " +
-                content.date,
-        );
         this.socket.emit('chat', content);
     }
 
