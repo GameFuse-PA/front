@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import io, { Socket } from 'socket.io-client';
 import { UserToBackDTO } from '../../../utils/UserToBackDTO';
-import { Chat } from '../../chat/models/chat.model';
-import { MessageForBackModel } from '../../../models/messageForBack.model';
-import { ChatRoom } from '../../chat/models/chatRoom.model';
 import { MessageModel } from '../../../models/message.model';
 
 @Injectable()
@@ -35,7 +32,8 @@ export class SocketService {
         this.socket.emit('roomLeaveRequest', user);
     }
 
-    public chat(content: MessageModel): void {
+    public sendChat(content: MessageModel): void {
+      console.log("chat envoyé")
         this.socket.emit('chat', content);
     }
 

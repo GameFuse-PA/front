@@ -1,7 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { SocketService } from 'src/app/modules/call/services/socket.service';
-import { Chat } from '../../models/chat.model';
-import { ChatRoom } from '../../models/chatRoom.model';
 import { MessageModel } from '../../../../models/message.model';
 import { ConversationModel } from '../../../../models/conversation.model';
 import { User } from '../../../../models/user.model';
@@ -45,20 +43,19 @@ export class ChatComponent implements OnInit, OnChanges {
 
     //I send a message so I get the string content and make Chat object to send
     public addMessage(message: string): void {
+      console.log("add message")
         let userName;
         if (localStorage.getItem('user') !== null) {
             // @ts-ignore
             userName = JSON.parse(localStorage.getItem('user')).username;
         }
-
-        //let photo = JSON.parse(localStorage.getItem("user")).avatar.location;
         let date = new Date();
         let chat: MessageModel = {
             content: message,
             from: userName,
             date: date.getTime(),
         };
-        this.socketService.chat(chat);
+        this.socketService.sendChat(chat);
         if (this.conversation?.messages) {
             this.conversation?.messages.push(chat);
             this.scrollToNewMessage();

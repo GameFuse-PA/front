@@ -5,8 +5,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConversationModel } from '../../models/conversation.model';
 import { User } from '../../models/user.model';
 import { SocketService } from '../../modules/call/services/socket.service';
-import { MessageModel } from '../../models/message.model';
-import { MessageForBackModel } from '../../models/messageForBack.model';
 import { UserToBackDTO } from '../../utils/UserToBackDTO';
 
 @Component({
@@ -42,7 +40,6 @@ export class MyConversationsComponent implements OnInit {
     }
 
     private async joinRoom(user: UserToBackDTO): Promise<void> {
-        await this.leaveRoom(user);
         this.socketService.joinRoom(user);
     }
 
@@ -69,13 +66,16 @@ export class MyConversationsComponent implements OnInit {
     }
 
     async selectConversation(conversationIndex: number) {
+      console.log("selected index " + this.selectedConversation);
+      console.log("nouvel index : " + conversationIndex)
+      console.log(this.selectedConversation === conversationIndex)
         if (this.selectedConversation !== conversationIndex) {
-            const oldConversationId = this.conversations[this.selectedConversation]._id;
-            const oldUser: UserToBackDTO = {
+            const previousConversationId = this.conversations[this.selectedConversation]._id;
+            const previousUser: UserToBackDTO = {
                 id: this.me?._id,
-                roomId: oldConversationId,
+                roomId: previousConversationId,
             };
-            await this.leaveRoom(oldUser);
+            await this.leaveRoom(previousUser);
         }
         this.selectedConversation = conversationIndex;
         this.receiver =
