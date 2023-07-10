@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { GameSessionModel } from '../../../models/game-session/game-session.model';
 import { User } from '../../../models/user.model';
 import { GameSessionStatus } from '../../../utils/enum';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-game-session-card',
@@ -17,32 +18,31 @@ export class GameSessionCardComponent implements OnInit {
     gameSessionButtonClass: string = '';
     gameSessionButtonText: string = '';
 
-    constructor() {}
+    constructor(private router: Router) {}
 
     ngOnInit(): void {
         switch (this.gameSession?.status) {
             case GameSessionStatus.In_Progress:
-                this.gameSessionStatusClass = 'game-session-in-progress';
+                this.gameSessionStatusClass = 'status game-session-in-progress';
                 this.gameSessionStatusText = 'Partie en cours';
-                this.gameSessionButtonClass =
-                    'button-game mt-10 bg-[color:var(--success)] text-white';
+                this.gameSessionButtonClass = 'w-full mt-10 bg-[color:var(--success)] text-white';
                 this.gameSessionButtonText = 'Rejoindre la partie';
                 break;
             case GameSessionStatus.Terminated:
-                this.gameSessionStatusClass = 'game-session-terminated';
+                this.gameSessionStatusClass = 'status game-session-terminated';
                 this.gameSessionStatusText = 'Partie terminé';
-                this.gameSessionButtonClass =
-                    'button-game mt-10 bg-[color:var(--primary)] text-white';
+                this.gameSessionButtonClass = 'w-full mt-10 bg-[color:var(--primary)] text-white';
                 this.gameSessionButtonText = 'Voir le replay';
                 break;
             default:
-                this.gameSessionStatusClass = 'error-game-status';
+                this.gameSessionStatusClass = 'status error-game-status';
                 this.gameSessionStatusText = 'Erreur';
-                this.gameSessionButtonClass =
-                    'button-game mt-10 bg-[color:var(--success)] text-white';
+                this.gameSessionButtonClass = 'w-full mt-10 bg-[color:var(--success)] text-white';
                 this.gameSessionButtonText = 'Rejoindre la partie (erreur potentielle)';
         }
     }
 
-    protected readonly gameSessionEnum = GameSessionStatus;
+    joinGameSession() {
+        this.router.navigateByUrl(`/room/${this.gameSession?._id!}`);
+    }
 }
