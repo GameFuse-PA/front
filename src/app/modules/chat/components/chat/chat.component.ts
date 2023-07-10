@@ -3,6 +3,7 @@ import { SocketService } from 'src/app/modules/call/services/socket.service';
 import { MessageModel } from '../../../../models/message.model';
 import { ConversationModel } from '../../../../models/conversation.model';
 import { User } from '../../../../models/user.model';
+import {ProfilService} from "../../../../services/profil/profil.service";
 
 @Component({
     selector: 'app-chat',
@@ -12,7 +13,7 @@ import { User } from '../../../../models/user.model';
 export class ChatComponent implements OnInit, OnChanges {
     @Input() conversation: ConversationModel | undefined;
     @Input() me: User | undefined;
-    constructor(private socketService: SocketService) {}
+    constructor(private socketService: SocketService, private profilService: ProfilService) {}
 
     ngOnInit(): void {
         this.handleNewMessage();
@@ -56,6 +57,7 @@ export class ChatComponent implements OnInit, OnChanges {
             date: date.getTime(),
             conversationId: this.conversation?._id
         };
+        this.profilService.postMessage(chat);
         this.socketService.sendChat(chat);
         if (this.conversation?.messages) {
             this.conversation?.messages.push(chat);

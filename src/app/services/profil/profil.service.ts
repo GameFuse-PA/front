@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
+import {MessageModel} from "../../models/message.model";
 
 const URL = environment.apiUrl + '/me';
 
@@ -51,6 +52,10 @@ export class ProfilService {
 
     getConversations() {
         return this.http.get(`${URL}/conversations`);
+    }
+
+    postMessage(message: MessageModel) {
+        return this.http.put(`${URL}/conversations/message`, message);
     }
 
     getConversation(id: string) {
