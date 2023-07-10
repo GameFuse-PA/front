@@ -27,7 +27,7 @@ export class ChatComponent implements OnInit, OnChanges {
 
     handleNewMessage(): void {
         this.socketService.newMessage.subscribe((chat) => {
-            if (chat) {
+            if (chat && chat.conversationId === this.conversation?._id) {
                 if (this.conversation?.messages !== undefined) {
                     this.conversation?.messages.push(chat);
                     this.scrollToNewMessage();
@@ -54,6 +54,7 @@ export class ChatComponent implements OnInit, OnChanges {
             content: message,
             from: userName,
             date: date.getTime(),
+            conversationId: this.conversation?._id
         };
         this.socketService.sendChat(chat);
         if (this.conversation?.messages) {

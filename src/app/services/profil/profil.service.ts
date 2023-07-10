@@ -52,4 +52,8 @@ export class ProfilService {
     getConversations() {
         return this.http.get(`${URL}/conversations`);
     }
+
+    getConversation(id: string) {
+        return this.http.get(`${URL}/conversations/${id}`);
+    }
 }

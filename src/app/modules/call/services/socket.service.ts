@@ -29,7 +29,7 @@ export class SocketService {
     }
 
     public leaveRoom(user: UserToBackDTO): void {
-        this.socket.emit('roomLeaveRequest', user);
+        this.socket.emit('leaveRoom', user);
     }
 
     public sendChat(content: MessageModel): void {
@@ -48,6 +48,7 @@ export class SocketService {
 
     private handleNewMessage(): void {
         this.socket.on('new-message', (chatStructure) => {
+          //TODO: ajouter le chat à la conv dont l'id est chatstructure.conversationId
             this.newMessage.next(chatStructure);
         });
     }

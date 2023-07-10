@@ -66,9 +66,6 @@ export class MyConversationsComponent implements OnInit {
     }
 
     async selectConversation(conversationIndex: number) {
-      console.log("selected index " + this.selectedConversation);
-      console.log("nouvel index : " + conversationIndex)
-      console.log(this.selectedConversation === conversationIndex)
         if (this.selectedConversation !== conversationIndex) {
             const previousConversationId = this.conversations[this.selectedConversation]._id;
             const previousUser: UserToBackDTO = {
@@ -87,6 +84,19 @@ export class MyConversationsComponent implements OnInit {
             id: this.me?._id,
             roomId: this.conversations[this.selectedConversation]._id,
         };
+        const newConversationId = this.conversations[this.selectedConversation]._id;
+        if (newConversationId != undefined) {
+            await this.profilServices.getConversation(newConversationId).subscribe({
+                next: (convFromDb: ConversationModel) => {
+                    this.conversations[this.selectedConversation] = convFromDb;
+                },
+                error: (err: any) => {
+                    this._snackBar.open(err.message, 'Fermer', {
+                        panelClass: ['error-snackbar'],
+                    });
+                },
+            });
+        }
         await this.joinRoom(newUser);
     }
 
