@@ -22,10 +22,14 @@ export class MyConversationsComponent implements OnInit {
         private profilServices: ProfilService,
         private authService: AuthService,
         private _snackBar: MatSnackBar,
-        private socketService: SocketService,
+        public socketService: SocketService,
     ) {}
 
     async ngOnInit(): Promise<void> {
+      console.log(this.socketService)
+        while (this.socketService === undefined){
+          console.log("websocket is starting...")
+        }
         await this.getConversations();
         this.selectConversation(this.selectedConversation);
         const userFromLocalStorage = localStorage.getItem('user');
@@ -68,6 +72,7 @@ export class MyConversationsComponent implements OnInit {
     async selectConversation(conversationIndex: number) {
         if (this.selectedConversation !== conversationIndex) {
             const previousConversationId = this.conversations[this.selectedConversation]._id;
+            ///TODO : ne renvoyer plus que la roomid et non plus UserToBackDTO dans leaveRoom
             const previousUser: UserToBackDTO = {
                 id: this.me?._id,
                 roomId: previousConversationId,

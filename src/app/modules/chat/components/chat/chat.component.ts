@@ -3,7 +3,7 @@ import { SocketService } from 'src/app/modules/call/services/socket.service';
 import { MessageModel } from '../../../../models/message.model';
 import { ConversationModel } from '../../../../models/conversation.model';
 import { User } from '../../../../models/user.model';
-import {ProfilService} from "../../../../services/profil/profil.service";
+import { ProfilService } from '../../../../services/profil/profil.service';
 
 @Component({
     selector: 'app-chat',
@@ -13,9 +13,16 @@ import {ProfilService} from "../../../../services/profil/profil.service";
 export class ChatComponent implements OnInit, OnChanges {
     @Input() conversation: ConversationModel | undefined;
     @Input() me: User | undefined;
-    constructor(private socketService: SocketService, private profilService: ProfilService) {}
+    @Input() socketService: SocketService | undefined;
+
+    constructor(private profilService: ProfilService) {}
 
     ngOnInit(): void {
+        console.log('soecket service');
+        console.log(this.socketService);
+        while (this.socketService === undefined) {
+            console.log('websocket is starting...');
+        }
         this.handleNewMessage();
     }
 
@@ -23,28 +30,30 @@ export class ChatComponent implements OnInit, OnChanges {
         if (changes['conversation'] && changes['conversation'].currentValue) {
             this.conversation = changes['conversation'].currentValue;
         }
-      console.log('ça a changé : ' + this.conversation?.users);
+        console.log('ça a changé : ' + this.conversation?.users);
     }
 
     handleNewMessage(): void {
-        this.socketService.newMessage.subscribe((chat) => {
-            if (chat && chat.conversationId === this.conversation?._id) {
-                if (this.conversation?.messages !== undefined) {
-                    this.conversation?.messages.push(chat);
-                    this.scrollToNewMessage();
-                } else {
-                    this.conversation = {
-                        messages: [],
-                    };
-                    this.conversation.messages?.push(chat);
+        if (this.socketService != undefined) {
+            this.socketService.newMessage.subscribe((chat) => {
+                if (chat && chat.conversationId === this.conversation?._id) {
+                    if (this.conversation?.messages !== undefined) {
+                        this.conversation?.messages.push(chat);
+                        this.scrollToNewMessage();
+                    } else {
+                        this.conversation = {
+                            messages: [],
+                        };
+                        this.conversation.messages?.push(chat);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     //I send a message so I get the string content and make Chat object to send
     public addMessage(message: string): void {
-      console.log("add message")
+        console.log('add message');
         let userName;
         if (localStorage.getItem('user') !== null) {
             // @ts-ignore
@@ -55,10 +64,13 @@ export class ChatComponent implements OnInit, OnChanges {
             content: message,
             from: userName,
             date: date.getTime(),
-            conversationId: this.conversation?._id
+            conversationId: this.conversation?._id,
         };
         this.profilService.postMessage(chat);
-        this.socketService.sendChat(chat);
+        if (this.socketService != undefined) {
+            this.socketService.sendChat(chat);
+        }
+
         if (this.conversation?.messages) {
             this.conversation?.messages.push(chat);
             this.scrollToNewMessage();
