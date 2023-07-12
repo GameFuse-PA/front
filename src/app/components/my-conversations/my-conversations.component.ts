@@ -6,6 +6,7 @@ import { ConversationModel } from '../../models/conversation.model';
 import { User } from '../../models/user.model';
 import { SocketService } from '../../modules/call/services/socket.service';
 import { UserToBackDTO } from '../../utils/UserToBackDTO';
+import { MessageToBackModel } from '../../models/messageToBack.model';
 
 @Component({
     selector: 'app-my-conversations',
@@ -14,8 +15,8 @@ import { UserToBackDTO } from '../../utils/UserToBackDTO';
 })
 export class MyConversationsComponent implements OnInit {
     public conversations: ConversationModel[] = [];
-    public selectedConversation: number = 0;
-    public me: User | undefined;
+    public selectedConversation: ConversationModel | undefined;
+    public me: User | null | undefined;
     private receiver: User | undefined;
 
     constructor(
@@ -26,25 +27,25 @@ export class MyConversationsComponent implements OnInit {
     ) {}
 
     async ngOnInit(): Promise<void> {
-      console.log(this.socketService)
-        while (this.socketService === undefined){
-          console.log("websocket is starting...")
-        }
         await this.getConversations();
-        this.selectConversation(this.selectedConversation);
-        const userFromLocalStorage = localStorage.getItem('user');
-        if (userFromLocalStorage) {
-            this.me = JSON.parse(userFromLocalStorage);
-        }
-        const user: UserToBackDTO = {
-            id: this.me?._id,
-            roomId: this.conversations[this.selectedConversation]._id,
-        };
-        await this.joinRoom(user);
+        this.selectConversation(this.conversations[0]);
+        this.me = this.authService.user;
+        await this.joinConversation();
+        this.socketService.newMessage.subscribe((chat) => {
+            if (chat && chat.conversationId === this.selectedConversation?._id) {
+                if (this.selectedConversation?.messages !== undefined) {
+                    this.selectedConversation?.messages.push(chat);
+                } else {
+                    this.selectedConversation = {
+                        messages: [],
+                    };
+                    this.selectedConversation.messages?.push(chat);
+                }
+            }
+        });
     }
-
-    private async joinRoom(user: UserToBackDTO): Promise<void> {
-        this.socketService.joinRoom(user);
+    private async joinConversation(): Promise<void> {
+        this.socketService.joinConversation();
     }
 
     async getConversations(): Promise<void> {
@@ -65,35 +66,34 @@ export class MyConversationsComponent implements OnInit {
                     reject(err);
                 },
             });
-            this.selectedConversation = 0;
         });
     }
 
-    async selectConversation(conversationIndex: number) {
-        if (this.selectedConversation !== conversationIndex) {
-            const previousConversationId = this.conversations[this.selectedConversation]._id;
-            ///TODO : ne renvoyer plus que la roomid et non plus UserToBackDTO dans leaveRoom
-            const previousUser: UserToBackDTO = {
-                id: this.me?._id,
-                roomId: previousConversationId,
+    async addMessage(message: string) {
+        if (this.selectedConversation?.users != undefined) {
+            let recipient = undefined;
+            console.log(this.me?._id);
+            console.log(this.selectedConversation?.users[0]._id);
+            console.log(this.me?._id === this.selectedConversation?.users[0]._id);
+            if (this.me?._id === this.selectedConversation?.users[0]._id) {
+                console.log("me n'est pas egal au user 0");
+                recipient = this.selectedConversation?.users[1];
+            } else {
+                recipient = this.selectedConversation?.users[0];
+            }
+            const chatToBack: MessageToBackModel = {
+                content: message,
+                to: recipient._id,
             };
-            await this.leaveRoom(previousUser);
+            this.socketService.sendChat(chatToBack);
         }
-        this.selectedConversation = conversationIndex;
-        this.receiver =
-            this.conversations[this.selectedConversation]?.users?.[0]?.username ===
-            this.me?.username
-                ? this.conversations[this.selectedConversation]?.users?.[1]
-                : this.conversations[this.selectedConversation]?.users?.[1];
-        const newUser: UserToBackDTO = {
-            id: this.me?._id,
-            roomId: this.conversations[this.selectedConversation]._id,
-        };
-        const newConversationId = this.conversations[this.selectedConversation]._id;
-        if (newConversationId != undefined) {
-            await this.profilServices.getConversation(newConversationId).subscribe({
+    }
+
+    async selectConversation(selectedConversation: ConversationModel) {
+        if (selectedConversation._id) {
+            await this.profilServices.getConversation(selectedConversation._id).subscribe({
                 next: (convFromDb: ConversationModel) => {
-                    this.conversations[this.selectedConversation] = convFromDb;
+                    this.selectedConversation = convFromDb;
                 },
                 error: (err: any) => {
                     this._snackBar.open(err.message, 'Fermer', {
@@ -102,13 +102,5 @@ export class MyConversationsComponent implements OnInit {
                 },
             });
         }
-        await this.joinRoom(newUser);
-    }
-
-    private async leaveRoom(user: UserToBackDTO): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            this.socketService.leaveRoom(user);
-            resolve();
-        });
     }
 }

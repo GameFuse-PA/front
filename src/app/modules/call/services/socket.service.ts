@@ -13,6 +13,7 @@ export class SocketService {
     public socket: Socket;
 
     constructor() {
+        //todo : recup depuis authservice et non du localstorage
         const token = JSON.parse(localStorage.getItem('user') as string);
         this.socket = io('localhost:3000', {
             path: '/socket',
@@ -28,13 +29,14 @@ export class SocketService {
         this.socket.emit('roomAccessRequest', user);
     }
 
-    public leaveRoom(user: UserToBackDTO): void {
-        this.socket.emit('leaveRoom', user);
+    public joinConversation(): void {
+        this.socket.emit('chatAccessRequest');
     }
 
     public sendChat(content: MessageModel): void {
-      console.log("chat envoyé")
+      console.log(content)
         this.socket.emit('chat', content);
+        console.log('chat envoyé');
     }
 
     private handleUserConnect(): void {
@@ -48,7 +50,8 @@ export class SocketService {
 
     private handleNewMessage(): void {
         this.socket.on('new-message', (chatStructure) => {
-          //TODO: ajouter le chat à la conv dont l'id est chatstructure.conversationId
+            //TODO: ajouter le chat à la conv dont l'id est chatstructure.conversationId
+            console.log("j'ai recu un nouveau message");
             this.newMessage.next(chatStructure);
         });
     }

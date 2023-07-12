@@ -1,9 +1,9 @@
 <div class="conversation-container">
     <div class="conversation-list">
         <app-conversation-resume
-            *ngFor="let conversation of conversations; let i = index"
+            *ngFor="let conversation of conversations"
             [conversation]="conversation"
-            (click)="selectConversation(i)"
+            (click)="selectConversation(conversation)"
         >
         </app-conversation-resume>
     </div>
@@ -13,12 +13,16 @@
             <div class="chat-header">
                 <div class="chat-title">
                     Chat avec
-                    {{ conversations[selectedConversation]?.users?.[0]?._id === me?._id ? conversations[selectedConversation]?.users?.[1]?.firstname : conversations[selectedConversation]?.users?.[0]?.firstname}}
+                    {{ selectedConversation?.users?.[0]?._id === me?._id ? selectedConversation?.users?.[1]?.firstname : selectedConversation?.users?.[0]?.firstname}}
                 </div>
             </div>
-          <div *ngIf="socketService">
-            <app-chat [conversation]="conversations[selectedConversation]" [me]="me" [socketService]="socketService"> </app-chat>
-          </div>
+            <div *ngIf="socketService">
+                <app-chat
+                    [conversation]="selectedConversation"
+                    (whenSubmitMessage)="addMessage($event)"
+                >
+                </app-chat>
+            </div>
         </div>
         <div id="notification" class="notification hidden">
             Le texte a été copié dans le presse-papiers
