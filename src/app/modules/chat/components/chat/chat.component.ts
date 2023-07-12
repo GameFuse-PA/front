@@ -18,19 +18,22 @@ export class ChatComponent implements OnInit, OnChanges {
     constructor(private profilService: ProfilService) {}
 
     ngOnInit(): void {
-        console.log('soecket service');
-        console.log(this.socketService);
-        while (this.socketService === undefined) {
-            console.log('websocket is starting...');
-        }
         this.handleNewMessage();
+        this.scrollToNewMessage();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['conversation'] && changes['conversation'].currentValue) {
             this.conversation = changes['conversation'].currentValue;
         }
-        console.log('ça a changé : ' + this.conversation?.users);
+
+      if(this.conversation?.messages){
+        console.log(this.conversation?.messages[1])
+        /*for(let message of this.conversation?.messages){
+          console.log(message.from?._id)
+          console.log(this.me?._id)
+        }*/
+      }
     }
 
     handleNewMessage(): void {
