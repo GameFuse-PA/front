@@ -26,14 +26,6 @@ export class ChatComponent implements OnInit, OnChanges {
         if (changes['conversation'] && changes['conversation'].currentValue) {
             this.conversation = changes['conversation'].currentValue;
         }
-
-      if(this.conversation?.messages){
-        console.log(this.conversation?.messages[1])
-        /*for(let message of this.conversation?.messages){
-          console.log(message.from?._id)
-          console.log(this.me?._id)
-        }*/
-      }
     }
 
     handleNewMessage(): void {
