@@ -30,11 +30,11 @@ export class SocketService {
     }
 
     public joinConversation(): void {
+      console.log("je demande de rejoindre la conv")
         this.socket.emit('chatAccessRequest');
     }
 
     public sendChat(content: MessageModel): void {
-      console.log(content)
         this.socket.emit('chat', content);
         console.log('chat envoyé');
     }

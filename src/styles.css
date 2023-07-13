@@ -11,6 +11,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --info: #2196F3;
     --success: #4CAF50;
     --warning: #FC9674;
+    --message:#EBEBEB;
+    --myMessage:#AFF5FF
 }
 
 

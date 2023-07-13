@@ -10,12 +10,6 @@
 
     <div class="conversation-details">
         <div class="chat">
-            <div class="chat-header">
-                <div class="chat-title">
-                    Chat avec
-                    {{ selectedConversation?.users?.[0]?._id === me?._id ? selectedConversation?.users?.[1]?.firstname : selectedConversation?.users?.[0]?.firstname}}
-                </div>
-            </div>
             <div *ngIf="socketService">
                 <app-chat
                     [conversation]="selectedConversation"

@@ -1,4 +1,16 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewChild,
+} from '@angular/core';
+import { format } from 'date-fns';
+
 import { SocketService } from 'src/app/modules/call/services/socket.service';
 import { MessageModel } from '../../../../models/message.model';
 import { ConversationModel } from '../../../../models/conversation.model';
@@ -16,23 +28,49 @@ export class ChatComponent implements OnInit, OnChanges {
     @Output() public whenSubmitMessage = new EventEmitter<string>();
     me: User | null | undefined;
 
+    @ViewChild('chatContainer') chatContainer: ElementRef | undefined;
+
     constructor(private profilService: ProfilService, private authService: AuthService) {}
 
     ngOnInit(): void {
         this.scrollToNewMessage();
-        this.me = this.authService.user
+        this.me = this.authService.user;
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['conversation'] && changes['conversation'].currentValue) {
             this.conversation = changes['conversation'].currentValue;
             this.scrollToNewMessage();
+            console.log("date du msg ")
+            // @ts-ignore
+          console.log(convertDateFromNumberToFront(this.conversation?.messages[0].createdAt))
+          // @ts-ignore
+          console.log(this.conversation?.messages[0].from)
+          // @ts-ignore
+          console.log(this.conversation?.messages[0].conversationId)
+          // @ts-ignore
+          console.log(this.conversation?.messages[0].content)
         }
+    }
+
+    public convertDateFromNumberToFront(numberDate: number) {
+        if (numberDate != undefined) {
+            const date = new Date(
+                Math.floor(numberDate / 10000),
+                (Math.floor(numberDate / 100) % 100) - 1,
+                numberDate % 100,
+                Math.floor(numberDate / 1000000),
+                Math.floor(numberDate / 10000) % 100,
+            );
+            return format(date, 'dd/MM/yyyy HH:mm');
+        }
+        return;
     }
 
     //I send a message so I get the string content and make Chat object to send
     public addMessage(message: string): void {
-        console.log('add message');
+        console.log(this.conversation);
+        console.log('jajoute un msg');
         if (this.authService.user) {
             let date = new Date();
 
@@ -48,31 +86,24 @@ export class ChatComponent implements OnInit, OnChanges {
                 this.conversation?.messages.push(chat);
                 this.scrollToNewMessage();
             }
+            this.scrollToNewMessage();
         }
+        // @ts-ignore
         this.whenSubmitMessage.emit(message.trim());
+        this.scrollToNewMessage();
     }
 
-    private scrollToNewMessage(): void {
+    public scrollToNewMessage(): void {
         setTimeout(() => {
-            if (this.conversation?.messages) {
-                const lastMessage = document.getElementById(
-                    `${this.conversation?.messages.length - 1}`,
-                );
-                if (lastMessage) {
-                    lastMessage.scrollIntoView();
+            if (this.chatContainer && this.chatContainer.nativeElement) {
+                const containerElement = this.chatContainer.nativeElement;
+                const lastMessageElement = containerElement.lastElementChild;
+                if (lastMessageElement) {
+                    lastMessageElement.scrollIntoView();
                 }
             }
         }, 200);
     }
 
-    public copyLinkInClipBoard() {
-        navigator.clipboard.writeText(window.location.href);
-        const notification = document.getElementById('notification');
-        if (notification) {
-            notification.classList.remove('hidden');
-            setTimeout(() => {
-                notification.classList.add('hidden');
-            }, 3000);
-        }
-    }
+  protected readonly console = console;
 }

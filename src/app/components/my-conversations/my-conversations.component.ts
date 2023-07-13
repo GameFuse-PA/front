@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { ProfilService } from '../../services/profil/profil.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,6 +7,7 @@ import { User } from '../../models/user.model';
 import { SocketService } from '../../modules/call/services/socket.service';
 import { UserToBackDTO } from '../../utils/UserToBackDTO';
 import { MessageToBackModel } from '../../models/messageToBack.model';
+import { ChatComponent } from '../../modules/chat/components/chat/chat.component';
 
 @Component({
     selector: 'app-my-conversations',
@@ -17,7 +18,8 @@ export class MyConversationsComponent implements OnInit {
     public conversations: ConversationModel[] = [];
     public selectedConversation: ConversationModel | undefined;
     public me: User | null | undefined;
-    private receiver: User | undefined;
+
+    @ViewChild(ChatComponent) chatComponent: ChatComponent | undefined;
 
     constructor(
         private profilServices: ProfilService,
@@ -42,6 +44,7 @@ export class MyConversationsComponent implements OnInit {
                     this.selectedConversation.messages?.push(chat);
                 }
             }
+            this.chatComponent?.scrollToNewMessage();
         });
     }
     private async joinConversation(): Promise<void> {

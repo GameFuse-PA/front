@@ -55,6 +55,7 @@ import { RoomComponent } from './components/game-session/room/room.component';
 import { ChatModule } from './modules/chat/chat.module';
 import { CallModule } from './modules/call/call.module';
 import {ConversationModule} from "./modules/chat/conversation.module";
+import {ChatComponent} from "./modules/chat/components/chat/chat.component";
 
 @NgModule({
     declarations: [

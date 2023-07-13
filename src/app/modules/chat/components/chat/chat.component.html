@@ -1,11 +1,10 @@
 <div class="chat">
     <div class="chat-header">
-        <div class="chat-title">Chat</div>
-        <div id="copyText" class="copy-text" (click)="copyLinkInClipBoard()">
-            Cliquez ici pour partager le lien avec un amis
+        <div *ngIf="conversation" class="chat-title">
+            Conversation avec {{ conversation?.users?.[0]?._id === me?._id ? conversation?.users?.[1]?.username : conversation?.users?.[0]?.username }}
         </div>
     </div>
-    <div class="conversation" *ngIf="conversation">
+    <div class="conversation" *ngIf="conversation" #chatContainer>
         <!-- Afficher cela si la variable "conversation" est définie -->
         <div
             class="message"

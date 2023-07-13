@@ -10,30 +10,25 @@
   max-height: 100%;
   border: 1px solid;
 
-  .chat-header {
-    padding: 0.5rem;
-    min-height: 1.5rem;
-    background-color: lavender;
-    display: flex;
-    div{
-      width: 50%;
-    }
-  }
-
   .conversation {
     flex: 1;
     overflow-y: auto;
     .message {
       padding: 0.5rem;
-      background-color: white;
       color: black;
       margin: 0.5rem;
-      border-radius: 0.5rem;
+      border-radius: 10px;
+      background: var(--message);
+      width: 70%;
+      height: 88px;
+      flex-shrink: 0;
+      margin-left: 5%;
     }
 
     .my-message {
-      margin-left: 2rem;
-      background-color: antiquewhite;
+      background: var(--myMessage);
+      text-align: right;
+      margin-left: 25%;
     }
 
     .cor-message {
