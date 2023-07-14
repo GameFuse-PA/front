@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
 import { ConversationModel } from '../models/conversation.model';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
     selector: 'app-conversation-resume',
@@ -9,13 +10,10 @@ import { ConversationModel } from '../models/conversation.model';
 })
 export class ConversationResumeComponent implements OnInit {
     @Input() conversation: ConversationModel | undefined;
-    public me: User | undefined;
-    constructor() {}
+    public me: User | null | undefined;
+    constructor(private authService: AuthService) {}
 
     ngOnInit(): void {
-        const userFromLcalStorage = localStorage.getItem('user');
-        if (userFromLcalStorage) {
-            this.me = JSON.parse(userFromLcalStorage);
-        }
+        this.me = this.authService.user;
     }
 }

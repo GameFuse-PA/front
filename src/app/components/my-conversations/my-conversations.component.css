@@ -4,11 +4,16 @@
 
 .conversation-list {
   width: 25%;
-  background: red;
   border-right: 2px solid black;
   overflow: auto;
 }
 
 .conversation-details {
-  flex: 1; /* Utilise l'espace restant */
+  flex: 1;
+}
+
+.selected-conversation {
+  .conversation-item {
+    background: var(--message);
+  }
 }

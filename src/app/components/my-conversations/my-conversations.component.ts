@@ -8,6 +8,7 @@ import { SocketService } from '../../modules/call/services/socket.service';
 import { UserToBackDTO } from '../../utils/UserToBackDTO';
 import { MessageToBackModel } from '../../models/messageToBack.model';
 import { ChatComponent } from '../../modules/chat/components/chat/chat.component';
+import {th} from "date-fns/locale";
 
 @Component({
     selector: 'app-my-conversations',
@@ -31,6 +32,9 @@ export class MyConversationsComponent implements OnInit {
     async ngOnInit(): Promise<void> {
         await this.getConversations();
         this.selectConversation(this.conversations[0]);
+        console.log("dansle ngoninit")
+      // @ts-ignore
+      console.log(this.conversations[0].users[0])
         this.me = this.authService.user;
         await this.joinConversation();
         this.socketService.newMessage.subscribe((chat) => {
@@ -105,5 +109,8 @@ export class MyConversationsComponent implements OnInit {
                 },
             });
         }
+      console.log("coucou")
+      // @ts-ignore
+      console.log(this.selectedConversation?.users[0].username)
     }
 }

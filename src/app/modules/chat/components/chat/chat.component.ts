@@ -17,7 +17,7 @@ import { ConversationModel } from '../../../../models/conversation.model';
 import { User } from '../../../../models/user.model';
 import { ProfilService } from '../../../../services/profil/profil.service';
 import { AuthService } from '../../../../services/auth/auth.service';
-
+import { FormControl } from '@angular/forms';
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
@@ -30,6 +30,7 @@ export class ChatComponent implements OnInit, OnChanges {
 
     @ViewChild('chatContainer') chatContainer: ElementRef | undefined;
 
+    messageControl = new FormControl();
     constructor(private profilService: ProfilService, private authService: AuthService) {}
 
     ngOnInit(): void {
@@ -41,28 +42,19 @@ export class ChatComponent implements OnInit, OnChanges {
         if (changes['conversation'] && changes['conversation'].currentValue) {
             this.conversation = changes['conversation'].currentValue;
             this.scrollToNewMessage();
-            console.log("date du msg ")
-            // @ts-ignore
-          console.log(convertDateFromNumberToFront(this.conversation?.messages[0].createdAt))
-          // @ts-ignore
-          console.log(this.conversation?.messages[0].from)
-          // @ts-ignore
-          console.log(this.conversation?.messages[0].conversationId)
-          // @ts-ignore
-          console.log(this.conversation?.messages[0].content)
         }
     }
 
-    public convertDateFromNumberToFront(numberDate: number) {
+    public convertDateFromNumberToFront(numberDate: number | undefined) {
         if (numberDate != undefined) {
-            const date = new Date(
-                Math.floor(numberDate / 10000),
-                (Math.floor(numberDate / 100) % 100) - 1,
-                numberDate % 100,
-                Math.floor(numberDate / 1000000),
-                Math.floor(numberDate / 10000) % 100,
-            );
-            return format(date, 'dd/MM/yyyy HH:mm');
+            const date = new Date(numberDate);
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const year = date.getFullYear();
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+
+            return `${day}/${month}/${year} ${hours}:${minutes}`;
         }
         return;
     }
@@ -105,5 +97,5 @@ export class ChatComponent implements OnInit, OnChanges {
         }, 200);
     }
 
-  protected readonly console = console;
+    protected readonly console = console;
 }

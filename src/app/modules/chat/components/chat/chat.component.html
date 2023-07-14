@@ -1,7 +1,8 @@
 <div class="chat">
     <div class="chat-header">
         <div *ngIf="conversation" class="chat-title">
-            Conversation avec {{ conversation?.users?.[0]?._id === me?._id ? conversation?.users?.[1]?.username : conversation?.users?.[0]?.username }}
+            Conversation avec
+            {{ conversation?.users?.[0]?._id === me?._id ? conversation?.users?.[1]?.username : conversation?.users?.[0]?.username }}
         </div>
     </div>
     <div class="conversation" *ngIf="conversation" #chatContainer>
@@ -12,8 +13,13 @@
             [id]="i"
             [ngClass]="chat.from?._id === me?._id ? 'my-message' : 'cor-message'"
         >
-            <h2 [innerHTML]="chat.from?.username"></h2>
-            <p [innerHTML]="chat.content"></p>
+            <div class="message-header">
+                <p>{{ convertDateFromNumberToFront(chat.date) }}</p>
+            </div>
+            <div class="message-content">
+                <h2 [innerHTML]="chat.from?.username"></h2>
+                <p [innerHTML]="chat.content"></p>
+            </div>
         </div>
     </div>
 

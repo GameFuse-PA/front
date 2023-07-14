@@ -4,6 +4,7 @@
             *ngFor="let conversation of conversations"
             [conversation]="conversation"
             (click)="selectConversation(conversation)"
+            [ngClass]="{ 'selected-conversation': conversation._id === selectedConversation?._id }"
         >
         </app-conversation-resume>
     </div>
