@@ -1,4 +1,4 @@
-<div class="flex flex-row w-full border-b pb-2.5 border-gray-500 justify-center items-center">
+<div class="flex flex-row w-full border-b pb-2.5 border-gray-500 justify-center items-center mb-3">
     <app-picture-server
         class="pic-server mr-5"
         [pictureServerUrl]="
@@ -7,12 +7,13 @@
                 : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png'
         "
     ></app-picture-server>
-    <p class="m-0 text-lg">{{ user?.username }}</p>
+    <span class="text-lg">{{ user?.username }}</span>
     <div class="ml-auto">
         <div *ngIf="isFriend && !fromSearch && !isInvite">
             <app-friend-add-remove
                 [isFriend]="isFriend"
                 [idFriend]="user?._id!"
+                (reload)="reloadFriends()"
             ></app-friend-add-remove>
         </div>
         <div class="flex flex-row" *ngIf="isInvite">
@@ -33,15 +34,18 @@
         </div>
         <div *ngIf="fromSearch">
             <mat-icon
-                *ngIf="isFriend === true"
-                [ngStyle]="{ color: '#CECECE' }"
+                *ngIf="isFriend === true || isInvited === true"
                 class="text-4xl mr-4"
-                >person_add_alt_1</mat-icon
+                [ngStyle]="{ color: 'var(--disabled)' }"
+                [matTooltip]="getToolTipMSg()"
             >
+                person_add_alt_1
+            </mat-icon>
             <app-friend-add-remove
-                *ngIf="isFriend === false"
+                *ngIf="isFriend === false && isInvited === false"
                 [isFriend]="isFriend"
                 [idFriend]="user?._id!"
+                (reload)="reloadFriends()"
             ></app-friend-add-remove>
         </div>
     </div>

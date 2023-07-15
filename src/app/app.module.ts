@@ -54,6 +54,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RoomComponent } from './components/game-session/room/room.component';
 import { ChatModule } from './modules/chat/chat.module';
 import { CallModule } from './modules/call/call.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {ConversationModule} from "./modules/chat/conversation.module";
 import {ChatComponent} from "./modules/chat/components/chat/chat.component";
 
@@ -118,7 +119,8 @@ import {ChatComponent} from "./modules/chat/components/chat/chat.component";
         MatNativeDateModule,
         ChatModule,
         CallModule,
-      ConversationModule,
+        MatTooltipModule,
+        ConversationModule,
     ],
     providers: [
         {

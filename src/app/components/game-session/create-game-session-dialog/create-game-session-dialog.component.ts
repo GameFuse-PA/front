@@ -11,6 +11,7 @@ import { GameSessionService } from '../../../services/game-session/game-session.
 import { MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../../../services/auth/auth.service';
 import { GameSessionStatus } from '../../../utils/enum';
+import { GameService } from '../../../services/game/game.service';
 
 @Component({
     selector: 'app-create-game-session-dialog',
@@ -44,6 +45,7 @@ export class CreateGameSessionDialogComponent implements OnInit {
         private gameSessionService: GameSessionService,
         public dialogRef: MatDialogRef<CreateGameSessionDialogComponent>,
         private authServices: AuthService,
+        private gameService: GameService,
     ) {}
     ngOnInit(): void {
         this.profilService.getFriends().subscribe({
@@ -65,7 +67,7 @@ export class CreateGameSessionDialogComponent implements OnInit {
             },
         });
 
-        this.profilService.getGames().subscribe({
+        this.gameService.getGames().subscribe({
             next: (games: any) => {
                 if (games.length === 0) {
                     this._snackBar.open(
