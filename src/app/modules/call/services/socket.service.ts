@@ -49,6 +49,7 @@ export class SocketService {
 
     private handleNewMessage(): void {
         this.socket.on('new-message', (chatStructure) => {
+          console.log("nouveau msg recu")
             //TODO: ajouter le chat à la conv dont l'id est chatstructure.conversationId
             this.newMessage.next(chatStructure);
         });

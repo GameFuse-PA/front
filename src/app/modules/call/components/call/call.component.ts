@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CallUser, PeerService } from '../../services/peer.service';
 import { SocketService } from '../../services/socket.service';
@@ -11,7 +19,7 @@ import Utils from '../../../../utils/utils';
     templateUrl: './call.component.html',
     styleUrls: ['./call.component.scss'],
 })
-export class CallComponent implements OnInit, AfterViewInit {
+export class CallComponent implements OnInit, AfterViewInit, OnDestroy {
     public joinedUsers: CallUser[] = [];
     public localStream!: MediaStream;
     public roomId: string = '';
@@ -35,8 +43,10 @@ export class CallComponent implements OnInit, AfterViewInit {
         });
     }
 
-    hideOrUnhideChat(): void {
-        this.isHideChat = !this.isHideChat;
+    ngOnDestroy(): void {
+        if (this.localStream) {
+            this.localStream.getTracks().forEach((track) => track.stop());
+        }
     }
 
     private detectScreenWith(): void {

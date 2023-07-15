@@ -7,6 +7,7 @@ import { User } from '../../../models/user.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { ChatComponent } from '../../../modules/chat/components/chat/chat.component';
 import { JoinRoomRequestDTO } from './dto/JoinRoomRequestDTO';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-room',
@@ -24,6 +25,7 @@ export class RoomComponent implements OnInit {
         private profilService: ProfilService,
         public socketService: SocketService,
         private authService: AuthService,
+        private _snackBar: MatSnackBar,
     ) {}
 
     isHideChat = true;
@@ -44,8 +46,10 @@ export class RoomComponent implements OnInit {
                 }
                 this.roomId = roomId;
             },
-            error: (_: any) => {
-                console.log('Une erreur est survenue lors de la récupération de la room');
+            error: (err: any) => {
+                this._snackBar.open(err.message, 'Fermer', {
+                    panelClass: ['error-snackbar'],
+                });
             },
         });
     }
