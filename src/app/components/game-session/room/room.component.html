@@ -5,5 +5,7 @@
   >
   </app-chat>
 
-    <app-call></app-call>
+    <app-call [socketService]="socketService"
+              (peerIdChanged)="readyToJoinRoom($event)"
+    ></app-call>
 </div>

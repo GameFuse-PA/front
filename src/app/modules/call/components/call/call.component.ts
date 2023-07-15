@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CallUser, PeerService } from '../../services/peer.service';
 import { SocketService } from '../../services/socket.service';
@@ -16,13 +16,10 @@ export class CallComponent implements OnInit, AfterViewInit {
     public localStream!: MediaStream;
     public roomId: string = '';
     public isHideChat = true;
+    @Input() socketService: SocketService | undefined;
+    @Output() peerIdChanged = new EventEmitter<string>();
 
-    constructor(
-        private activatedRoute: ActivatedRoute,
-        private socketService: SocketService,
-        private peerService: PeerService,
-        private http: HttpClient,
-    ) {}
+    constructor(private activatedRoute: ActivatedRoute, private peerService: PeerService) {}
 
     ngAfterViewInit(): void {
         this.listenNewUser();
@@ -56,17 +53,21 @@ export class CallComponent implements OnInit, AfterViewInit {
     }
 
     private listenLeavedUser(): void {
-        this.socketService.leavedId.subscribe((userPeerId) => {
-            this.joinedUsers = this.joinedUsers.filter((x) => x.peerId != userPeerId);
-        });
+        if (this.socketService != undefined) {
+            this.socketService.leavedId.subscribe((userPeerId) => {
+                this.joinedUsers = this.joinedUsers.filter((x) => x.peerId != userPeerId);
+            });
+        }
     }
 
     private listenNewUserJoinRoom(): void {
-        this.socketService.joinedId.subscribe((newUserId) => {
-            if (newUserId) {
-                this.makeCall(newUserId);
-            }
-        });
+        if (this.socketService != undefined) {
+            this.socketService.joinedId.subscribe((newUserId) => {
+                if (newUserId) {
+                    this.makeCall(newUserId);
+                }
+            });
+        }
     }
 
     private listenNewUserStream(): void {
@@ -81,6 +82,7 @@ export class CallComponent implements OnInit, AfterViewInit {
 
     private openPeer(): void {
         this.peerService.openPeer(this.localStream).then(async (myPeerId) => {
+            this.peerIdChanged.emit(myPeerId);
         });
     }
 

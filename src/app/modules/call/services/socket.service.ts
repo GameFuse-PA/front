@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import io, { Socket } from 'socket.io-client';
 import { UserToBackDTO } from '../../../utils/UserToBackDTO';
 import { MessageModel } from '../../../models/message.model';
+import {JoinRoomRequestDTO} from "../../../components/game-session/room/dto/JoinRoomRequestDTO";
 
 @Injectable()
 export class SocketService {
@@ -25,19 +26,16 @@ export class SocketService {
         this.handleNewMessage();
     }
 
-    public joinRoom(roomId: string): void {
-        console.log('on rejoint la room ' + roomId);
-        this.socket.emit('roomAccessRequest', roomId);
+    public joinRoom(request: JoinRoomRequestDTO): void {
+        this.socket.emit('roomAccessRequest', request);
     }
 
     public joinConversation(): void {
-        console.log('je demande de rejoindre la conv');
         this.socket.emit('chatAccessRequest');
     }
 
     public sendChat(content: MessageModel): void {
         this.socket.emit('chat', content);
-        console.log('chat envoyé');
     }
 
     private handleUserConnect(): void {
@@ -52,8 +50,6 @@ export class SocketService {
     private handleNewMessage(): void {
         this.socket.on('new-message', (chatStructure) => {
             //TODO: ajouter le chat à la conv dont l'id est chatstructure.conversationId
-            console.log("j'ai recu un nouveau message");
-            console.log(chatStructure);
             this.newMessage.next(chatStructure);
         });
     }

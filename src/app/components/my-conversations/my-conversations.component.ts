@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProfilService } from '../../services/profil/profil.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,7 +8,7 @@ import { SocketService } from '../../modules/call/services/socket.service';
 import { UserToBackDTO } from '../../utils/UserToBackDTO';
 import { MessageToBackModel } from '../../models/messageToBack.model';
 import { ChatComponent } from '../../modules/chat/components/chat/chat.component';
-import {th} from "date-fns/locale";
+import { th } from 'date-fns/locale';
 
 @Component({
     selector: 'app-my-conversations',
@@ -32,9 +32,6 @@ export class MyConversationsComponent implements OnInit {
     async ngOnInit(): Promise<void> {
         await this.getConversations();
         this.selectConversation(this.conversations[0]);
-        console.log("dansle ngoninit")
-      // @ts-ignore
-      console.log(this.conversations[0].users[0])
         this.me = this.authService.user;
         await this.joinConversation();
         this.socketService.newMessage.subscribe((chat) => {
@@ -79,11 +76,7 @@ export class MyConversationsComponent implements OnInit {
     async addMessage(message: string) {
         if (this.selectedConversation?.users != undefined) {
             let recipient = undefined;
-            console.log(this.me?._id);
-            console.log(this.selectedConversation?.users[0]._id);
-            console.log(this.me?._id === this.selectedConversation?.users[0]._id);
             if (this.me?._id === this.selectedConversation?.users[0]._id) {
-                console.log("me n'est pas egal au user 0");
                 recipient = this.selectedConversation?.users[1];
             } else {
                 recipient = this.selectedConversation?.users[0];
@@ -109,8 +102,5 @@ export class MyConversationsComponent implements OnInit {
                 },
             });
         }
-      console.log("coucou")
-      // @ts-ignore
-      console.log(this.selectedConversation?.users[0].username)
     }
 }

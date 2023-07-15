@@ -59,8 +59,6 @@ export class ChatComponent implements OnInit, OnChanges {
 
     //I send a message so I get the string content and make Chat object to send
     public addMessage(message: string): void {
-        console.log(this.conversation);
-        console.log('jajoute un msg');
         if (this.authService.user) {
             let date = new Date();
 
