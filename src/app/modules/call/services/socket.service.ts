@@ -26,12 +26,12 @@ export class SocketService {
     }
 
     public joinRoom(roomId: string): void {
-      console.log("on rejoint la room " + roomId)
+        console.log('on rejoint la room ' + roomId);
         this.socket.emit('roomAccessRequest', roomId);
     }
 
     public joinConversation(): void {
-      console.log("je demande de rejoindre la conv")
+        console.log('je demande de rejoindre la conv');
         this.socket.emit('chatAccessRequest');
     }
 
@@ -53,7 +53,7 @@ export class SocketService {
         this.socket.on('new-message', (chatStructure) => {
             //TODO: ajouter le chat à la conv dont l'id est chatstructure.conversationId
             console.log("j'ai recu un nouveau message");
-            console.log(chatStructure)
+            console.log(chatStructure);
             this.newMessage.next(chatStructure);
         });
     }
