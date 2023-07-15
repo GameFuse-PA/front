@@ -1,4 +1,9 @@
 <div [ngClass]="{ hide: isHideChat }" class="chat-container s-12 l-2">
-    <app-chat [conversation]="undefined"></app-chat>
+  <app-chat
+    [conversation]="conversation"
+    (whenSubmitMessage)="addMessage($event)"
+  >
+  </app-chat>
+
     <app-call></app-call>
 </div>

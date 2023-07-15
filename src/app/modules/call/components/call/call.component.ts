@@ -81,11 +81,7 @@ export class CallComponent implements OnInit, AfterViewInit {
 
     private openPeer(): void {
         this.peerService.openPeer(this.localStream).then(async (myPeerId) => {
-            let userToBack: UserToBackDTO = {
-                id: '',
-                roomId: this.roomId,
-            };
-            this.joinRoom(userToBack);
+            this.joinRoom(this.roomId);
         });
     }
 
@@ -93,7 +89,7 @@ export class CallComponent implements OnInit, AfterViewInit {
         this.peerService.call(anotherPeerId, this.localStream);
     }
 
-    private joinRoom(user: UserToBackDTO): void {
-        this.socketService.joinRoom(user);
+    private joinRoom(roomId: string): void {
+        this.socketService.joinRoom(roomId);
     }
 }

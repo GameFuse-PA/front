@@ -25,8 +25,9 @@ export class SocketService {
         this.handleNewMessage();
     }
 
-    public joinRoom(user: UserToBackDTO): void {
-        this.socket.emit('roomAccessRequest', user);
+    public joinRoom(roomId: string): void {
+      console.log("on rejoint la room " + roomId)
+        this.socket.emit('roomAccessRequest', roomId);
     }
 
     public joinConversation(): void {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
-import {MessageModel} from "../../models/message.model";
+import { MessageModel } from '../../models/message.model';
 
 const URL = environment.apiUrl + '/me';
 
@@ -49,13 +49,20 @@ export class ProfilService {
     getInvitation(id: string) {
         return this.http.get(`${URL}/invitations/${id}`);
     }
-
     getConversations() {
         return this.http.get(`${URL}/conversations`);
     }
 
+    getRoom(id: string) {
+        const tmp = this.http.get(`${URL}/room/${id}`);
+        console.log("tmp : " + tmp)
+      return tmp;
+    }
+
     postMessage(message: MessageModel) {
-        return this.http.put(`${URL}/conversations/message`, message);
+        console.log("je poste un msg")
+      console.log(message)
+      return this.http.put(`${URL}/conversations/message`, message);
     }
 
     getConversation(id: string) {

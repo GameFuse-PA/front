@@ -9,9 +9,7 @@ import {
     SimpleChanges,
     ViewChild,
 } from '@angular/core';
-import { format } from 'date-fns';
 
-import { SocketService } from 'src/app/modules/call/services/socket.service';
 import { MessageModel } from '../../../../models/message.model';
 import { ConversationModel } from '../../../../models/conversation.model';
 import { User } from '../../../../models/user.model';
