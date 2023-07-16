@@ -6,7 +6,7 @@ import { MessageToBackModel } from '../../../models/messageToBack.model';
 import { User } from '../../../models/user.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { ChatComponent } from '../../../modules/chat/components/chat/chat.component';
-import { JoinRoomRequestDTO } from './dto/JoinRoomRequestDTO';
+import { JoinGameSessionChatDTO } from './dto/JoinGameSessionChatDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class RoomComponent implements OnInit {
     public conversation: ConversationModel | undefined;
     public me: User | null | undefined;
-    private roomId: string | undefined;
+    private gameSessionId: string | undefined;
 
     @ViewChild(ChatComponent) chatComponent: ChatComponent | undefined;
 
@@ -34,8 +34,8 @@ export class RoomComponent implements OnInit {
         this.me = this.authService.user;
         const currentURL = window.location.href;
         const parts = currentURL.split('/');
-        const roomId = parts[parts.length - 1];
-        this.profilService.getRoom(roomId).subscribe({
+        const gameSessionId = parts[parts.length - 1];
+        this.profilService.getGameSession(gameSessionId).subscribe({
             next: async (res: any) => {
                 if (res.conversation !== undefined) {
                     this.conversation = res.conversation;
@@ -44,7 +44,7 @@ export class RoomComponent implements OnInit {
                         messages: [],
                     };
                 }
-                this.roomId = roomId;
+                this.gameSessionId = gameSessionId;
             },
             error: (err: any) => {
                 this._snackBar.open(err.message, 'Fermer', {
@@ -54,15 +54,15 @@ export class RoomComponent implements OnInit {
         });
     }
 
-    public async readyToJoinRoom(peerId: string) {
-        if (this.roomId === undefined || this.roomId === null) {
+    public async readyToJoinGameSessionChat(peerId: string) {
+        if (this.gameSessionId === undefined || this.gameSessionId === null) {
             console.log('imppossible de fournir le service vidéo');
         }
-        const request: JoinRoomRequestDTO = {
-            roomId: this.roomId,
+        const request: JoinGameSessionChatDTO = {
+            gameSessionId: this.gameSessionId,
             peerId: peerId,
         };
-        await this.joinRoom(request);
+        await this.joinGameSessionChat(request);
         this.socketService.newMessage.subscribe((chat) => {
             if (chat && chat.conversationId === this.conversation?._id) {
                 if (this.conversation?.messages !== undefined) {
@@ -94,7 +94,7 @@ export class RoomComponent implements OnInit {
         }
     }
 
-    private async joinRoom(request: JoinRoomRequestDTO): Promise<void> {
-        this.socketService.joinRoom(request);
+    private async joinGameSessionChat(request: JoinGameSessionChatDTO): Promise<void> {
+        this.socketService.joinGameSessionChat(request);
     }
 }

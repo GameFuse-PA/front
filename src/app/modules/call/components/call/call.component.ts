@@ -10,8 +10,6 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { CallUser, PeerService } from '../../services/peer.service';
 import { SocketService } from '../../services/socket.service';
-import { UserToBackDTO } from '../../../../utils/UserToBackDTO';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Utils from '../../../../utils/utils';
 
 @Component({

@@ -5,10 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConversationModel } from '../../models/conversation.model';
 import { User } from '../../models/user.model';
 import { SocketService } from '../../modules/call/services/socket.service';
-import { UserToBackDTO } from '../../utils/UserToBackDTO';
 import { MessageToBackModel } from '../../models/messageToBack.model';
 import { ChatComponent } from '../../modules/chat/components/chat/chat.component';
-import { th } from 'date-fns/locale';
 
 @Component({
     selector: 'app-my-conversations',

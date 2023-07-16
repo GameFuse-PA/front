@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import io, { Socket } from 'socket.io-client';
-import { UserToBackDTO } from '../../../utils/UserToBackDTO';
 import { MessageModel } from '../../../models/message.model';
-import {JoinRoomRequestDTO} from "../../../components/game-session/room/dto/JoinRoomRequestDTO";
+import { JoinGameSessionChatDTO } from '../../../components/game-session/room/dto/JoinGameSessionChatDTO';
 
 @Injectable()
 export class SocketService {
@@ -26,7 +25,7 @@ export class SocketService {
         this.handleNewMessage();
     }
 
-    public joinRoom(request: JoinRoomRequestDTO): void {
+    public joinGameSessionChat(request: JoinGameSessionChatDTO): void {
         this.socket.emit('roomAccessRequest', request);
     }
 
@@ -49,7 +48,7 @@ export class SocketService {
 
     private handleNewMessage(): void {
         this.socket.on('new-message', (chatStructure) => {
-          console.log("nouveau msg recu")
+            console.log('nouveau msg recu');
             //TODO: ajouter le chat à la conv dont l'id est chatstructure.conversationId
             this.newMessage.next(chatStructure);
         });

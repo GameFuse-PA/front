@@ -38,6 +38,10 @@ export class ProfilService {
         return this.http.get(`${URL}/games`);
     }
 
+    getGameSession(id: string) {
+        return this.http.get(`${URL}/game-session/${id}`);
+    }
+
     getGameSessions() {
         return this.http.get(`${URL}/game-sessions`);
     }
@@ -55,11 +59,11 @@ export class ProfilService {
 
     getRoom(id: string) {
         const tmp = this.http.get(`${URL}/room/${id}`);
-      return tmp;
+        return tmp;
     }
 
     postMessage(message: MessageModel) {
-      return this.http.put(`${URL}/conversations/message`, message);
+        return this.http.put(`${URL}/conversations/message`, message);
     }
 
     getConversation(id: string) {

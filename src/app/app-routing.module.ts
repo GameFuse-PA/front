@@ -41,7 +41,7 @@ const routes: Routes = [
         component: AuthComponent,
     },
     {
-        path: 'room/:roomId',
+        path: 'room/:gameSessionId',
         component: RoomComponent,
         loadChildren: () => import('./modules/call/call.module').then((c) => c.CallModule),
     },
