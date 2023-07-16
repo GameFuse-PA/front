@@ -57,11 +57,6 @@ export class ProfilService {
         return this.http.get(`${URL}/conversations`);
     }
 
-    getRoom(id: string) {
-        const tmp = this.http.get(`${URL}/room/${id}`);
-        return tmp;
-    }
-
     postMessage(message: MessageModel) {
         return this.http.put(`${URL}/conversations/message`, message);
     }
