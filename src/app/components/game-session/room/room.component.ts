@@ -8,6 +8,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { ChatComponent } from '../../../modules/chat/components/chat/chat.component';
 import { JoinGameSessionChatDTO } from './dto/JoinGameSessionChatDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { JoinGameSessionVisioDTO } from './dto/JoinGameSessionVisioDTO';
 
 @Component({
     selector: 'app-room',
@@ -37,6 +38,28 @@ export class RoomComponent implements OnInit {
         const gameSessionId = parts[parts.length - 1];
         this.profilService.getGameSession(gameSessionId).subscribe({
             next: async (res: any) => {
+                console.log('le res est :' + res.conversation._id);
+                const joinGameSessionChatDTO: JoinGameSessionChatDTO = {
+                    conversationId: res.conversation._id,
+                    gameSessionId: gameSessionId,
+                };
+                this.joinGameSessionChat(joinGameSessionChatDTO);
+                this.socketService.newMessage.subscribe((chat) => {
+                    console.log('chat' + chat);
+                    if (chat && chat.conversationId === this.conversation?._id) {
+                        if (this.conversation?.messages !== undefined) {
+                            this.conversation?.messages.push(chat);
+                        } else {
+                            this.conversation = {
+                                messages: [],
+                            };
+                            this.conversation.messages?.push(chat);
+                        }
+                        console.log('la conv existe');
+                    }
+                    this.chatComponent?.scrollToNewMessage();
+                });
+                console.log('fin de readyTOJoin');
                 if (res.conversation !== undefined) {
                     this.conversation = res.conversation;
                 } else {
@@ -54,28 +77,15 @@ export class RoomComponent implements OnInit {
         });
     }
 
-    public async readyToJoinGameSessionChat(peerId: string) {
-        if (this.gameSessionId === undefined || this.gameSessionId === null) {
-            console.log('imppossible de fournir le service vidéo');
+    public async readyToJoinGameSessionVisio(peerId: string) {
+        console.log('debut de readyToJoin');
+        if (this.conversation?._id !== undefined) {
+            const request: JoinGameSessionVisioDTO = {
+                conversationId: this.conversation?._id,
+                peerId: peerId,
+            };
+            this.socketService.joinGameSessionVisio(request);
         }
-        const request: JoinGameSessionChatDTO = {
-            gameSessionId: this.gameSessionId,
-            peerId: peerId,
-        };
-        await this.joinGameSessionChat(request);
-        this.socketService.newMessage.subscribe((chat) => {
-            if (chat && chat.conversationId === this.conversation?._id) {
-                if (this.conversation?.messages !== undefined) {
-                    this.conversation?.messages.push(chat);
-                } else {
-                    this.conversation = {
-                        messages: [],
-                    };
-                    this.conversation.messages?.push(chat);
-                }
-            }
-            this.chatComponent?.scrollToNewMessage();
-        });
     }
 
     async addMessage(message: string) {
@@ -94,7 +104,9 @@ export class RoomComponent implements OnInit {
         }
     }
 
-    private async joinGameSessionChat(request: JoinGameSessionChatDTO): Promise<void> {
-        this.socketService.joinGameSessionChat(request);
+    private async joinGameSessionChat(
+        joinGameSessionChatDTO: JoinGameSessionChatDTO,
+    ): Promise<void> {
+        this.socketService.joinGameSessionChat(joinGameSessionChatDTO);
     }
 }

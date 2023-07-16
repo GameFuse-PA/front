@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import io, { Socket } from 'socket.io-client';
 import { MessageModel } from '../../../models/message.model';
 import { JoinGameSessionChatDTO } from '../../../components/game-session/room/dto/JoinGameSessionChatDTO';
+import {JoinGameSessionVisioDTO} from "../../../components/game-session/room/dto/JoinGameSessionVisioDTO";
 
 @Injectable()
 export class SocketService {
@@ -27,6 +28,10 @@ export class SocketService {
 
     public joinGameSessionChat(request: JoinGameSessionChatDTO): void {
         this.socket.emit('roomAccessRequest', request);
+    }
+
+    public joinGameSessionVisio(request: JoinGameSessionVisioDTO): void {
+      this.socket.emit('joinGameSessionVisio', request)
     }
 
     public joinConversation(): void {
