@@ -1,11 +1,14 @@
-<div [ngClass]="{ hide: isHideChat }" class="chat-container s-12 l-2">
-  <app-chat
-    [conversation]="conversation"
-    (whenSubmitMessage)="addMessage($event)"
-  >
-  </app-chat>
-
-    <app-call [socketService]="socketService"
-              (peerIdChanged)="readyToJoinGameSessionChat($event)"
+<div id="visio-top">
+    <app-call
+        [socketService]="socketService"
+        (peerIdChanged)="readyToJoinGameSessionVisio($event)"
     ></app-call>
+</div>
+
+<div id="bottom">
+    <div id="game">ICI LE JEU</div>
+    <div id="chat">
+        <app-chat [conversation]="conversation" (whenSubmitMessage)="addMessage($event)">
+        </app-chat>
+    </div>
 </div>
