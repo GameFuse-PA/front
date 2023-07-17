@@ -85,22 +85,6 @@ export class RoomComponent implements OnInit {
         }
     }
 
-    async addMessage(message: string) {
-        if (this.conversation?.users != undefined) {
-            let recipient = undefined;
-            if (this.me?._id === this.conversation?.users[0]._id) {
-                recipient = this.conversation?.users[1];
-            } else {
-                recipient = this.conversation?.users[0];
-            }
-            const chatToBack: MessageToBackModel = {
-                content: message,
-                to: recipient._id,
-            };
-            this.socketService.sendChat(chatToBack);
-        }
-    }
-
     private async joinGameSessionChat(
         joinGameSessionChatDTO: JoinGameSessionChatDTO,
     ): Promise<void> {
