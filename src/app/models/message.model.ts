@@ -1,8 +1,8 @@
-import {User} from "./user.model";
+import { User } from './user.model';
 
 export class MessageModel {
   content?: string;
   from?: User;
-  date?: number;
+  date?: Date;
   conversationId?: string;
 }

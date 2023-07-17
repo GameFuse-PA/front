@@ -10,6 +10,7 @@ import {
     ViewChild,
 } from '@angular/core';
 
+import { DatePipe } from '@angular/common';
 import { MessageModel } from '../../../../models/message.model';
 import { ConversationModel } from '../../../../models/conversation.model';
 import { User } from '../../../../models/user.model';
@@ -29,7 +30,11 @@ export class ChatComponent implements OnInit, OnChanges {
     @ViewChild('chatContainer') chatContainer: ElementRef | undefined;
 
     messageControl = new FormControl();
-    constructor(private profilService: ProfilService, private authService: AuthService) {}
+    constructor(
+        private profilService: ProfilService,
+        private authService: AuthService,
+        private datePipe: DatePipe,
+    ) {}
 
     ngOnInit(): void {
         this.scrollToNewMessage();
@@ -43,29 +48,22 @@ export class ChatComponent implements OnInit, OnChanges {
         }
     }
 
-    public convertDateFromNumberToFront(numberDate: number | undefined) {
-        if (numberDate != undefined) {
-            const date = new Date(numberDate);
-            const day = date.getDate().toString().padStart(2, '0');
-            const month = (date.getMonth() + 1).toString().padStart(2, '0');
-            const year = date.getFullYear();
-            const hours = date.getHours().toString().padStart(2, '0');
-            const minutes = date.getMinutes().toString().padStart(2, '0');
-
-            return `${day}/${month}/${year} ${hours}:${minutes}`;
+    public dateAdapter(messageDate: Date | undefined) {
+        try {
+            return this.datePipe.transform(messageDate, 'dd/MM/yyyy HH:mm');
+        } catch (e) {
+            console.log('erreur lors du parsing de date : ' + messageDate);
+            return;
         }
-        return;
     }
 
     //I send a message so I get the string content and make Chat object to send
     public addMessage(message: string): void {
         if (this.authService.user) {
-            let date = new Date();
-
             let chat: MessageModel = {
                 content: message,
                 from: this.authService.user,
-                date: date.getTime(),
+                date: new Date(),
                 conversationId: this.conversation?._id,
             };
             this.profilService.postMessage(chat);

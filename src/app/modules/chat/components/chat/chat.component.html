@@ -8,7 +8,7 @@
             [ngClass]="chat.from?._id === me?._id ? 'my-message' : 'cor-message'"
         >
             <div class="message-header">
-                <p>{{ convertDateFromNumberToFront(chat.date) }}</p>
+                <p>{{ dateAdapter(chat.date) }}</p>
             </div>
             <div class="message-content">
                 <h2 [innerHTML]="chat.from?.username"></h2>
