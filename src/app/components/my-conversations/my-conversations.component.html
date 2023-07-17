@@ -18,15 +18,9 @@
         </div>
         <div class="chat">
             <div *ngIf="socketService">
-                <app-chat
-                    [conversation]="selectedConversation"
-                    (whenSubmitMessage)="addMessage($event)"
-                >
+                <app-chat [conversation]="selectedConversation" [socketService]="socketService">
                 </app-chat>
             </div>
-        </div>
-        <div id="notification" class="notification hidden">
-            Le texte a été copié dans le presse-papiers
         </div>
     </div>
 </div>

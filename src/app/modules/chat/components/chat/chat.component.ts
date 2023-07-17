@@ -17,16 +17,17 @@ import { User } from '../../../../models/user.model';
 import { ProfilService } from '../../../../services/profil/profil.service';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { FormControl } from '@angular/forms';
+import { MessageToBackModel } from '../../../../models/messageToBack.model';
+import { SocketService } from '../../../call/services/socket.service';
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, OnChanges {
+    @Input() socketService: SocketService | undefined;
     @Input() conversation: ConversationModel | undefined;
-    @Output() public whenSubmitMessage = new EventEmitter<string>();
     me: User | null | undefined;
-
     @ViewChild('chatContainer') chatContainer: ElementRef | undefined;
 
     messageControl = new FormControl();
@@ -74,8 +75,24 @@ export class ChatComponent implements OnInit, OnChanges {
             }
             this.scrollToNewMessage();
         }
-        this.whenSubmitMessage.emit(message.trim());
+        this.sendToWebSocket(message);
         this.scrollToNewMessage();
+    }
+
+    async sendToWebSocket(message: string) {
+        if (this.conversation?.users != undefined && this.socketService != undefined) {
+            let recipient = undefined;
+            if (this.me?._id === this.conversation?.users[0]._id) {
+                recipient = this.conversation?.users[1];
+            } else {
+                recipient = this.conversation?.users[0];
+            }
+            const chatToBack: MessageToBackModel = {
+                content: message,
+                to: recipient._id,
+            };
+            this.socketService.sendChat(chatToBack);
+        }
     }
 
     public scrollToNewMessage(): void {

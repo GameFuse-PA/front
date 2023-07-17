@@ -3,23 +3,24 @@ import { BehaviorSubject } from 'rxjs';
 import io, { Socket } from 'socket.io-client';
 import { MessageModel } from '../../../models/message.model';
 import { JoinGameSessionChatDTO } from '../../../components/game-session/room/dto/JoinGameSessionChatDTO';
-import {JoinGameSessionVisioDTO} from "../../../components/game-session/room/dto/JoinGameSessionVisioDTO";
+import { JoinGameSessionVisioDTO } from '../../../components/game-session/room/dto/JoinGameSessionVisioDTO';
+import { AuthService } from '../../../services/auth/auth.service';
+import { environment } from '../../../../environments/environment';
 
+const URL = environment.apiUrl;
 @Injectable()
 export class SocketService {
     public joinedId = new BehaviorSubject(null);
     public leavedId = new BehaviorSubject(null);
-    // @ts-ignore
-    public newMessage = new BehaviorSubject<MessageModel>(null);
+    public newMessage = new BehaviorSubject<MessageModel | null>(null);
     public socket: Socket;
 
-    constructor() {
-        //todo : recup depuis authservice et non du localstorage
-        const token = JSON.parse(localStorage.getItem('user') as string);
-        this.socket = io('localhost:3000', {
+    constructor(private authService: AuthService) {
+        const token = authService.user?.access_token;
+        this.socket = io(URL, {
             path: '/socket',
             extraHeaders: {
-                Authorization: 'Bearer ' + token.access_token,
+                Authorization: 'Bearer ' + token,
             },
         });
         this.handleUserConnect();
@@ -31,7 +32,7 @@ export class SocketService {
     }
 
     public joinGameSessionVisio(request: JoinGameSessionVisioDTO): void {
-      this.socket.emit('joinGameSessionVisio', request)
+        this.socket.emit('joinGameSessionVisio', request);
     }
 
     public joinConversation(): void {
