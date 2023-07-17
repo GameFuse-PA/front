@@ -38,14 +38,12 @@ export class RoomComponent implements OnInit {
         const gameSessionId = parts[parts.length - 1];
         this.profilService.getGameSession(gameSessionId).subscribe({
             next: async (res: any) => {
-                console.log('le res est :' + res.conversation._id);
                 const joinGameSessionChatDTO: JoinGameSessionChatDTO = {
                     conversationId: res.conversation._id,
                     gameSessionId: gameSessionId,
                 };
                 this.joinGameSessionChat(joinGameSessionChatDTO);
                 this.socketService.newMessage.subscribe((chat) => {
-                    console.log('chat' + chat);
                     if (chat && chat.conversationId === this.conversation?._id) {
                         if (this.conversation?.messages !== undefined) {
                             this.conversation?.messages.push(chat);
@@ -55,11 +53,9 @@ export class RoomComponent implements OnInit {
                             };
                             this.conversation.messages?.push(chat);
                         }
-                        console.log('la conv existe');
                     }
                     this.chatComponent?.scrollToNewMessage();
                 });
-                console.log('fin de readyTOJoin');
                 if (res.conversation !== undefined) {
                     this.conversation = res.conversation;
                 } else {
@@ -78,7 +74,6 @@ export class RoomComponent implements OnInit {
     }
 
     public async readyToJoinGameSessionVisio(peerId: string) {
-        console.log('debut de readyToJoin');
         if (this.conversation?._id !== undefined) {
             const request: JoinGameSessionVisioDTO = {
                 conversationId: this.conversation?._id,

@@ -39,7 +39,7 @@ export class ProfilService {
     }
 
     getGameSession(id: string) {
-        return this.http.get(`${URL}/game-session/${id}`);
+        return this.http.get(`${URL}/game-sessions/${id}`);
     }
 
     getGameSessions() {

@@ -76,7 +76,6 @@ export class ChatComponent implements OnInit, OnChanges {
             }
             this.scrollToNewMessage();
         }
-        // @ts-ignore
         this.whenSubmitMessage.emit(message.trim());
         this.scrollToNewMessage();
     }
@@ -92,6 +91,4 @@ export class ChatComponent implements OnInit, OnChanges {
             }
         }, 200);
     }
-
-    protected readonly console = console;
 }
