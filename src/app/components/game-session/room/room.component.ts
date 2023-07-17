@@ -9,6 +9,7 @@ import { ChatComponent } from '../../../modules/chat/components/chat/chat.compon
 import { JoinGameSessionChatDTO } from './dto/JoinGameSessionChatDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JoinGameSessionVisioDTO } from './dto/JoinGameSessionVisioDTO';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-room',
@@ -27,6 +28,7 @@ export class RoomComponent implements OnInit {
         public socketService: SocketService,
         private authService: AuthService,
         private _snackBar: MatSnackBar,
+        private route: ActivatedRoute,
     ) {}
 
     isHideChat = true;
@@ -35,7 +37,7 @@ export class RoomComponent implements OnInit {
         this.me = this.authService.user;
         const currentURL = window.location.href;
         const parts = currentURL.split('/');
-        const gameSessionId = parts[parts.length - 1];
+        const gameSessionId = String(this.route.snapshot.paramMap.get('gameSessionId'));
         this.profilService.getGameSession(gameSessionId).subscribe({
             next: async (res: any) => {
                 const joinGameSessionChatDTO: JoinGameSessionChatDTO = {
