@@ -54,7 +54,6 @@ export class SocketService {
 
     private handleNewMessage(): void {
         this.socket.on('new-message', (chatStructure) => {
-            console.log('nouveau msg recu');
             this.newMessage.next(chatStructure);
         });
     }
