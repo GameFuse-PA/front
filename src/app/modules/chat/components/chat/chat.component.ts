@@ -25,7 +25,6 @@ import { SocketService } from '../../../call/services/socket.service';
     styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, OnChanges {
-    @Input() socketService: SocketService | undefined;
     @Input() conversation: ConversationModel | undefined;
     me: User | null | undefined;
     @ViewChild('chatContainer') chatContainer: ElementRef | undefined;
@@ -35,6 +34,7 @@ export class ChatComponent implements OnInit, OnChanges {
         private profilService: ProfilService,
         private authService: AuthService,
         private datePipe: DatePipe,
+        private socketService: SocketService,
     ) {}
 
     ngOnInit(): void {
