@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../models/user.model';
-import { ConversationModel } from '../models/conversation.model';
-import { AuthService } from '../services/auth/auth.service';
+import { User } from '../../models/user.model';
+import { ConversationModel } from '../../models/conversation.model';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
     selector: 'app-conversation-resume',

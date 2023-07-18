@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConversationModel } from '../../../models/conversation.model';
-import { ProfilService } from '../../../services/profil/profil.service';
-import { SocketService } from '../../../modules/call/services/socket.service';
-import { MessageToBackModel } from '../../../models/messageToBack.model';
-import { User } from '../../../models/user.model';
-import { AuthService } from '../../../services/auth/auth.service';
-import { ChatComponent } from '../../../modules/chat/components/chat/chat.component';
+import { ConversationModel } from '../../models/conversation.model';
+import { ProfilService } from '../../services/profil/profil.service';
+import { SocketService } from '../../modules/call/services/socket.service';
+import { MessageToBackModel } from '../../models/messageToBack.model';
+import { User } from '../../models/user.model';
+import { AuthService } from '../../services/auth/auth.service';
+import { ChatComponent } from '../../modules/chat/components/chat/chat.component';
 import { JoinGameSessionChatDTO } from './dto/JoinGameSessionChatDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JoinGameSessionVisioDTO } from './dto/JoinGameSessionVisioDTO';
@@ -13,8 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-room',
-    templateUrl: './room.component.html',
-    styleUrls: ['./room.component.css'],
+    templateUrl: './game-session.component.html',
+    styleUrls: ['./game-session.component.css'],
 })
 export class RoomComponent implements OnInit {
     public conversation: ConversationModel | undefined;

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import io, { Socket } from 'socket.io-client';
 import { MessageModel } from '../../../models/message.model';
-import { JoinGameSessionChatDTO } from '../../../components/game-session/room/dto/JoinGameSessionChatDTO';
-import { JoinGameSessionVisioDTO } from '../../../components/game-session/room/dto/JoinGameSessionVisioDTO';
+import { JoinGameSessionChatDTO } from '../../../pages/game-session/dto/JoinGameSessionChatDTO';
+import { JoinGameSessionVisioDTO } from '../../../pages/game-session/dto/JoinGameSessionVisioDTO';
 import { AuthService } from '../../../services/auth/auth.service';
 import { environment } from '../../../../environments/environment';
 

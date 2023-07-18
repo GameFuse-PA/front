@@ -12,7 +12,7 @@ import { SearchGamesComponent } from './pages/search-games/search-games.componen
 import { ListGameSessionComponent } from './pages/list-game-session/list-game-session.component';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { MyInvitationsComponent } from './components/my-invitations/my-invitations.component';
-import { RoomComponent } from './components/game-session/room/room.component';
+import { RoomComponent } from './pages/game-session/game-session.component';
 import { MyConversationsComponent } from './components/my-conversations/my-conversations.component';
 
 const routes: Routes = [

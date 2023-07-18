@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../../../models/game.model';
-import { User } from '../../../models/user.model';
-import { ProfilService } from '../../../services/profil/profil.service';
+import { Game } from '../../models/game.model';
+import { User } from '../../models/user.model';
+import { ProfilService } from '../../services/profil/profil.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl } from '@angular/forms';
-import { GameSessionCreateModel } from '../../../models/game-session/game-session-create.model';
+import { GameSessionCreateModel } from '../../models/game-session/game-session-create.model';
 import { Router } from '@angular/router';
-import { GameSessionService } from '../../../services/game-session/game-session.service';
+import { GameSessionService } from '../../services/game-session/game-session.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AuthService } from '../../../services/auth/auth.service';
-import { GameSessionStatus } from '../../../utils/enum';
-import { GameService } from '../../../services/game/game.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { GameSessionStatus } from '../../utils/enum';
+import { GameService } from '../../services/game/game.service';
 
 @Component({
     selector: 'app-create-game-session-dialog',
