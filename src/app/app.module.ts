@@ -55,6 +55,7 @@ import { RoomComponent } from './components/game-session/room/room.component';
 import { ChatModule } from './modules/chat/chat.module';
 import { CallModule } from './modules/call/call.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RunnerComponent } from './components/runner/runner.component';
 
 @NgModule({
     declarations: [
@@ -93,6 +94,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MyInvitationsComponent,
         CreateGameSessionDialogComponent,
         RoomComponent,
+        RunnerComponent,
     ],
     imports: [
         BrowserAnimationsModule,
