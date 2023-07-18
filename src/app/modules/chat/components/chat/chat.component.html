@@ -1,21 +1,26 @@
 <div class="chat">
-    <div class="chat-header">
-        <div class="chat-title">Chat</div>
-        <div id="copyText" class="copy-text" (click)="copyLinkInClipBoard()">
-            Cliquez ici pour partager le lien avec un amis
-        </div>
-    </div>
-    <div class="conversation" #conversation>
+    <div class="conversation" *ngIf="conversation" #chatContainer>
+        <!-- Afficher cela si la variable "conversation" est définie -->
         <div
             class="message"
-            *ngFor="let chat of chats; index as i"
+            *ngFor="let chat of conversation.messages; index as i"
             [id]="i"
-            [ngClass]="chat.isMe ? 'my-message' : 'cor-message'"
+            [ngClass]="chat.from?._id === me?._id ? 'my-message' : 'cor-message'"
         >
-            <h2 [innerHTML]="chat.userName"></h2>
-            <p [innerHTML]="chat.content"></p>
+            <div class="message-header">
+                <p>{{ dateAdapter(chat.date) }}</p>
+            </div>
+            <div class="message-content">
+                <h2 [innerHTML]="chat.from?.username"></h2>
+                <p [innerHTML]="chat.content"></p>
+            </div>
         </div>
     </div>
+
+    <!-- Sinon, afficher cela -->
+    <div class="conversation" *ngIf="!conversation">
+        <h2>Vous n'avez aucune conversation</h2>
+    </div>
+
     <app-chat-input (whenSubmitMessage)="addMessage($event)"></app-chat-input>
 </div>
-<div id="notification" class="notification hidden">Le texte a été copié dans le presse-papiers</div>

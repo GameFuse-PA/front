@@ -1,9 +1,15 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CallUser, PeerService } from '../../services/peer.service';
 import { SocketService } from '../../services/socket.service';
-import { UserToBackDTO } from '../../../../utils/UserToBackDTO';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Utils from '../../../../utils/utils';
 
 @Component({
@@ -11,18 +17,15 @@ import Utils from '../../../../utils/utils';
     templateUrl: './call.component.html',
     styleUrls: ['./call.component.scss'],
 })
-export class CallComponent implements OnInit, AfterViewInit {
+export class CallComponent implements OnInit, AfterViewInit, OnDestroy {
     public joinedUsers: CallUser[] = [];
     public localStream!: MediaStream;
     public roomId: string = '';
     public isHideChat = true;
+    @Input() socketService: SocketService | undefined;
+    @Output() peerIdChanged = new EventEmitter<string>();
 
-    constructor(
-        private activatedRoute: ActivatedRoute,
-        private socketService: SocketService,
-        private peerService: PeerService,
-        private http: HttpClient,
-    ) {}
+    constructor(private activatedRoute: ActivatedRoute, private peerService: PeerService) {}
 
     ngAfterViewInit(): void {
         this.listenNewUser();
@@ -38,8 +41,10 @@ export class CallComponent implements OnInit, AfterViewInit {
         });
     }
 
-    hideOrUnhideChat(): void {
-        this.isHideChat = !this.isHideChat;
+    ngOnDestroy(): void {
+        if (this.localStream) {
+            this.localStream.getTracks().forEach((track) => track.stop());
+        }
     }
 
     private detectScreenWith(): void {
@@ -56,17 +61,21 @@ export class CallComponent implements OnInit, AfterViewInit {
     }
 
     private listenLeavedUser(): void {
-        this.socketService.leavedId.subscribe((userPeerId) => {
-            this.joinedUsers = this.joinedUsers.filter((x) => x.peerId != userPeerId);
-        });
+        if (this.socketService != undefined) {
+            this.socketService.leavedId.subscribe((userPeerId) => {
+                this.joinedUsers = this.joinedUsers.filter((x) => x.peerId != userPeerId);
+            });
+        }
     }
 
     private listenNewUserJoinRoom(): void {
-        this.socketService.joinedId.subscribe((newUserId) => {
-            if (newUserId) {
-                this.makeCall(newUserId);
-            }
-        });
+        if (this.socketService != undefined) {
+            this.socketService.joinedId.subscribe((newUserId) => {
+                if (newUserId) {
+                    this.makeCall(newUserId);
+                }
+            });
+        }
     }
 
     private listenNewUserStream(): void {
@@ -81,20 +90,11 @@ export class CallComponent implements OnInit, AfterViewInit {
 
     private openPeer(): void {
         this.peerService.openPeer(this.localStream).then(async (myPeerId) => {
-            let userToBack: UserToBackDTO = {
-                id: '',
-                roomId: this.roomId,
-                peerId: myPeerId,
-            };
-            this.joinRoom(userToBack);
+            this.peerIdChanged.emit(myPeerId);
         });
     }
 
     private makeCall(anotherPeerId: string): void {
         this.peerService.call(anotherPeerId, this.localStream);
-    }
-
-    private joinRoom(user: UserToBackDTO): void {
-        this.socketService.joinRoom(user);
     }
 }

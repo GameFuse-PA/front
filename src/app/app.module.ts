@@ -43,18 +43,20 @@ import { GameCardComponent } from './components/game-card/game-card.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SearchGamesComponent } from './pages/search-games/search-games.component';
 import { ListGameSessionComponent } from './pages/list-game-session/list-game-session.component';
-import { GameSessionCardComponent } from './components/game-session/game-session-card/game-session-card.component';
+import { GameSessionCardComponent } from './components/game-session-card/game-session-card.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { InvitationCardComponent } from './components/invitation-card/invitation-card.component';
 import { MyInvitationsComponent } from './components/my-invitations/my-invitations.component';
-import { CreateGameSessionDialogComponent } from './components/game-session/create-game-session-dialog/create-game-session-dialog.component';
+import { CreateGameSessionDialogComponent } from './components/create-game-session-dialog/create-game-session-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
-import { RoomComponent } from './components/game-session/room/room.component';
+import { RoomComponent } from './pages/game-session/game-session.component';
 import { ChatModule } from './modules/chat/chat.module';
 import { CallModule } from './modules/call/call.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {ConversationModule} from "./modules/chat/conversation.module";
+import {ChatComponent} from "./modules/chat/components/chat/chat.component";
 
 @NgModule({
     declarations: [
@@ -118,6 +120,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         ChatModule,
         CallModule,
         MatTooltipModule,
+        ConversationModule,
     ],
     providers: [
         {
