@@ -1,0 +1,13 @@
+<div id="visio-top">
+    <app-call
+        [socketService]="socketService"
+        (peerIdChanged)="readyToJoinGameSessionVisio($event)"
+    ></app-call>
+</div>
+
+<div id="bottom">
+    <div id="game">ICI LE JEU</div>
+    <div id="chat">
+        <app-chat [conversation]="conversation"> </app-chat>
+    </div>
+</div>

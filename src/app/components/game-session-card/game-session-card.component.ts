@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GameSessionModel } from '../../../models/game-session/game-session.model';
-import { User } from '../../../models/user.model';
-import { GameSessionStatus } from '../../../utils/enum';
+import { GameSessionModel } from '../../models/game-session/game-session.model';
+import { User } from '../../models/user.model';
+import { GameSessionStatus } from '../../utils/enum';
 import { Router } from '@angular/router';
 
 @Component({

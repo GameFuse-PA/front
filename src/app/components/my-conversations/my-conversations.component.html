@@ -1,0 +1,26 @@
+<div class="conversation-container">
+    <div class="conversation-list">
+        <app-conversation-resume
+            *ngFor="let conversation of conversations"
+            [conversation]="conversation"
+            (click)="selectConversation(conversation)"
+            [ngClass]="{ 'selected-conversation': conversation._id === selectedConversation?._id }"
+        >
+        </app-conversation-resume>
+    </div>
+
+    <div class="conversation-details">
+        <div class="chat-header">
+            <div *ngIf="selectedConversation" class="chat-title">
+                Conversation avec
+                {{ selectedConversation?.users?.[0]?._id === me?._id ? selectedConversation?.users?.[1]?.username : selectedConversation?.users?.[0]?.username }}
+            </div>
+        </div>
+        <div class="chat">
+            <div *ngIf="socketService">
+                <app-chat [conversation]="selectedConversation">
+                </app-chat>
+            </div>
+        </div>
+    </div>
+</div>

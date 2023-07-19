@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../../../models/game.model';
-import { User } from '../../../models/user.model';
-import { ProfilService } from '../../../services/profil/profil.service';
+import { Game } from '../../models/game.model';
+import { User } from '../../models/user.model';
+import { ProfilService } from '../../services/profil/profil.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl } from '@angular/forms';
-import { GameSessionCreateModel } from '../../../models/game-session/game-session-create.model';
-import { RoomService } from '../../../services/chat/room.service';
+import { GameSessionCreateModel } from '../../models/game-session/game-session-create.model';
 import { Router } from '@angular/router';
-import { GameSessionService } from '../../../services/game-session/game-session.service';
+import { GameSessionService } from '../../services/game-session/game-session.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AuthService } from '../../../services/auth/auth.service';
-import { GameSessionStatus } from '../../../utils/enum';
-import { GameService } from '../../../services/game/game.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { GameSessionStatus } from '../../utils/enum';
+import { GameService } from '../../services/game/game.service';
 
 @Component({
     selector: 'app-create-game-session-dialog',
@@ -40,7 +39,6 @@ export class CreateGameSessionDialogComponent implements OnInit {
     constructor(
         private profilService: ProfilService,
         private _snackBar: MatSnackBar,
-        private roomService: RoomService,
         private router: Router,
         private gameSessionService: GameSessionService,
         public dialogRef: MatDialogRef<CreateGameSessionDialogComponent>,
@@ -111,31 +109,15 @@ export class CreateGameSessionDialogComponent implements OnInit {
         this.session.status = GameSessionStatus.In_Progress;
 
         this.gameSessionService.createGameSession(this.session).subscribe({
-            next: async (_: any) => {
-                await this.createRoom();
+            next: async (sessionSaved: any) => {
+                this.loading = false;
+                this.dialogRef.close();
+                this.router.navigateByUrl(`/room/${sessionSaved._id}`);
             },
             error: (err: any) => {
                 this.loading = false;
                 this._snackBar.open(err.message, 'Fermer', {
                     panelClass: ['error-snackbar'],
-                });
-            },
-        });
-    }
-
-    private async createRoom() {
-        this.roomService.create().subscribe({
-            next: (room: any) => {
-                this.loading = false;
-                const roomId = room._id;
-                this.dialogRef.close();
-                this.router.navigateByUrl(`/room/${roomId}`);
-            },
-            error: (err: Error) => {
-                this.loading = false;
-                this._snackBar.open(err.message, 'Fermer', {
-                    panelClass: ['error-snackbar'],
-                    duration: 5000,
                 });
             },
         });
