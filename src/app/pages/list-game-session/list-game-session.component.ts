@@ -3,7 +3,7 @@ import { User } from '../../models/user.model';
 import { Collection } from 'ngx-pagination';
 import { ProfilService } from '../../services/profil/profil.service';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateGameSessionDialogComponent } from '../../components/game-session/create-game-session-dialog/create-game-session-dialog.component';
+import { CreateGameSessionDialogComponent } from '../../components/create-game-session-dialog/create-game-session-dialog.component';
 import { GameSessionModel } from '../../models/game-session/game-session.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../services/auth/auth.service';

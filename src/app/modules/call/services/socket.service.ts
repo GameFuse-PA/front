@@ -1,34 +1,45 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import io, { Socket } from 'socket.io-client';
-import { UserToBackDTO } from '../../../utils/UserToBackDTO';
-import { Chat } from '../../chat/models/chat.model';
+import { MessageModel } from '../../../models/message.model';
+import { JoinGameSessionChatDTO } from '../../../pages/game-session/dto/JoinGameSessionChatDTO';
+import { JoinGameSessionVisioDTO } from '../../../pages/game-session/dto/JoinGameSessionVisioDTO';
+import { AuthService } from '../../../services/auth/auth.service';
+import { environment } from '../../../../environments/environment';
 
+const URL = environment.apiUrl;
 @Injectable()
 export class SocketService {
     public joinedId = new BehaviorSubject(null);
     public leavedId = new BehaviorSubject(null);
-    // @ts-ignore
-    public newMessage = new BehaviorSubject<Chat>(null);
+    public newMessage = new BehaviorSubject<MessageModel | null>(null);
     public socket: Socket;
 
-    constructor() {
-        const token = JSON.parse(localStorage.getItem('user') as string);
-        this.socket = io('localhost:3000', {
+    constructor(private authService: AuthService) {
+        const token = authService.user?.access_token;
+        this.socket = io(URL, {
             path: '/socket',
             extraHeaders: {
-                Authorization: 'Bearer ' + token.access_token,
+                Authorization: 'Bearer ' + token,
             },
         });
         this.handleUserConnect();
         this.handleNewMessage();
     }
 
-    public joinRoom(user: UserToBackDTO): void {
-        this.socket.emit('roomAccessRequest', user);
+    public joinGameSessionChat(request: JoinGameSessionChatDTO): void {
+        this.socket.emit('roomAccessRequest', request);
     }
 
-    public chat(content: string): void {
+    public joinGameSessionVisio(request: JoinGameSessionVisioDTO): void {
+        this.socket.emit('joinGameSessionVisio', request);
+    }
+
+    public joinConversation(): void {
+        this.socket.emit('chatAccessRequest');
+    }
+
+    public sendChat(content: MessageModel): void {
         this.socket.emit('chat', content);
     }
 

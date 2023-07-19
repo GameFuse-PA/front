@@ -1,0 +1,19 @@
+#visio-top {
+  width: 100%;
+  height: 15%;
+}
+
+#bottom {
+  height: 70vh;
+  display: flex;
+}
+
+#game {
+  width: 75%;
+  background: red;
+}
+
+#chat {
+  width: 25%;
+  border-left: 1px solid black;
+}

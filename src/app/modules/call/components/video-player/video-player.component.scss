@@ -3,14 +3,13 @@
   text-align: center;
   padding: 0.5rem;
 
-  height: fit-content;
+  height: 100%;
   margin: 0.5px;
 
   video {
-    max-width: 100%;
-    height: auto;
-    max-height: 400px;
     display: initial;
+    max-width: 22vh;
+    height: 100%;
   }
 
   .action {
@@ -28,6 +27,11 @@
       max-width: 50px;
       width: 5%;
       min-width: 30px;
+      fill: black;
     }
   }
+}
+
+.mat-icon-black {
+  fill: black;
 }
