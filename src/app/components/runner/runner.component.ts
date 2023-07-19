@@ -193,7 +193,11 @@ export class RunnerComponent implements OnInit {
     handleKey(event: KeyboardEvent) {
         const key = event.key.toUpperCase();
 
-        if (this.action.type !== 'KEY' || this.inputFocused || !this.action.keys.includes(key)) {
+        if (
+            this.action.type !== 'KEY' ||
+            this.inputFocused ||
+            (this.action.keys && !this.action.keys.includes(key))
+        ) {
             return;
         }
 
