@@ -22,6 +22,8 @@ export class RunnerComponent implements OnInit {
     canPlay: boolean = false;
     infoMessage: string = '';
     actionMessage: string = '';
+    text: string = '';
+    textError: string = '';
     action: any = {};
 
     ngOnInit(): void {
@@ -42,7 +44,13 @@ export class RunnerComponent implements OnInit {
         });
     }
 
+    // TO DELETE !!!
+    fakeAction() {
+        this.action.type = 'TEXT';
+    }
+
     handleResponse(res: any) {
+        console.log(res);
         this.infoMessage = '';
         this.actionMessage = '';
 
@@ -57,6 +65,8 @@ export class RunnerComponent implements OnInit {
             this.action = res.requested_actions[0];
             this.infoMessage = `C'est au tour de ${this.action.player.username} de jouer.`;
             this.actionMessage = `(Action demandée : ${this.action.type})`;
+
+            this.fakeAction();
         }
 
         const display = res.displays.find(
@@ -86,6 +96,19 @@ export class RunnerComponent implements OnInit {
             type: 'CLICK',
         };
 
+        this.sendAction(action);
+    }
+
+    canClick(x: number, y: number) {
+        const zones = this.action.zones;
+
+        return zones.find(
+            (zone: any) =>
+                zone.x <= x && zone.x + zone.width >= x && zone.y <= y && zone.y + zone.height >= y,
+        );
+    }
+
+    sendAction(action: any) {
         this.runnerService.sendAction(this.gameSessionId, action).subscribe({
             next: (res: any) => {
                 this.handleResponse(res);
@@ -99,12 +122,30 @@ export class RunnerComponent implements OnInit {
         });
     }
 
-    canClick(x: number, y: number) {
-        const zones = this.action.zones;
+    handleText() {
+        this.textError = '';
 
-        return zones.find(
-            (zone: any) =>
-                zone.x <= x && zone.x + zone.width >= x && zone.y <= y && zone.y + zone.height >= y,
-        );
+        if (this.action.regex) {
+            const regex = new RegExp(this.action.regex);
+            if (!regex.test(this.text)) {
+                this.textError = 'La valeur saisie ne correspond pas au format attendu.';
+                return;
+            }
+        }
+
+        if (
+            (this.action.max_length && this.text.length > this.action.max_length) ||
+            this.text.length > 64
+        ) {
+            this.textError = 'La valeur saisie est trop longue.';
+            return;
+        }
+
+        const action = {
+            text: this.text,
+            type: 'TEXT',
+        };
+
+        this.sendAction(action);
     }
 }

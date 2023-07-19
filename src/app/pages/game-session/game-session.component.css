@@ -9,11 +9,10 @@
 }
 
 #game {
-  width: 75%;
-  background: red;
+  width: 70%;
 }
 
 #chat {
-  width: 25%;
+  width: 30%;
   border-left: 1px solid black;
 }
