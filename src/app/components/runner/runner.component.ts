@@ -3,6 +3,9 @@ import { RunnerService } from '../../services/runner/runner.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { SaveGameDialogComponent } from '../save-game-dialog/save-game-dialog.component';
+import { ConfirmActionComponent } from '../confirm-action/confirm-action.component';
 
 @Component({
     selector: 'app-runner',
@@ -15,6 +18,7 @@ export class RunnerComponent implements OnInit {
         private sanitizer: DomSanitizer,
         private authService: AuthService,
         private snackBar: MatSnackBar,
+        public dialog: MatDialog,
     ) {}
 
     @Input() gameSessionId: string = '';
@@ -47,8 +51,7 @@ export class RunnerComponent implements OnInit {
 
     // TO DELETE !!!
     fakeAction() {
-        this.action.type = 'KEY';
-        this.action.keys = 'ZQSD';
+        this.action.confirm = true;
     }
 
     handleResponse(res: any) {
@@ -78,7 +81,7 @@ export class RunnerComponent implements OnInit {
     }
 
     handleClick(event: any) {
-        if (!this.canPlay) {
+        if (!this.canPlay || this.action.type !== 'CLICK') {
             return;
         }
 
@@ -97,7 +100,27 @@ export class RunnerComponent implements OnInit {
             type: 'CLICK',
         };
 
+        if (this.action.confirm) {
+            this.confirmAction(action);
+            return;
+        }
+
         this.sendAction(action);
+    }
+
+    confirmAction(action: any) {
+        const ref = this.dialog.open(ConfirmActionComponent, {
+            width: '700px',
+            autoFocus: false,
+            disableClose: true,
+            data: {
+                action: action,
+            },
+        });
+
+        ref.componentInstance.confirm.subscribe((res: any) => {
+            this.sendAction(action);
+        });
     }
 
     canClick(x: number, y: number) {
@@ -147,6 +170,11 @@ export class RunnerComponent implements OnInit {
             type: 'TEXT',
         };
 
+        if (this.action.confirm) {
+            this.confirmAction(action);
+            return;
+        }
+
         this.sendAction(action);
     }
 
@@ -163,13 +191,20 @@ export class RunnerComponent implements OnInit {
 
         const key = event.key.toUpperCase();
 
-        if (this.action.keys.includes(key)) {
-            const action = {
-                key: key,
-                type: 'KEY',
-            };
-
-            this.sendAction(action);
+        if (!this.action.keys.includes(key)) {
+            return;
         }
+
+        const action = {
+            key: key,
+            type: 'KEY',
+        };
+
+        if (this.action.confirm) {
+            this.confirmAction(action);
+            return;
+        }
+
+        this.sendAction(action);
     }
 }
