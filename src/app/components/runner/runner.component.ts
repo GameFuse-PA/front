@@ -49,13 +49,7 @@ export class RunnerComponent implements OnInit {
         });
     }
 
-    // TO DELETE !!!
-    fakeAction() {
-        this.action.confirm = true;
-    }
-
     handleResponse(res: any) {
-        console.log(res);
         this.infoMessage = '';
         this.actionMessage = '';
 
@@ -68,7 +62,6 @@ export class RunnerComponent implements OnInit {
             );
 
             this.action = res.requested_actions[0];
-            this.fakeAction();
             this.infoMessage = `C'est au tour de ${this.action.player.username} de jouer.`;
             this.actionMessage = `(Action demandée : ${this.action.type})`;
         }
@@ -80,7 +73,19 @@ export class RunnerComponent implements OnInit {
         this.html = this.sanitizer.bypassSecurityTrustHtml(svg) as string;
     }
 
-    handleClick(event: any) {
+    disableDefault(event: any) {
+        event.preventDefault();
+    }
+
+    handleAuxClick(event: any) {
+        if (event.button == 1) {
+            this.handleClick(event, 'MIDDLE');
+        } else if (event.button == 2) {
+            this.handleClick(event, 'RIGHT');
+        }
+    }
+
+    handleClick(event: any, button: string) {
         if (!this.canPlay || this.action.type !== 'CLICK') {
             return;
         }
@@ -90,7 +95,7 @@ export class RunnerComponent implements OnInit {
         const xCoord = event.clientX - zone.left;
         const yCoord = event.clientY - zone.top;
 
-        if (!this.canClick(xCoord, yCoord)) {
+        if (!this.canClick(xCoord, yCoord, button)) {
             return;
         }
 
@@ -98,6 +103,7 @@ export class RunnerComponent implements OnInit {
             x: xCoord,
             y: yCoord,
             type: 'CLICK',
+            button: button,
         };
 
         if (this.action.confirm) {
@@ -123,7 +129,11 @@ export class RunnerComponent implements OnInit {
         });
     }
 
-    canClick(x: number, y: number) {
+    canClick(x: number, y: number, button: string) {
+        if ((this.action.buttons && !this.action.buttons.includes(button)) || button !== 'LEFT') {
+            return false;
+        }
+
         const zones = this.action.zones;
 
         return zones.find(
@@ -133,6 +143,7 @@ export class RunnerComponent implements OnInit {
     }
 
     sendAction(action: any) {
+        this.canPlay = false;
         this.runnerService.sendAction(this.gameSessionId, action).subscribe({
             next: (res: any) => {
                 this.handleResponse(res);
@@ -180,18 +191,9 @@ export class RunnerComponent implements OnInit {
 
     @HostListener('document:keypress', ['$event'])
     handleKey(event: KeyboardEvent) {
-        if (this.action.type !== 'KEY') {
-            return;
-        }
-
-        if (this.inputFocused) {
-            // chat input is focused, do not handle keypress
-            return;
-        }
-
         const key = event.key.toUpperCase();
 
-        if (!this.action.keys.includes(key)) {
+        if (this.action.type !== 'KEY' || this.inputFocused || !this.action.keys.includes(key)) {
             return;
         }
 
