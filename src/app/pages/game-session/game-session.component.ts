@@ -21,6 +21,8 @@ export class RoomComponent implements OnInit {
     public me: User | null | undefined;
     public gameSessionId: string | undefined;
 
+    public chatInputIsFocused: boolean = false;
+
     @ViewChild(ChatComponent) chatComponent: ChatComponent | undefined;
 
     constructor(

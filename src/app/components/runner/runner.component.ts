@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { RunnerService } from '../../services/runner/runner.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth/auth.service';
@@ -18,6 +18,7 @@ export class RunnerComponent implements OnInit {
     ) {}
 
     @Input() gameSessionId: string = '';
+    @Input() inputFocused: boolean = false;
     html: string = '';
     canPlay: boolean = false;
     infoMessage: string = '';
@@ -46,7 +47,8 @@ export class RunnerComponent implements OnInit {
 
     // TO DELETE !!!
     fakeAction() {
-        this.action.type = 'TEXT';
+        this.action.type = 'KEY';
+        this.action.keys = 'ZQSD';
     }
 
     handleResponse(res: any) {
@@ -63,10 +65,9 @@ export class RunnerComponent implements OnInit {
             );
 
             this.action = res.requested_actions[0];
+            this.fakeAction();
             this.infoMessage = `C'est au tour de ${this.action.player.username} de jouer.`;
             this.actionMessage = `(Action demandée : ${this.action.type})`;
-
-            this.fakeAction();
         }
 
         const display = res.displays.find(
@@ -147,5 +148,28 @@ export class RunnerComponent implements OnInit {
         };
 
         this.sendAction(action);
+    }
+
+    @HostListener('document:keypress', ['$event'])
+    handleKey(event: KeyboardEvent) {
+        if (this.action.type !== 'KEY') {
+            return;
+        }
+
+        if (this.inputFocused) {
+            // chat input is focused, do not handle keypress
+            return;
+        }
+
+        const key = event.key.toUpperCase();
+
+        if (this.action.keys.includes(key)) {
+            const action = {
+                key: key,
+                type: 'KEY',
+            };
+
+            this.sendAction(action);
+        }
     }
 }
