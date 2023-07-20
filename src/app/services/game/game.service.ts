@@ -17,6 +17,7 @@ export class GameService {
         if (game.entry) formData.append('entry', game.entry);
         if (game.name) formData.append('name', game.name);
         if (game.description) formData.append('description', game.description);
+        if (game.language) formData.append('language', game.language);
         return this.http.post(URL, formData);
     }
 
@@ -27,6 +28,7 @@ export class GameService {
         if (game.entry && !game.entry.location) formData.append('entry', game.entry);
         if (game.name) formData.append('name', game.name);
         if (game.description) formData.append('description', game.description);
+        if (game.language) formData.append('language', game.language);
         return this.http.put(URL + game._id, formData);
     }
 

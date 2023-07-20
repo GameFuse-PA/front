@@ -11,4 +11,5 @@ export class Game {
     createdBy?: User;
     maxPlayers?: number;
     minPlayers?: number;
+    language?: string;
 }

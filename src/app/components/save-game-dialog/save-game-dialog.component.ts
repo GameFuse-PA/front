@@ -18,6 +18,17 @@ export class SaveGameDialogComponent implements OnInit {
     loading: boolean = false;
     error: string = '';
 
+    languages = [
+        {
+            value: 'java',
+            viewValue: 'Java 20.0.1',
+        },
+        {
+            value: 'python',
+            viewValue: 'Python 3.11.4',
+        },
+    ];
+
     constructor(
         public gameService: GameService,
         public dialogRef: MatDialogRef<SaveGameDialogComponent>,
@@ -64,6 +75,16 @@ export class SaveGameDialogComponent implements OnInit {
                 this.loading = false;
             },
         });
+    }
+
+    acceptFile() {
+        if (this.game.language == 'java') {
+            return '.jar';
+        } else if (this.game.language == 'python') {
+            return '.py';
+        } else {
+            return '';
+        }
     }
 
     showFile(url: any) {
