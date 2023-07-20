@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { RunnerService } from '../../services/runner/runner.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth/auth.service';
@@ -6,19 +6,21 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { SaveGameDialogComponent } from '../save-game-dialog/save-game-dialog.component';
 import { ConfirmActionComponent } from '../confirm-action/confirm-action.component';
+import { WebsocketService } from '../../services/websocket/websocket.service';
 
 @Component({
     selector: 'app-runner',
     templateUrl: './runner.component.html',
     styleUrls: ['./runner.component.css'],
 })
-export class RunnerComponent implements OnInit {
+export class RunnerComponent implements OnInit, OnDestroy {
     constructor(
         private runnerService: RunnerService,
         private sanitizer: DomSanitizer,
         private authService: AuthService,
         private snackBar: MatSnackBar,
         public dialog: MatDialog,
+        private websocketService: WebsocketService,
     ) {}
 
     @Input() gameSessionId: string = '';
@@ -33,6 +35,18 @@ export class RunnerComponent implements OnInit {
 
     ngOnInit(): void {
         this.retrieveState();
+
+        this.websocketService.connectRunner(this.gameSessionId);
+
+        this.websocketService.socket.on('action-runner', (res: any) => {
+            this.handleResponse(res);
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.websocketService.disconnectRunner(this.gameSessionId);
+
+        this.websocketService.socket.off('action-runner');
     }
 
     retrieveState() {
@@ -146,6 +160,7 @@ export class RunnerComponent implements OnInit {
         this.canPlay = false;
         this.runnerService.sendAction(this.gameSessionId, action).subscribe({
             next: (res: any) => {
+                this.websocketService.emitAction(res, this.gameSessionId);
                 this.handleResponse(res);
             },
             error: (err: Error) => {
