@@ -69,7 +69,7 @@ const routes: Routes = [
         path: 'invitation',
         component: InvitationsComponent,
     },
-  {
+    {
         path: 'my-conversations',
         component: MyConversationsComponent,
     },
