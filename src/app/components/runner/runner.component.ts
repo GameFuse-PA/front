@@ -65,7 +65,6 @@ export class RunnerComponent implements OnInit, OnDestroy {
     }
 
     handleResponse(res: any) {
-        console.log(res);
         this.infoMessage = '';
         this.actionMessage = '';
 

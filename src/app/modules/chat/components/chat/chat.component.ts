@@ -58,7 +58,6 @@ export class ChatComponent implements OnInit, OnChanges {
         try {
             return this.datePipe.transform(messageDate, 'dd/MM/yyyy HH:mm');
         } catch (e) {
-            console.log('erreur lors du parsing de date : ' + messageDate);
             return;
         }
     }
