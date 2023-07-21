@@ -13,4 +13,5 @@ export class User {
     access_token?: string;
     avatar?: avatar;
     friends?: any[];
+    scores?: any[];
 }
