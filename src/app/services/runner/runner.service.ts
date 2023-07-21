@@ -18,6 +18,10 @@ export class RunnerService {
         return this.http.post(`${URL}/${gameSessionId}/runner`, action);
     }
 
+    resetGame(gameSessionId: string) {
+        return this.http.delete(`${URL}/${gameSessionId}/runner`);
+    }
+
     buildHtml(json: any) {
         let html = `<svg width="${json.width}" height="${json.height}">`;
 

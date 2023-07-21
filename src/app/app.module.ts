@@ -59,6 +59,8 @@ import { ConversationModule } from './modules/chat/conversation.module';
 import { ChatComponent } from './modules/chat/components/chat/chat.component';
 import { RunnerComponent } from './components/runner/runner.component';
 import { ConfirmActionComponent } from './components/confirm-action/confirm-action.component';
+import { AlterRunnerComponent } from './components/alter-runner/alter-runner.component';
+import { ActionHistoryDialogComponent } from './components/action-history-dialog/action-history-dialog.component';
 
 @NgModule({
     declarations: [
@@ -99,6 +101,8 @@ import { ConfirmActionComponent } from './components/confirm-action/confirm-acti
         RoomComponent,
         RunnerComponent,
         ConfirmActionComponent,
+        AlterRunnerComponent,
+        ActionHistoryDialogComponent,
     ],
     imports: [
         BrowserAnimationsModule,
