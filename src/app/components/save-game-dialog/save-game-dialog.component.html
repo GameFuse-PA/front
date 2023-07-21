@@ -8,6 +8,14 @@
 <div mat-dialog-content>
     <div class="flex flex-col justify-center items-center mt-3">
         <mat-form-field appearance="outline" class="w-11/12">
+            <mat-label>Language</mat-label>
+            <mat-select [(ngModel)]="game.language" [disabled]="game._id !== undefined">
+                <mat-option *ngFor="let lang of languages" [value]="lang.value">
+                    {{ lang.viewValue }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-11/12">
             <mat-label>Nom</mat-label>
             <input matInput name="name" [(ngModel)]="game.name" />
             <mat-icon matSuffix>sports_esports</mat-icon>
@@ -69,11 +77,12 @@
                 type="file"
                 (change)="onFileChange($event, 'program')"
                 #programUpload
-                accept=".py"
+                [accept]="acceptFile()"
                 class="hidden"
             />
             <button
                 mat-flat-button
+                [disabled]="!game.language"
                 (click)="programUpload.click()"
                 class="text-white bg-[color:var(--primary)]"
             >

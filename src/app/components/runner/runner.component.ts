@@ -32,6 +32,7 @@ export class RunnerComponent implements OnInit, OnDestroy {
     text: string = '';
     textError: string = '';
     action: any = {};
+    loading: boolean = false;
 
     ngOnInit(): void {
         this.retrieveState();
@@ -156,14 +157,19 @@ export class RunnerComponent implements OnInit, OnDestroy {
         );
     }
 
-    sendAction(action: any) {
-        this.canPlay = false;
+    async sendAction(action: any) {
+        if (this.loading) {
+            return;
+        }
+        this.loading = true;
         this.runnerService.sendAction(this.gameSessionId, action).subscribe({
             next: (res: any) => {
+                this.loading = false;
                 this.websocketService.emitAction(res, this.gameSessionId);
                 this.handleResponse(res);
             },
             error: (err: Error) => {
+                this.loading = false;
                 this.snackBar.open(err.message, 'Fermer', {
                     duration: 3000,
                     panelClass: ['error-snackbar'],

@@ -21,7 +21,6 @@ export class ConfirmActionComponent implements OnInit {
 
     buildMessage() {
         const action = this.data.action;
-        console.log(this.data);
         if (action.type == 'CLICK') {
             this.message = 'Etes-vous sûr de vouloir cliquer à cet endroit ?';
         } else if (action.type == 'KEY') {
