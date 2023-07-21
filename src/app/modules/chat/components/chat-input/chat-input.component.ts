@@ -8,6 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class ChatInputComponent implements OnInit {
     public content: string = '';
     @Output() public whenSubmitMessage = new EventEmitter<string>();
+    @Output() focused: EventEmitter<boolean> = new EventEmitter();
 
     ngOnInit(): void {}
 
@@ -16,5 +17,9 @@ export class ChatInputComponent implements OnInit {
             this.whenSubmitMessage.emit(this.content.trim());
             this.content = '';
         }
+    }
+
+    public updateFocus(val: boolean): void {
+        this.focused.emit(val);
     }
 }

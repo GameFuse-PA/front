@@ -58,6 +58,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {ConversationModule} from "./modules/chat/conversation.module";
 import {ChatComponent} from "./modules/chat/components/chat/chat.component";
 import { RunnerComponent } from './components/runner/runner.component';
+import { ConfirmActionComponent } from './components/confirm-action/confirm-action.component';
 
 @NgModule({
     declarations: [
@@ -97,6 +98,7 @@ import { RunnerComponent } from './components/runner/runner.component';
         CreateGameSessionDialogComponent,
         RoomComponent,
         RunnerComponent,
+        ConfirmActionComponent,
     ],
     imports: [
         BrowserAnimationsModule,

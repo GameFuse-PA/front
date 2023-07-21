@@ -6,8 +6,15 @@
 </div>
 
 <div id="bottom">
-    <div id="game">ICI LE JEU</div>
+    <div id="game" class="flex justify-center items-center !overflow-auto">
+        <app-runner
+            *ngIf="gameSessionId"
+            [gameSessionId]="gameSessionId"
+            [inputFocused]="chatInputIsFocused"
+        ></app-runner>
+    </div>
     <div id="chat">
-        <app-chat [conversation]="conversation"> </app-chat>
+        <app-chat [conversation]="conversation" (inputFocused)="chatInputIsFocused = $event">
+        </app-chat>
     </div>
 </div>

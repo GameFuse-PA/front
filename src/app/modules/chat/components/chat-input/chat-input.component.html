@@ -4,6 +4,8 @@
         [(ngModel)]="content"
         (keyup.enter)="submitMessage()"
         placeholder="Entrez votre message"
+        (focusin)="updateFocus(true)"
+        (focusout)="updateFocus(false)"
     >
     </textarea>
     <mat-icon>send</mat-icon>

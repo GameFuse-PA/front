@@ -19,7 +19,9 @@ import { ActivatedRoute } from '@angular/router';
 export class RoomComponent implements OnInit {
     public conversation: ConversationModel | undefined;
     public me: User | null | undefined;
-    private gameSessionId: string | undefined;
+    public gameSessionId: string | undefined;
+
+    public chatInputIsFocused: boolean = false;
 
     @ViewChild(ChatComponent) chatComponent: ChatComponent | undefined;
 
@@ -31,18 +33,16 @@ export class RoomComponent implements OnInit {
         private route: ActivatedRoute,
     ) {}
 
-    isHideChat = true;
-
     async ngOnInit(): Promise<void> {
         this.me = this.authService.user;
-        const currentURL = window.location.href;
-        const parts = currentURL.split('/');
-        const gameSessionId = String(this.route.snapshot.paramMap.get('gameSessionId'));
-        this.profilService.getGameSession(gameSessionId).subscribe({
+
+        this.gameSessionId = String(this.route.snapshot.paramMap.get('gameSessionId'));
+
+        this.profilService.getGameSession(this.gameSessionId).subscribe({
             next: async (res: any) => {
                 const joinGameSessionChatDTO: JoinGameSessionChatDTO = {
                     conversationId: res.conversation._id,
-                    gameSessionId: gameSessionId,
+                    gameSessionId: this.gameSessionId,
                 };
                 this.joinGameSessionChat(joinGameSessionChatDTO);
                 this.socketService.newMessage.subscribe((chat) => {
@@ -65,7 +65,6 @@ export class RoomComponent implements OnInit {
                         messages: [],
                     };
                 }
-                this.gameSessionId = gameSessionId;
             },
             error: (err: any) => {
                 this._snackBar.open(err.message, 'Fermer', {

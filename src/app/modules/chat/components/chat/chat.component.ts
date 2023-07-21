@@ -28,6 +28,7 @@ export class ChatComponent implements OnInit, OnChanges {
     @Input() conversation: ConversationModel | undefined;
     me: User | null | undefined;
     @ViewChild('chatContainer') chatContainer: ElementRef | undefined;
+    @Output() inputFocused: EventEmitter<boolean> = new EventEmitter();
 
     messageControl = new FormControl();
     constructor(
@@ -36,6 +37,10 @@ export class ChatComponent implements OnInit, OnChanges {
         private datePipe: DatePipe,
         private socketService: SocketService,
     ) {}
+
+    emitFocus(val: boolean): void {
+        this.inputFocused.emit(val);
+    }
 
     ngOnInit(): void {
         this.scrollToNewMessage();

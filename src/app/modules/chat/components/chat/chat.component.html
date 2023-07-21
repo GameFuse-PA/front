@@ -22,5 +22,8 @@
         <h2>Vous n'avez aucune conversation</h2>
     </div>
 
-    <app-chat-input (whenSubmitMessage)="addMessage($event)"></app-chat-input>
+    <app-chat-input
+        (whenSubmitMessage)="addMessage($event)"
+        (focused)="emitFocus($event)"
+    ></app-chat-input>
 </div>
