@@ -7,7 +7,7 @@ import { ChatModule } from './chat.module';
 
 @NgModule({
     declarations: [MyConversationsComponent, ConversationResumeComponent],
-  imports: [FormsModule, CommonModule, ChatModule],
+    imports: [FormsModule, CommonModule, ChatModule],
     exports: [MyConversationsComponent],
 })
 export class ConversationModule {}

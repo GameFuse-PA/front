@@ -1,4 +1,4 @@
 export interface JoinGameSessionVisioDTO {
-  conversationId: string;
-  peerId: string;
+    conversationId: string;
+    peerId: string;
 }
