@@ -32,7 +32,7 @@ export class GameSessionCardComponent implements OnInit {
                 this.gameSessionStatusClass = 'status game-session-terminated';
                 this.gameSessionStatusText = 'Partie terminé';
                 this.gameSessionButtonClass = 'w-full mt-10 bg-[color:var(--primary)] text-white';
-                this.gameSessionButtonText = 'Voir le replay';
+                this.gameSessionButtonText = 'Voir le résultat';
                 break;
             default:
                 this.gameSessionStatusClass = 'status error-game-status';
