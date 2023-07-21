@@ -61,6 +61,7 @@ import { RunnerComponent } from './components/runner/runner.component';
 import { ConfirmActionComponent } from './components/confirm-action/confirm-action.component';
 import { AlterRunnerComponent } from './components/alter-runner/alter-runner.component';
 import { ActionHistoryDialogComponent } from './components/action-history-dialog/action-history-dialog.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
     declarations: [
@@ -129,6 +130,7 @@ import { ActionHistoryDialogComponent } from './components/action-history-dialog
         CallModule,
         MatTooltipModule,
         ConversationModule,
+        MatDividerModule,
     ],
     providers: [
         {

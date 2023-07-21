@@ -1,1 +1,34 @@
-<p>action-history-dialog works!</p>
+<div class="flex">
+    <span mat-dialog-title> Historique des actions </span>
+    <span class="flex flex-1"></span>
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon class="text-[color:var(--error)]">close</mat-icon>
+    </button>
+</div>
+<div mat-dialog-content>
+    <div class="w-full flex justify-center mt-5">
+        <span *ngIf="actionHistory.length === 0" class="text-lg">
+            Aucune action n'a été effectuée
+        </span>
+    </div>
+    <div *ngFor="let action of actionHistory; let index = index">
+        <div class="flex items-center">
+            <span class="text-base">
+                Action de {{ action.player.username }} le
+                {{ action.createdAt | date : 'dd/MM/yyyy à HH:mm' }} :
+                {{ action.type }}
+                ({{ buildActionDetail(action) }})
+            </span>
+            <span class="flex flex-1"></span>
+            <button
+                mat-flat-button
+                class="text-white bg-[color:var(--primary)]"
+                [disabled]="index === actionHistory.length - 1"
+                (click)="resetToAction(action._id)"
+            >
+                <mat-icon>update</mat-icon>
+            </button>
+        </div>
+        <mat-divider class="!my-5" *ngIf="index !== actionHistory.length - 1"></mat-divider>
+    </div>
+</div>

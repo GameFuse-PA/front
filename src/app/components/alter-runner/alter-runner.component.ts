@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RunnerService } from '../../services/runner/runner.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WebsocketService } from '../../services/websocket/websocket.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmActionComponent } from '../confirm-action/confirm-action.component';
+import { ActionHistoryDialogComponent } from '../action-history-dialog/action-history-dialog.component';
 
 @Component({
     selector: 'app-alter-runner',
@@ -16,6 +19,7 @@ export class AlterRunnerComponent implements OnInit {
         private websocketService: WebsocketService,
         private snackBar: MatSnackBar,
         private runnerService: RunnerService,
+        private dialog: MatDialog,
     ) {}
 
     ngOnInit(): void {}
@@ -36,6 +40,15 @@ export class AlterRunnerComponent implements OnInit {
     }
 
     showHistory() {
-        console.log('showHistory');
+        const res = this.dialog.open(ActionHistoryDialogComponent, {
+            width: '700px',
+            autoFocus: false,
+            disableClose: true,
+            data: this.gameSessionId,
+        });
+
+        res.componentInstance.reloadRunner.subscribe(() => {
+            this.reloadRunner.emit();
+        });
     }
 }

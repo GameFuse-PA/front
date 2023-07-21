@@ -13,4 +13,8 @@ export class GameSessionService {
     createGameSession(body: GameSessionCreateModel) {
         return this.http.post(`${URL}`, body);
     }
+
+    getGameSession(gameSessionId: string) {
+        return this.http.get(`${URL}/${gameSessionId}`);
+    }
 }

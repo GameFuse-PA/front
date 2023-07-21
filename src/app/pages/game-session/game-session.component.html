@@ -8,11 +8,11 @@
 <div id="bottom">
     <div id="game" class="!overflow-auto">
         <app-alter-runner
-            *ngIf="gameSessionId"
+            *ngIf="gameSessionId && isAdmin"
             [gameSessionId]="gameSessionId"
             (reloadRunner)="reloadRunner()"
         ></app-alter-runner>
-        <div class="flex justify-center">
+        <div class="flex justify-center {{ isAdmin ? '' : '!mt-14' }}">
             <app-runner
                 *ngIf="gameSessionId"
                 [gameSessionId]="gameSessionId"

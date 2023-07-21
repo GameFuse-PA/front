@@ -21,6 +21,7 @@ export class RoomComponent implements OnInit {
     public conversation: ConversationModel | undefined;
     public me: User | null | undefined;
     public gameSessionId: string | undefined;
+    public isAdmin = false;
 
     public chatInputIsFocused: boolean = false;
 
@@ -42,6 +43,7 @@ export class RoomComponent implements OnInit {
 
         this.profilService.getGameSession(this.gameSessionId).subscribe({
             next: async (res: any) => {
+                this.isAdmin = res.createdBy === this.me?._id;
                 const joinGameSessionChatDTO: JoinGameSessionChatDTO = {
                     conversationId: res.conversation._id,
                     gameSessionId: this.gameSessionId,
