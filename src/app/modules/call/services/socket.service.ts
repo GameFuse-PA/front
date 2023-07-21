@@ -28,15 +28,15 @@ export class SocketService {
     }
 
     public joinGameSessionChat(request: JoinGameSessionChatDTO): void {
-        this.socket.emit('roomAccessRequest', request);
+        this.socket.emit('connect-game-session', request);
     }
 
     public joinGameSessionVisio(request: JoinGameSessionVisioDTO): void {
-        this.socket.emit('joinGameSessionVisio', request);
+        this.socket.emit('connect-game-session-visio', request);
     }
 
     public joinConversation(): void {
-        this.socket.emit('chatAccessRequest');
+        this.socket.emit('connect-chat');
     }
 
     public sendChat(content: MessageModel): void {

@@ -70,23 +70,6 @@ export class MyConversationsComponent implements OnInit {
             });
         });
     }
-
-    async addMessage(message: string) {
-        if (this.selectedConversation?.users != undefined) {
-            let recipient = undefined;
-            if (this.me?._id === this.selectedConversation?.users[0]._id) {
-                recipient = this.selectedConversation?.users[1];
-            } else {
-                recipient = this.selectedConversation?.users[0];
-            }
-            const chatToBack: MessageToBackModel = {
-                content: message,
-                to: recipient._id,
-            };
-            this.socketService.sendChat(chatToBack);
-        }
-    }
-
     async selectConversation(selectedConversation: ConversationModel) {
         if (selectedConversation._id) {
             await this.profilServices.getConversation(selectedConversation._id).subscribe({

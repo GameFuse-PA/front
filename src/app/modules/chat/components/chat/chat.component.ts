@@ -94,6 +94,7 @@ export class ChatComponent implements OnInit, OnChanges {
             const chatToBack: MessageToBackModel = {
                 content: message,
                 to: recipient._id,
+                conversationId: this.conversation._id,
             };
             this.socketService.sendChat(chatToBack);
         }
