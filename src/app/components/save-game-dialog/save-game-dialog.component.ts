@@ -21,11 +21,11 @@ export class SaveGameDialogComponent implements OnInit {
     languages = [
         {
             value: 'java',
-            viewValue: 'Java 20.0.1',
+            viewValue: 'Java 17.0.7',
         },
         {
             value: 'python',
-            viewValue: 'Python 3.11.4',
+            viewValue: 'Python 3.9.2',
         },
     ];
 
@@ -78,9 +78,9 @@ export class SaveGameDialogComponent implements OnInit {
     }
 
     acceptFile() {
-        if (this.game.language == 'java') {
+        if (this.game.language === 'java') {
             return '.jar';
-        } else if (this.game.language == 'python') {
+        } else if (this.game.language === 'python') {
             return '.py';
         } else {
             return '';
