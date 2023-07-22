@@ -169,6 +169,7 @@ export class RunnerComponent implements OnInit, OnDestroy {
                 this.handleResponse(res);
             },
             error: (err: Error) => {
+                this.loading = false;
                 this.snackBar.open(err.message, 'Fermer', {
                     duration: 3000,
                     panelClass: ['error-snackbar'],
