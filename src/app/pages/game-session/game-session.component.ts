@@ -10,6 +10,7 @@ import { JoinGameSessionChatDTO } from './dto/JoinGameSessionChatDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JoinGameSessionVisioDTO } from './dto/JoinGameSessionVisioDTO';
 import { ActivatedRoute } from '@angular/router';
+import { RunnerComponent } from '../../components/runner/runner.component';
 
 @Component({
     selector: 'app-room',
@@ -20,10 +21,12 @@ export class RoomComponent implements OnInit {
     public conversation: ConversationModel | undefined;
     public me: User | null | undefined;
     public gameSessionId: string | undefined;
+    public isAdmin = false;
 
     public chatInputIsFocused: boolean = false;
 
     @ViewChild(ChatComponent) chatComponent: ChatComponent | undefined;
+    @ViewChild(RunnerComponent) runnerComponent: RunnerComponent | undefined;
 
     constructor(
         private profilService: ProfilService,
@@ -40,6 +43,7 @@ export class RoomComponent implements OnInit {
 
         this.profilService.getGameSession(this.gameSessionId).subscribe({
             next: async (res: any) => {
+                this.isAdmin = res.createdBy === this.me?._id;
                 const joinGameSessionChatDTO: JoinGameSessionChatDTO = {
                     conversationId: res.conversation._id,
                     gameSessionId: this.gameSessionId,
@@ -88,5 +92,9 @@ export class RoomComponent implements OnInit {
         joinGameSessionChatDTO: JoinGameSessionChatDTO,
     ): Promise<void> {
         this.socketService.joinGameSessionChat(joinGameSessionChatDTO);
+    }
+
+    public reloadRunner() {
+        this.runnerComponent?.retrieveState();
     }
 }
