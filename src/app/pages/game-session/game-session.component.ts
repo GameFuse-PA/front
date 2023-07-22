@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ConversationModel } from '../../models/conversation.model';
 import { ProfilService } from '../../services/profil/profil.service';
 import { SocketService } from '../../modules/call/services/socket.service';
-import { MessageToBackModel } from '../../models/messageToBack.model';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../services/auth/auth.service';
 import { ChatComponent } from '../../modules/chat/components/chat/chat.component';
@@ -10,6 +9,7 @@ import { JoinGameSessionChatDTO } from './dto/JoinGameSessionChatDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JoinGameSessionVisioDTO } from './dto/JoinGameSessionVisioDTO';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-room',
@@ -26,6 +26,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     @ViewChild(ChatComponent) chatComponent: ChatComponent | undefined;
 
     constructor(
+        private router: Router,
         private profilService: ProfilService,
         public socketService: SocketService,
         private authService: AuthService,
@@ -71,6 +72,7 @@ export class RoomComponent implements OnInit, OnDestroy {
                 this._snackBar.open(err.message, 'Fermer', {
                     panelClass: ['error-snackbar'],
                 });
+                this.router.navigate(['/my-game-sessions']);
             },
         });
     }
