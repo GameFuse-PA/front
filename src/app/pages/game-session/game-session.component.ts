@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ConversationModel } from '../../models/conversation.model';
 import { ProfilService } from '../../services/profil/profil.service';
 import { SocketService } from '../../modules/call/services/socket.service';
@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
     templateUrl: './game-session.component.html',
     styleUrls: ['./game-session.component.css'],
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent implements OnInit, OnDestroy {
     public conversation: ConversationModel | undefined;
     public me: User | null | undefined;
     public gameSessionId: string | undefined;
@@ -33,7 +33,7 @@ export class RoomComponent implements OnInit {
         private route: ActivatedRoute,
     ) {}
 
-    async ngOnInit(): Promise<void> {
+    ngOnInit(): void {
         this.me = this.authService.user;
 
         this.gameSessionId = String(this.route.snapshot.paramMap.get('gameSessionId'));
@@ -44,7 +44,8 @@ export class RoomComponent implements OnInit {
                     conversationId: res.conversation._id,
                     gameSessionId: this.gameSessionId,
                 };
-                this.joinGameSessionChat(joinGameSessionChatDTO);
+                this.socketService.connectGameSessionChat(joinGameSessionChatDTO);
+                this.socketService.handleNewMessage();
                 this.socketService.newMessage.subscribe((chat) => {
                     if (chat && chat.conversationId === this.conversation?._id) {
                         if (this.conversation?.messages !== undefined) {
@@ -74,6 +75,13 @@ export class RoomComponent implements OnInit {
         });
     }
 
+    ngOnDestroy(): void {
+        if (this.conversation?._id != undefined) {
+            this.socketService.disconnectFromGameSession(this.conversation._id);
+            this.socketService.socket.off('new-message');
+        }
+    }
+
     public async readyToJoinGameSessionVisio(peerId: string) {
         if (this.conversation?._id !== undefined) {
             const request: JoinGameSessionVisioDTO = {
@@ -82,11 +90,5 @@ export class RoomComponent implements OnInit {
             };
             this.socketService.joinGameSessionVisio(request);
         }
-    }
-
-    private async joinGameSessionChat(
-        joinGameSessionChatDTO: JoinGameSessionChatDTO,
-    ): Promise<void> {
-        this.socketService.joinGameSessionChat(joinGameSessionChatDTO);
     }
 }

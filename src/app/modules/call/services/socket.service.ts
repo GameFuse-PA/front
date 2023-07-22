@@ -24,10 +24,10 @@ export class SocketService {
             },
         });
         this.handleUserConnect();
-        this.handleNewMessage();
+        //this.handleNewMessage();
     }
 
-    public joinGameSessionChat(request: JoinGameSessionChatDTO): void {
+    public connectGameSessionChat(request: JoinGameSessionChatDTO): void {
         this.socket.emit('connect-game-session', request);
     }
 
@@ -36,11 +36,19 @@ export class SocketService {
     }
 
     public joinConversation(): void {
-        this.socket.emit('connect-chat');
+        this.socket.emit('connect-conversation');
     }
 
     public sendChat(content: MessageModel): void {
         this.socket.emit('chat', content);
+    }
+
+    public disconnectFromChat(): void {
+      this.socket.emit('disconnect-conversation')
+    }
+
+    public disconnectFromGameSession(conversationId: string): void {
+      this.socket.emit('disconnect-game-session', conversationId)
     }
 
     private handleUserConnect(): void {
@@ -52,7 +60,7 @@ export class SocketService {
         });
     }
 
-    private handleNewMessage(): void {
+    public handleNewMessage(): void {
         this.socket.on('new-message', (chatStructure) => {
             this.newMessage.next(chatStructure);
         });

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ProfilService } from '../../services/profil/profil.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,7 +13,7 @@ import { ChatComponent } from '../../modules/chat/components/chat/chat.component
     templateUrl: './my-conversations.component.html',
     styleUrls: ['./my-conversations.component.css'],
 })
-export class MyConversationsComponent implements OnInit {
+export class MyConversationsComponent implements OnInit, OnDestroy {
     public conversations: ConversationModel[] = [];
     public selectedConversation: ConversationModel | undefined;
     public me: User | null | undefined;
@@ -31,7 +31,8 @@ export class MyConversationsComponent implements OnInit {
         await this.getConversations();
         this.selectConversation(this.conversations[0]);
         this.me = this.authService.user;
-        await this.joinConversation();
+        this.socketService.joinConversation();
+        this.socketService.handleNewMessage();
         this.socketService.newMessage.subscribe((chat) => {
             if (chat && chat.conversationId === this.selectedConversation?._id) {
                 if (this.selectedConversation?.messages !== undefined) {
@@ -46,8 +47,10 @@ export class MyConversationsComponent implements OnInit {
             this.chatComponent?.scrollToNewMessage();
         });
     }
-    private async joinConversation(): Promise<void> {
-        this.socketService.joinConversation();
+
+    ngOnDestroy(): void {
+        this.socketService.disconnectFromChat();
+        this.socketService.socket.off('new-message');
     }
 
     async getConversations(): Promise<void> {
