@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SaveGameDialogComponent } from './save-game-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 describe('SaveGameDialogComponent', () => {
     let component: SaveGameDialogComponent;
@@ -9,6 +11,11 @@ describe('SaveGameDialogComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [SaveGameDialogComponent],
+            imports: [HttpClientModule, MatDialogModule],
+            providers: [
+                { provide: MatDialogRef, useValue: {} },
+                { provide: MAT_DIALOG_DATA, useValue: [] },
+            ],
         }).compileComponents();
     });
 

@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfirmActionComponent } from './confirm-action.component';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+
+enum type {
+    CLICK,
+    KEY,
+    TEXT,
+}
 
 describe('ConfirmActionComponent', () => {
     let component: ConfirmActionComponent;
@@ -8,7 +15,12 @@ describe('ConfirmActionComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [MatDialogModule],
             declarations: [ConfirmActionComponent],
+            providers: [
+                { provide: MatDialogRef, useValue: {} },
+                { provide: MAT_DIALOG_DATA, useValue: { action: type.CLICK } },
+            ],
         }).compileComponents();
     });
 
