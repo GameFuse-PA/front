@@ -16,4 +16,20 @@ export class ConversationResumeComponent implements OnInit {
     ngOnInit(): void {
         this.me = this.authService.user;
     }
+
+    isSrcDefined(): boolean {
+        if (this.getAvatarSrc() == null || this.getAvatarSrc() == undefined) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    getAvatarSrc(): string | undefined {
+        if (this.conversation?.users?.[0]?._id === this.me?._id) {
+            return this.conversation?.users?.[1]?.avatar?.location;
+        } else {
+            return this.conversation?.users?.[0]?.avatar?.location;
+        }
+    }
 }

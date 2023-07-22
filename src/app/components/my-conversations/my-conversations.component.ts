@@ -74,7 +74,7 @@ export class MyConversationsComponent implements OnInit, OnDestroy {
         });
     }
     async selectConversation(selectedConversation: ConversationModel) {
-        if (selectedConversation._id) {
+        if (selectedConversation && selectedConversation._id) {
             await this.profilServices.getConversation(selectedConversation._id).subscribe({
                 next: (convFromDb: ConversationModel) => {
                     this.selectedConversation = convFromDb;
