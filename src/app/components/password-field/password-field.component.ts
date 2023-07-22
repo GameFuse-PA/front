@@ -7,7 +7,7 @@ import { ResetPasswordModel } from '../../models/reset-password.model';
     styleUrls: ['./password-field.component.css'],
 })
 export class PasswordFieldComponent implements OnInit {
-    @Input() user: ResetPasswordModel | undefined;
+    @Input() user: ResetPasswordModel | undefined = {};
     hide: boolean = true;
     hide2: boolean = true;
 
