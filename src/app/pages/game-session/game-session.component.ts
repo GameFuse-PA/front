@@ -22,6 +22,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     public me: User | null | undefined;
     public gameSessionId: string | undefined;
     public isAdmin = false;
+    public gameSession: any = null;
 
     public chatInputIsFocused: boolean = false;
 
@@ -49,6 +50,7 @@ export class RoomComponent implements OnInit, OnDestroy {
                     conversationId: res.conversation._id,
                     gameSessionId: this.gameSessionId,
                 };
+                this.gameSession = res;
                 this.socketService.connectGameSessionChat(joinGameSessionChatDTO);
                 this.socketService.handleNewMessage();
                 this.socketService.newMessage.subscribe((chat) => {
