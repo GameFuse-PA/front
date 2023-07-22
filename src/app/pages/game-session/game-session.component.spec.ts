@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CallModule } from '../../modules/call/call.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { setImmediate } from 'timers';
 
 describe('RoomComponent', () => {
     let component: RoomComponent;
@@ -12,7 +13,7 @@ describe('RoomComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [RouterTestingModule, HttpClientTestingModule, CallModule, MatSnackBarModule],
+            imports: [RouterTestingModule, HttpClientTestingModule, MatSnackBarModule, CallModule],
             declarations: [RoomComponent],
         }).compileComponents();
     });
