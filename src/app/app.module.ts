@@ -65,6 +65,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ScoreboardComponent } from './pages/scoreboard/scoreboard.component';
 import { PlayerScoreboardComponent } from './components/player-scoreboard/player-scoreboard.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
     declarations: [
@@ -137,6 +138,7 @@ import { MatTableModule } from '@angular/material/table';
         ConversationModule,
         MatDividerModule,
         MatTableModule,
+        MatSlideToggleModule,
     ],
     providers: [
         {

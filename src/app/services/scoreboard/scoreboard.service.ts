@@ -12,4 +12,8 @@ export class ScoreboardService {
     getScoreboard(gameId: string, userSearch: string) {
         return this.http.get(`${URL}?gameId=${gameId}&userSearch=${userSearch}`);
     }
+
+    getFriendsScoreboard(gameId: string, userSearch: string) {
+        return this.http.get(`${URL}/friends?gameId=${gameId}&userSearch=${userSearch}`);
+    }
 }
