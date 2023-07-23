@@ -1,0 +1,29 @@
+<div class="chat">
+    <div class="conversation" *ngIf="conversation" #chatContainer>
+        <!-- Afficher cela si la variable "conversation" est définie -->
+        <div
+            class="message"
+            *ngFor="let chat of conversation.messages; index as i"
+            [id]="i"
+            [ngClass]="chat.from?._id === me?._id ? 'my-message' : 'cor-message'"
+        >
+            <div class="message-header">
+                <p>{{ dateAdapter(chat.date) }}</p>
+            </div>
+            <div class="message-content">
+                <h2 [innerHTML]="chat.from?.username"></h2>
+                <p [innerHTML]="chat.content"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sinon, afficher cela -->
+    <div class="conversation" *ngIf="!conversation">
+        <h2>Vous n'avez aucune conversation</h2>
+    </div>
+
+    <app-chat-input
+        (whenSubmitMessage)="addMessage($event)"
+        (focused)="emitFocus($event)"
+    ></app-chat-input>
+</div>

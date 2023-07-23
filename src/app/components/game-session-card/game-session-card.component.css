@@ -1,0 +1,19 @@
+.game-session-in-progress {
+  background-color: var(--success);
+}
+
+.game-session-terminated {
+  background-color: var(--error);
+}
+
+.error-game-status {
+  background-color: var(--accent);
+}
+
+.status {
+    padding: 0 10px;
+    border-radius: 10px;
+    font-size: 9pt;
+    text-align: center;
+    color: white;
+}

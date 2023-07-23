@@ -1,0 +1,4 @@
+<mat-form-field class="w-full" appearance="outline">
+    <mat-label>{{ placeholder }}</mat-label>
+    <input matInput type="text" [(ngModel)]="search" (ngModelChange)="emitValue()" />
+</mat-form-field>

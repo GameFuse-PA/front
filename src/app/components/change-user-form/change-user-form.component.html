@@ -1,0 +1,71 @@
+<mat-card>
+    <ng-form>
+        <mat-card-header class="flex justify-center">
+            <h2>Mes informations personnelles</h2>
+        </mat-card-header>
+        <mat-card-content class="!flex !justify-center !flex-col !items-center">
+            <mat-form-field class="!mt-10 w-3/4" appearance="outline">
+                <mat-label>Pseudo</mat-label>
+                <input
+                    matInput
+                    name="username"
+                    [(ngModel)]="user.username"
+                    [placeholder]="this.userPlaceholder.username!"
+                />
+            </mat-form-field>
+            <mat-form-field class="mt-5 w-3/4" appearance="outline">
+                <mat-label>Prénom</mat-label>
+                <input
+                    matInput
+                    name="firstname"
+                    [(ngModel)]="user.firstname"
+                    [placeholder]="this.userPlaceholder.firstname!"
+                />
+            </mat-form-field>
+            <mat-form-field class="mt-5 w-3/4" appearance="outline">
+                <mat-label>Nom de famille</mat-label>
+                <input
+                    matInput
+                    name="lastname"
+                    [(ngModel)]="user.lastname"
+                    [placeholder]="this.userPlaceholder.lastname!"
+                />
+            </mat-form-field>
+            <mat-form-field class="mt-5 w-3/4" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                    matInput
+                    type="email"
+                    name="email"
+                    [placeholder]="this.userPlaceholder.email!"
+                    [(ngModel)]="user.email"
+                />
+            </mat-form-field>
+            <mat-form-field class="mt-5 w-3/4" appearance="outline">
+                <mat-label>Date de naissance</mat-label>
+                <input
+                    matInput
+                    readonly
+                    [matDatepicker]="picker"
+                    name="birthdate"
+                    [(ngModel)]="user.birthdate"
+                    (focus)="picker.open()"
+                    [max]="maxDate"
+                />
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions class="!flex !justify-center !flex-col !items-center">
+            <button
+                (click)="submit()"
+                id="submit-button"
+                mat-flat-button
+                class="text-white bg-[color:var(--primary)] w-1/2"
+            >
+                Enregistrer
+            </button>
+            <span class="mt-5 text-white text-[color:var(--success)]" *ngIf="ok">{{ ok }}</span>
+            <span class="mt-5 text-white text-[color:var(--error)]" *ngIf="error">{{ error }}</span>
+        </mat-card-actions>
+    </ng-form>
+</mat-card>

@@ -2,3 +2,35 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+    --primary: #1976D2;
+    --secondary: #02324F;
+    --accent: #ED6A5B;
+    --error: #FF5252;
+    --info: #2196F3;
+    --success: #4CAF50;
+    --warning: #FC9674;
+    --disabled: #CECECE;
+    --message:#EBEBEB;
+    --myMessage:#AFF5FF
+}
+
+
+.success-snackbar {
+  background-color: var(--success) !important;
+  color: white !important;
+}
+
+.success-snackbar .mat-simple-snackbar-action {
+  color: white !important;
+}
+
+.error-snackbar {
+  background-color: var(--error) !important;
+  color: white !important;
+}
+
+.error-snackbar .mat-simple-snackbar-action {
+  color: white !important;
+}

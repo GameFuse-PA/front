@@ -1,0 +1,135 @@
+<div class="flex">
+    <span mat-dialog-title> {{ game._id ? 'Modifier' : 'Ajouter' }} un jeu </span>
+    <span class="flex flex-1"></span>
+    <button mat-icon-button mat-dialog-close [disabled]="loading">
+        <mat-icon class="text-[color:var(--error)]">close</mat-icon>
+    </button>
+</div>
+<div mat-dialog-content>
+    <div class="flex flex-col justify-center items-center mt-3">
+        <mat-form-field appearance="outline" class="w-11/12">
+            <mat-label>Language</mat-label>
+            <mat-select [(ngModel)]="game.language" [disabled]="game._id !== undefined">
+                <mat-option *ngFor="let lang of languages" [value]="lang.value">
+                    {{ lang.viewValue }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-11/12">
+            <mat-label>Nom</mat-label>
+            <input matInput name="name" [(ngModel)]="game.name" />
+            <mat-icon matSuffix>sports_esports</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-11/12">
+            <mat-label>Description</mat-label>
+            <textarea
+                matInput
+                name="description"
+                rows="10"
+                cdkTextareaAutosize
+                [(ngModel)]="game.description"
+            ></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+        </mat-form-field>
+        <div class="w-11/12 flex mt-7">
+            <button
+                *ngIf="game.banner?.location"
+                mat-icon-button
+                color="primary"
+                class="!mr-3"
+                (click)="showFile(game.banner?.location)"
+            >
+                <mat-icon>visibility</mat-icon>
+            </button>
+            <span class="mr-auto my-auto">
+                Bannière : {{ game.banner ? game.banner.name : '...' }}
+            </span>
+            <input
+                type="file"
+                (change)="onFileChange($event, 'banner')"
+                accept=".png, .jpg, .jpeg"
+                #bannerUpload
+                class="hidden"
+            />
+            <button
+                mat-flat-button
+                (click)="bannerUpload.click()"
+                class="text-white bg-[color:var(--primary)]"
+            >
+                {{ game.banner?._id ? 'Modifier' : 'Ajouter' }} la bannière
+                <mat-icon>file_download</mat-icon>
+            </button>
+        </div>
+        <div class="w-11/12 flex mt-7">
+            <button
+                *ngIf="game.program?.location"
+                mat-icon-button
+                color="primary"
+                class="!mr-3"
+                (click)="showFile(game.program?.location)"
+            >
+                <mat-icon>download</mat-icon>
+            </button>
+            <span class="mr-auto my-auto">
+                Fichier source : {{ game.program ? game.program.name : '...' }}
+            </span>
+            <input
+                type="file"
+                (change)="onFileChange($event, 'program')"
+                #programUpload
+                [accept]="acceptFile()"
+                class="hidden"
+            />
+            <button
+                mat-flat-button
+                [disabled]="!game.language"
+                (click)="programUpload.click()"
+                class="text-white bg-[color:var(--primary)]"
+            >
+                {{ game.program?._id ? 'Modifier' : 'Ajouter' }} le fichier source
+                <mat-icon>file_download</mat-icon>
+            </button>
+        </div>
+        <div class="w-11/12 flex mt-7">
+            <button
+                *ngIf="game.entry?.location"
+                mat-icon-button
+                color="primary"
+                class="!mr-3"
+                (click)="showFile(game.entry?.location)"
+            >
+                <mat-icon>visibility</mat-icon>
+            </button>
+            <span class="mr-auto my-auto">
+                Fichier d'entrée : {{ game.entry ? game.entry.name : '...' }}
+            </span>
+            <input
+                type="file"
+                (change)="onFileChange($event, 'entry')"
+                #entryUpload
+                accept=".json"
+                class="hidden"
+            />
+            <button
+                mat-flat-button
+                (click)="entryUpload.click()"
+                class="text-white bg-[color:var(--primary)]"
+            >
+                {{ game.entry?._id ? 'Modifier' : 'Ajouter' }} le fichier d'entrée
+                <mat-icon>file_download</mat-icon>
+            </button>
+        </div>
+        <span class="block text-[color:var(--error)] mt-5" *ngIf="error">{{ error }}</span>
+    </div>
+</div>
+<div mat-dialog-actions class="flex justify-center mt-5">
+    <button
+        mat-flat-button
+        class="text-white bg-[color:var(--success)] w-1/2"
+        (click)="saveGame()"
+        [disabled]="loading"
+    >
+        {{ game._id ? 'Modifier' : 'Ajouter' }} le jeu
+    </button>
+    <mat-progress-bar mode="indeterminate" class="mt-5" *ngIf="loading"></mat-progress-bar>
+</div>

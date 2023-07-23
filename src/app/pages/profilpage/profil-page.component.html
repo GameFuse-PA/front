@@ -1,0 +1,18 @@
+<div class="flex justify-center">
+    <div class="w-full lg:w-3/4 mt-16">
+        <span class="font-medium text-3xl">Mon profil</span>
+        <div class="flex flex-row mt-10">
+            <app-change-user-form class="w-1/2"></app-change-user-form>
+            <div class="px-5"></div>
+            <div class="w-1/2">
+                <div>
+                    <app-change-profil-pic [profilPicOnServer]="profilPic"></app-change-profil-pic>
+                </div>
+                <div class="py-5"></div>
+                <div>
+                    <app-change-password-user-form></app-change-password-user-form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

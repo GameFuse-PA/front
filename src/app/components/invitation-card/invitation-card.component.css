@@ -1,0 +1,21 @@
+.accept-invit {
+  flex: 50;
+  background-color: var(--success);
+  margin: 0 10px;
+  border-radius: 10px;
+  max-height: 4vh;
+  font-size: 9pt;
+  text-align: center;
+  color: white;
+}
+
+.refuse-invite {
+  flex: 50;
+  margin: 0 10px;
+  background-color: var(--error);
+  border-radius: 10px;
+  max-height: 4vh;
+  font-size: 9pt;
+  text-align: center;
+  color: white;
+}

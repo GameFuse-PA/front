@@ -1,0 +1,27 @@
+<div id="visio-top">
+    <app-call
+        [socketService]="socketService"
+        (peerIdChanged)="readyToJoinGameSessionVisio($event)"
+    ></app-call>
+</div>
+
+<div id="bottom">
+    <div id="game" class="!overflow-auto">
+        <app-alter-runner
+            *ngIf="gameSessionId && isAdmin"
+            [gameSessionId]="gameSessionId"
+            (reloadRunner)="reloadRunner()"
+        ></app-alter-runner>
+        <div class="flex justify-center {{ isAdmin ? '' : '!mt-14' }}">
+            <app-runner
+                *ngIf="gameSessionId"
+                [gameSessionId]="gameSessionId"
+                [inputFocused]="chatInputIsFocused"
+            ></app-runner>
+        </div>
+    </div>
+    <div id="chat">
+        <app-chat [conversation]="conversation" (inputFocused)="chatInputIsFocused = $event">
+        </app-chat>
+    </div>
+</div>
