@@ -3,6 +3,7 @@ import { Game } from '../../models/game.model';
 import { GameService } from '../../services/game/game.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SaveGameDialogComponent } from '../save-game-dialog/save-game-dialog.component';
+import { CreateGameSessionDialogComponent } from '../create-game-session-dialog/create-game-session-dialog.component';
 
 @Component({
     selector: 'app-game-card',
@@ -37,6 +38,15 @@ export class GameCardComponent implements OnInit {
             next: () => {
                 this.reload.emit();
             },
+        });
+    }
+
+    playGame() {
+        this.dialog.open(CreateGameSessionDialogComponent, {
+            width: '700px',
+            autoFocus: false,
+            disableClose: true,
+            data: this.game._id,
         });
     }
 }

@@ -11,7 +11,12 @@
     </mat-card-content>
     <mat-card-actions class="!p-3">
         <div class="px-2">
-            <button mat-button class="text-white bg-[color:var(--primary)] w-full" *ngIf="readonly">
+            <button
+                mat-button
+                class="text-white bg-[color:var(--primary)] w-full"
+                *ngIf="readonly"
+                (click)="playGame()"
+            >
                 Jouer
             </button>
         </div>
