@@ -62,6 +62,7 @@ import { ConfirmActionComponent } from './components/confirm-action/confirm-acti
 import { AlterRunnerComponent } from './components/alter-runner/alter-runner.component';
 import { ActionHistoryDialogComponent } from './components/action-history-dialog/action-history-dialog.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { FooterComponent } from './components/footer/footer.component';
 import { ScoreboardComponent } from './pages/scoreboard/scoreboard.component';
 import { PlayerScoreboardComponent } from './components/player-scoreboard/player-scoreboard.component';
 import { MatTableModule } from '@angular/material/table';
@@ -108,6 +109,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         ConfirmActionComponent,
         AlterRunnerComponent,
         ActionHistoryDialogComponent,
+        FooterComponent,
         ScoreboardComponent,
         PlayerScoreboardComponent,
     ],

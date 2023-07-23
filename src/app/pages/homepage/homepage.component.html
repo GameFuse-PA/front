@@ -1,22 +1,25 @@
-<div class="header">
-    <h1>GameFuse</h1>
-</div>
-
-<div class="content">
-    <div class="presentation">
-        <p>
-            Bienvenue sur GameFuse ! LA plateforme sociale en ligne qui vous permettra de réduire la
-            distance avec vos amis et pourquoi pas vous en faire de nouveaux ?
-        </p>
-        <p>Le concept est simple ! Choisissez un jeu, invitez vos amis et amusez-vous !</p>
+<div class="flex mt-16 !overflow-hidden">
+    <div class="w-1/2 text-center flex justify-center items-center">
+        <div class="w-2/3 flex flex-col items-center justify-center revealText">
+            <img src="assets/logo.svg" class="w-full -mt-20" />
+            <span class="text-2xl mt-14 font-medium">
+                Bienvenue sur GameFuse ! La plateforme sociale en ligne qui vous permettra de
+                réduire la distance avec vos amis et pourquoi pas vous en faire de nouveaux ?
+            </span>
+            <span class="text-xl mt-10 font-light">
+                Le concept est simple ! Créez votre propre jeu ou choisissez-en un dans notre
+                collection, invitez vos amis et amusez-vous ! 🎮
+            </span>
+            <button
+                mat-flat-button
+                (click)="playGame()"
+                class="w-1/2 text-white bg-[color:var(--primary)] !mt-16 !rounded-full h-12 text-xl"
+            >
+                Jouer
+            </button>
+        </div>
     </div>
-
-    <h2 id="topGamesTitle">Les jeux à la une !</h2>
-
-    <div id="squares">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+    <div class="w-1/2 revealImg pl-10">
+        <img src="assets/homepage_img.png" />
     </div>
 </div>
