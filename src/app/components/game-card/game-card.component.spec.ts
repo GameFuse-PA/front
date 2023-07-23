@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameCardComponent } from './game-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('GameCardComponent', () => {
     let component: GameCardComponent;
@@ -11,7 +13,7 @@ describe('GameCardComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [GameCardComponent],
-            imports: [HttpClientModule, MatDialogModule],
+            imports: [HttpClientTestingModule, MatDialogModule, RouterTestingModule],
         }).compileComponents();
     });
 

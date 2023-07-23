@@ -49,7 +49,6 @@ export class ScoreboardComponent implements OnInit {
 
         request.subscribe({
             next: (res: any) => {
-                console.log(res);
                 this.players = res;
             },
             error: (err: any) => {
