@@ -38,7 +38,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -50,6 +50,27 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "preprod": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.preprod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -70,6 +91,9 @@
           "configurations": {
             "production": {
               "browserTarget": "GameFuse-front:build:production"
+            },
+            "preprod": {
+              "browserTarget": "GameFuse-front:build:preprod"
             },
             "development": {
               "browserTarget": "GameFuse-front:build:development"

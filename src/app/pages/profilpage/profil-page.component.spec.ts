@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfilPageComponent } from './profil-page.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProfilpageComponent', () => {
     let component: ProfilPageComponent;
@@ -8,6 +10,7 @@ describe('ProfilpageComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [RouterTestingModule, HttpClientTestingModule],
             declarations: [ProfilPageComponent],
         }).compileComponents();
     });
