@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ConversationModel } from '../../models/conversation.model';
 import { ProfilService } from '../../services/profil/profil.service';
 import { SocketService } from '../../modules/call/services/socket.service';
-import { MessageToBackModel } from '../../models/messageToBack.model';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../services/auth/auth.service';
 import { ChatComponent } from '../../modules/chat/components/chat/chat.component';
@@ -11,17 +10,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { JoinGameSessionVisioDTO } from './dto/JoinGameSessionVisioDTO';
 import { ActivatedRoute } from '@angular/router';
 import { RunnerComponent } from '../../components/runner/runner.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-room',
     templateUrl: './game-session.component.html',
     styleUrls: ['./game-session.component.css'],
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent implements OnInit, OnDestroy {
     public conversation: ConversationModel | undefined;
     public me: User | null | undefined;
     public gameSessionId: string | undefined;
     public isAdmin = false;
+    public gameSession: any = null;
 
     public chatInputIsFocused: boolean = false;
 
@@ -29,6 +30,7 @@ export class RoomComponent implements OnInit {
     @ViewChild(RunnerComponent) runnerComponent: RunnerComponent | undefined;
 
     constructor(
+        private router: Router,
         private profilService: ProfilService,
         public socketService: SocketService,
         private authService: AuthService,
@@ -48,7 +50,9 @@ export class RoomComponent implements OnInit {
                     conversationId: res.conversation._id,
                     gameSessionId: this.gameSessionId,
                 };
-                this.joinGameSessionChat(joinGameSessionChatDTO);
+                this.gameSession = res;
+                this.socketService.connectGameSessionChat(joinGameSessionChatDTO);
+                this.socketService.handleNewMessage();
                 this.socketService.newMessage.subscribe((chat) => {
                     if (chat && chat.conversationId === this.conversation?._id) {
                         if (this.conversation?.messages !== undefined) {
@@ -74,8 +78,16 @@ export class RoomComponent implements OnInit {
                 this._snackBar.open(err.message, 'Fermer', {
                     panelClass: ['error-snackbar'],
                 });
+                this.router.navigate(['/my-game-sessions']);
             },
         });
+    }
+
+    ngOnDestroy(): void {
+        if (this.conversation?._id != undefined) {
+            this.socketService.disconnectFromGameSession(this.conversation._id);
+            this.socketService.socket.off('new-message');
+        }
     }
 
     public async readyToJoinGameSessionVisio(peerId: string) {
@@ -87,13 +99,6 @@ export class RoomComponent implements OnInit {
             this.socketService.joinGameSessionVisio(request);
         }
     }
-
-    private async joinGameSessionChat(
-        joinGameSessionChatDTO: JoinGameSessionChatDTO,
-    ): Promise<void> {
-        this.socketService.joinGameSessionChat(joinGameSessionChatDTO);
-    }
-
     public reloadRunner() {
         this.runnerComponent?.retrieveState();
     }

@@ -1,5 +1,6 @@
 <div id="visio-top">
     <app-call
+        *ngIf="gameSession"
         [socketService]="socketService"
         (peerIdChanged)="readyToJoinGameSessionVisio($event)"
     ></app-call>
