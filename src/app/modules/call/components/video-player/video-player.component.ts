@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MediaService } from 'src/app/modules/call/services/media.service';
+import { MediaService } from '../../services/media.service';
 @Component({
     selector: 'app-video-player',
     templateUrl: './video-player.component.html',

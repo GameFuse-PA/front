@@ -3,7 +3,6 @@ import { RunnerService } from '../../services/runner/runner.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WebsocketService } from '../../services/websocket/websocket.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmActionComponent } from '../confirm-action/confirm-action.component';
 import { ActionHistoryDialogComponent } from '../action-history-dialog/action-history-dialog.component';
 
 @Component({

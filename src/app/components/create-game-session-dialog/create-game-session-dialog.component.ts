@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Game } from '../../models/game.model';
 import { User } from '../../models/user.model';
 import { ProfilService } from '../../services/profil/profil.service';
@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
 import { GameSessionCreateModel } from '../../models/game-session/game-session-create.model';
 import { Router } from '@angular/router';
 import { GameSessionService } from '../../services/game-session/game-session.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../../services/auth/auth.service';
 import { GameSessionStatus } from '../../utils/enum';
 import { GameService } from '../../services/game/game.service';
@@ -44,6 +44,7 @@ export class CreateGameSessionDialogComponent implements OnInit {
         public dialogRef: MatDialogRef<CreateGameSessionDialogComponent>,
         private authServices: AuthService,
         private gameService: GameService,
+        @Inject(MAT_DIALOG_DATA) public gameId: any,
     ) {}
     ngOnInit(): void {
         this.profilService.getFriends().subscribe({
@@ -79,6 +80,9 @@ export class CreateGameSessionDialogComponent implements OnInit {
                     return;
                 }
                 this.listGames = games;
+                if (this.gameId) {
+                    this.session.game = this.gameId;
+                }
             },
             error: (_: any) => {
                 this._snackBar.open(

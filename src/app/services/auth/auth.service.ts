@@ -1,7 +1,7 @@
 import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/models/user.model';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { NO_AUTH } from '../request.interceptor';
 import { Router } from '@angular/router';
 import { ResetPasswordModel } from '../../models/reset-password.model';
