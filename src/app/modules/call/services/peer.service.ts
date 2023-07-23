@@ -13,28 +13,18 @@ export class PeerService {
     public peer: Peer | undefined;
     public myPeerId!: string;
     public joinUser = new BehaviorSubject<CallUser | null>(null);
-    constructor(private http: HttpClient) {}
-
-    getTurnServeConfig(): Observable<any> {
-        return this.http.put('https://global.xirsys.net/_turn/MyFirstApp', null, {
-            headers: new HttpHeaders({
-                Authorization: 'Basic ' + btoa('datnikon:f0f2a8b6-b7f9-11eb-9b35-0242ac150003'),
-            }),
-        });
-    }
+    constructor() {}
 
     public openPeer(stream: MediaStream): Promise<string> {
         return new Promise<string>((resolve) => {
-            this.getTurnServeConfig().subscribe((data) => {
-                this.initPeer(data.v);
-                if (this.peer !== undefined) {
-                    this.peer.on('open', (uerPeerId: string) => {
-                        this.myPeerId = uerPeerId;
-                        this.handleInComingCall(stream);
-                        resolve(uerPeerId);
-                    });
-                }
-            });
+            this.initPeer();
+            if (this.peer !== undefined) {
+                this.peer.on('open', (uerPeerId: string) => {
+                    this.myPeerId = uerPeerId;
+                    this.handleInComingCall(stream);
+                    resolve(uerPeerId);
+                });
+            }
         });
     }
 
@@ -62,10 +52,13 @@ export class PeerService {
         }
     }
 
-    private initPeer(config: any): void {
-        this.peer = new Peer(this.myPeerId, {
+    private initPeer(): void {
+        this.peer = new Peer({
+            config: {
+                iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+            },
             host: '/',
-            port: environment.peerPort, // config: config
+            port: environment.peerPort,
         });
     }
 }
