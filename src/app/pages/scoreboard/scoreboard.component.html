@@ -1,0 +1,40 @@
+<div class="flex justify-center">
+    <div class="w-11/12 xl:w-2/3 mt-16">
+        <div class="flex justify-center">
+            <mat-form-field appearance="outline" class="w-1/4 mr-5">
+                <mat-label>Sélectionner un jeu</mat-label>
+                <mat-select [(ngModel)]="selectedGame" (ngModelChange)="searchScoreboard()">
+                    <mat-option *ngFor="let game of games" [value]="game._id">
+                        {{ game.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-1/4">
+                <mat-label>Rechercher un utilisateur</mat-label>
+                <input
+                    matInput
+                    name="name"
+                    [(ngModel)]="searchUser"
+                    (keydown.enter)="searchScoreboard()"
+                />
+            </mat-form-field>
+            <div class="mt-4 ml-5 w-1/4 flex justify-center" *ngIf="authService.user">
+                <mat-slide-toggle [(ngModel)]="onlyFriends" (change)="searchScoreboard()">
+                    Afficher uniquement mes amis
+                </mat-slide-toggle>
+            </div>
+            <div class="w-1/4 pl-5 mt-1.5">
+                <button
+                    mat-flat-button
+                    (click)="searchScoreboard()"
+                    class="text-white bg-[color:var(--primary)] w-full h-12"
+                >
+                    Rechercher
+                </button>
+            </div>
+        </div>
+        <div class="mt-5">
+            <app-player-scoreboard [players]="players"></app-player-scoreboard>
+        </div>
+    </div>
+</div>
