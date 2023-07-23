@@ -10,8 +10,26 @@
             (focusout)="updateFocus(false)"
         >
         </textarea>
+        <button
+            matSuffix
+            mat-icon-button
+            (click)="showEmojiPicker = !showEmojiPicker"
+            class="emoji-picker"
+        >
+            <mat-icon>mood</mat-icon>
+        </button>
         <button matSuffix mat-icon-button [disabled]="!content" (click)="submitMessage()">
             <mat-icon>send</mat-icon>
         </button>
     </mat-form-field>
+    <emoji-mart
+        title="Choisissez un emoji"
+        (emojiClick)="addEmoji($event)"
+        [style]="{
+            position: 'absolute',
+            bottom: '15vh',
+            right: '5vw'
+        }"
+        [ngStyle]="showEmojiPicker ? { display: 'block' } : { display: 'none' }"
+    ></emoji-mart>
 </div>

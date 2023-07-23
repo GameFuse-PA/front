@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 @NgModule({
     declarations: [ChatComponent, ChatInputComponent],
@@ -17,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
+        PickerModule,
     ],
     exports: [ChatComponent, ChatInputComponent],
     providers: [DatePipe],
