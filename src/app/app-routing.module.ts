@@ -14,6 +14,7 @@ import { InvitationsComponent } from './pages/invitations/invitations.component'
 import { MyInvitationsComponent } from './components/my-invitations/my-invitations.component';
 import { RoomComponent } from './pages/game-session/game-session.component';
 import { MyConversationsComponent } from './components/my-conversations/my-conversations.component';
+import { ScoreboardComponent } from './pages/scoreboard/scoreboard.component';
 
 const routes: Routes = [
     {
@@ -72,6 +73,10 @@ const routes: Routes = [
     {
         path: 'my-conversations',
         component: MyConversationsComponent,
+    },
+    {
+        path: 'scoreboard',
+        component: ScoreboardComponent,
     },
     {
         path: '**',

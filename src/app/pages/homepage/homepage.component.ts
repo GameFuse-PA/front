@@ -1,4 +1,6 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-homepage',
@@ -6,26 +8,15 @@ import { Component, ElementRef, OnInit } from '@angular/core';
     styleUrls: ['./homepage.component.css'],
 })
 export class HomepageComponent implements OnInit {
-    value = 'Hello World';
+    constructor(private authService: AuthService, private router: Router) {}
 
-    constructor(private elementRef: ElementRef) {}
+    ngOnInit() {}
 
-    ngOnInit() {
-        this.setBackgroundImages();
-    }
-
-    private setBackgroundImages() {
-        const squares = this.elementRef.nativeElement.querySelectorAll('.square');
-        const imageUrls = [
-            'assets/puissance4.svg',
-            'assets/milleBorne.png',
-            'assets/risk.png',
-            'assets/uno.png',
-        ];
-
-        for (let i = 0; i < squares.length; i++) {
-            const square = squares[i];
-            square.style.backgroundImage = `url(${imageUrls[i]})`;
+    playGame() {
+        if (this.authService.user) {
+            this.router.navigate(['/my-game-sessions']);
+        } else {
+            this.router.navigate(['/auth']);
         }
     }
 }

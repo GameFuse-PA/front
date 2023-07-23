@@ -1,11 +1,11 @@
 <div class="conversation-item">
     <img
         class="avatar"
-        [src]="conversation?.users?.[0]?._id === me?._id ?
-        conversation?.users?.[1]?.avatar?.location :
-        conversation?.users?.[0]?.avatar?.location"
-        alt="User Avatar"
+        [src]="getAvatarSrc()"
+        *ngIf="isSrcDefined()"
     />
+    <mat-icon *ngIf="!isSrcDefined()" class="avatar" style="font-size: 60px">account_circle</mat-icon
+    >
     <div class="info">
         <h3>
             {{ conversation?.users?.[0]?._id === me?._id ? conversation?.users?.[1]?.username : conversation?.users?.[0]?.username}}

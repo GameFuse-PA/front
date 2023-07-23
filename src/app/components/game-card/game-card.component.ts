@@ -3,6 +3,9 @@ import { Game } from '../../models/game.model';
 import { GameService } from '../../services/game/game.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SaveGameDialogComponent } from '../save-game-dialog/save-game-dialog.component';
+import { CreateGameSessionDialogComponent } from '../create-game-session-dialog/create-game-session-dialog.component';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-game-card',
@@ -14,7 +17,12 @@ export class GameCardComponent implements OnInit {
     @Input() readonly: boolean = false;
     @Output() reload: EventEmitter<void> = new EventEmitter();
 
-    constructor(public gameService: GameService, public dialog: MatDialog) {}
+    constructor(
+        public gameService: GameService,
+        public dialog: MatDialog,
+        public authService: AuthService,
+        public router: Router,
+    ) {}
     ngOnInit(): void {}
 
     deleteGame() {
@@ -38,5 +46,18 @@ export class GameCardComponent implements OnInit {
                 this.reload.emit();
             },
         });
+    }
+
+    playGame() {
+        if (this.authService.user) {
+            this.dialog.open(CreateGameSessionDialogComponent, {
+                width: '700px',
+                autoFocus: false,
+                disableClose: true,
+                data: this.game._id,
+            });
+        } else {
+            this.router.navigate(['/auth']);
+        }
     }
 }
