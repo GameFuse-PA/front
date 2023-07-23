@@ -57,7 +57,7 @@ export class PeerService {
             config: {
                 iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
             },
-            host: '/',
+            host: 'https://api-test.gamefuse.fr',
             port: environment.peerPort,
         });
     }
