@@ -69,7 +69,12 @@ export class RunnerComponent implements OnInit, OnDestroy {
         this.actionMessage = '';
 
         if (res.game_state.game_over == true) {
-            this.infoMessage = `La partie est terminée. ${res.game_state.winner.username} a gagné !`;
+            if (res.game_state.winner == null) {
+                this.infoMessage = `La partie est terminée. Il y a égalité !`;
+            } else {
+                this.infoMessage = `La partie est terminée. ${res.game_state.winner.username} a gagné !`;
+            }
+
             this.canPlay = false;
         } else {
             this.canPlay = res.requested_actions.find(
