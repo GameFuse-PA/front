@@ -1,12 +1,35 @@
-<div class="chat-input">
-    <textarea
-        rows="2"
-        [(ngModel)]="content"
-        (keyup.enter)="submitMessage()"
-        placeholder="Entrez votre message"
-        (focusin)="updateFocus(true)"
-        (focusout)="updateFocus(false)"
-    >
-    </textarea>
-    <mat-icon>send</mat-icon>
+<div class="chat-input mt-5">
+    <mat-form-field class="w-full px-5" appearance="outline">
+        <mat-label>Envoyer un message</mat-label>
+        <textarea
+            matInput
+            rows="2"
+            [(ngModel)]="content"
+            (keyup.enter)="submitMessage()"
+            (focusin)="updateFocus(true)"
+            (focusout)="updateFocus(false)"
+        >
+        </textarea>
+        <button
+            matSuffix
+            mat-icon-button
+            (click)="showEmojiPicker = !showEmojiPicker"
+            class="emoji-picker"
+        >
+            <mat-icon>mood</mat-icon>
+        </button>
+        <button matSuffix mat-icon-button [disabled]="!content" (click)="submitMessage()">
+            <mat-icon>send</mat-icon>
+        </button>
+    </mat-form-field>
+    <emoji-mart
+        title="Choisissez un emoji"
+        (emojiClick)="addEmoji($event)"
+        [style]="{
+            position: 'absolute',
+            bottom: '15vh',
+            right: '5vw'
+        }"
+        [ngStyle]="showEmojiPicker ? { display: 'block' } : { display: 'none' }"
+    ></emoji-mart>
 </div>

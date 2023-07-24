@@ -1,4 +1,4 @@
-<div class="conversation-container">
+<div class="conversation-container -mb-16">
     <div class="conversation-list" *ngIf="conversations.length !== 0">
         <app-conversation-resume
             *ngFor="let conversation of conversations"
@@ -10,12 +10,6 @@
     </div>
 
     <div class="conversation-details" *ngIf="conversations.length !== 0">
-        <div class="chat-header">
-            <div *ngIf="selectedConversation" class="chat-title">
-                Conversation avec
-                {{ selectedConversation?.users?.[0]?._id === me?._id ? selectedConversation?.users?.[1]?.username : selectedConversation?.users?.[0]?.username }}
-            </div>
-        </div>
         <div class="chat">
             <div *ngIf="socketService">
                 <app-chat [conversation]="selectedConversation"> </app-chat>
@@ -23,6 +17,6 @@
         </div>
     </div>
     <div class="conversation" *ngIf="conversations.length === 0">
-      <h2>Vous n'avez aucune conversation</h2>
+        <h2>Vous n'avez aucune conversation</h2>
     </div>
 </div>

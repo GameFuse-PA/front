@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'app-chat-input',
@@ -9,6 +9,7 @@ export class ChatInputComponent implements OnInit {
     public content: string = '';
     @Output() public whenSubmitMessage = new EventEmitter<string>();
     @Output() focused: EventEmitter<boolean> = new EventEmitter();
+    public showEmojiPicker = false;
 
     ngOnInit(): void {}
 
@@ -21,5 +22,10 @@ export class ChatInputComponent implements OnInit {
 
     public updateFocus(val: boolean): void {
         this.focused.emit(val);
+    }
+
+    addEmoji(event: any) {
+        this.content += event.emoji.native;
+        this.showEmojiPicker = false;
     }
 }
