@@ -19,7 +19,7 @@ export class ListGameSessionComponent implements OnInit {
 
     page: number = 1;
 
-    @Input() maxSize: number = 5;
+    @Input() maxSize: number = 6;
 
     constructor(
         private profilService: ProfilService,
