@@ -25,13 +25,13 @@
         <div *ngIf="!gameSessions || gameSessions.length === 0" class="text-center mt-10">
             <span>Vous n'avez pas encore de parties en cours</span>
         </div>
-        <pagination-controls
-            *ngIf="gameSessions.length > maxSize"
-            previousLabel="Précédent"
-            nextLabel="Suivant"
-            (pageChange)="page = $event"
-            class="paginator-friends"
-        >
-        </pagination-controls>
+        <div class="flex justify-center mt-10" *ngIf="gameSessions.length > maxSize">
+            <pagination-controls
+                previousLabel="Précédent"
+                nextLabel="Suivant"
+                (pageChange)="page = $event"
+            >
+            </pagination-controls>
+        </div>
     </div>
 </div>
