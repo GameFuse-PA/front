@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:production": "ng build --configuration production",
+    "build:preprod": "ng build --configuration preprod",
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint --fix",
     "test": "jest --coverage --detectOpenHandles"
