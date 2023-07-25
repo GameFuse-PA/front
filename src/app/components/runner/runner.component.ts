@@ -186,6 +186,10 @@ export class RunnerComponent implements OnInit, OnDestroy {
     handleText() {
         this.textError = '';
 
+        if (!this.canPlay || this.action.type !== 'TEXT') {
+            return;
+        }
+
         if (this.action.regex) {
             const regex = new RegExp(this.action.regex);
             if (!regex.test(this.text)) {
@@ -222,7 +226,8 @@ export class RunnerComponent implements OnInit, OnDestroy {
         if (
             this.action.type !== 'KEY' ||
             this.inputFocused ||
-            (this.action.keys && !this.action.keys.includes(key))
+            (this.action.keys && !this.action.keys.includes(key)) ||
+            !this.canPlay
         ) {
             return;
         }
