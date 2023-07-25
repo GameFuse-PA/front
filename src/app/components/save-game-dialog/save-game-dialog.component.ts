@@ -27,6 +27,10 @@ export class SaveGameDialogComponent implements OnInit {
             value: 'python',
             viewValue: 'Python 3.9.2',
         },
+        {
+            value: 'c',
+            viewValue: 'C 11',
+        },
     ];
 
     constructor(
@@ -82,6 +86,8 @@ export class SaveGameDialogComponent implements OnInit {
             return '.jar';
         } else if (this.game.language === 'python') {
             return '.py';
+        } else if (this.game.language === 'c') {
+            return '.c';
         } else {
             return '';
         }

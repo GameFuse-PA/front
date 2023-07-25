@@ -69,7 +69,12 @@ export class RunnerComponent implements OnInit, OnDestroy {
         this.actionMessage = '';
 
         if (res.game_state.game_over == true) {
-            this.infoMessage = `La partie est terminée. ${res.game_state.winner.username} a gagné !`;
+            if (res.game_state.winner == null) {
+                this.infoMessage = `La partie est terminée. Il y a égalité !`;
+            } else {
+                this.infoMessage = `La partie est terminée. ${res.game_state.winner.username} a gagné !`;
+            }
+
             this.canPlay = false;
         } else {
             this.canPlay = res.requested_actions.find(
@@ -181,6 +186,10 @@ export class RunnerComponent implements OnInit, OnDestroy {
     handleText() {
         this.textError = '';
 
+        if (!this.canPlay || this.action.type !== 'TEXT') {
+            return;
+        }
+
         if (this.action.regex) {
             const regex = new RegExp(this.action.regex);
             if (!regex.test(this.text)) {
@@ -217,7 +226,8 @@ export class RunnerComponent implements OnInit, OnDestroy {
         if (
             this.action.type !== 'KEY' ||
             this.inputFocused ||
-            (this.action.keys && !this.action.keys.includes(key))
+            (this.action.keys && !this.action.keys.includes(key)) ||
+            !this.canPlay
         ) {
             return;
         }
